@@ -1,0 +1,203 @@
+:root {
+    /* Logo Text Colors */
+    --Logo-Text-Color-Hover: #008a83;
+    --Logo-Text-Color: #f1f1f1;
+  
+    /* Burger icon color */
+    --Burger-Color: #f1f1f1;
+    --Burger-Color-Hover: #00538a;
+  
+    /* Global default */
+    --Main-Background-1: #c2bcb1;
+    --Main-Background-2: #ddd8ce;
+    --TopBar-Background: #303030;
+    --Main-Foreground: #000000;
+  
+    /* Sidebar Menu */
+    --Sidebar-border: #888888;
+    --Sidebar-Background: #ddd8ce;
+    --Box-In-Sidebar-Background: #303030;
+    --Box-In-Sidebar-Foreground: #fafafa;
+    --Sidebar-btn-Foreground: #ececec;
+    --Sidebar-btn-Background: #c19e7b;
+    --Sidebar-btn-Foreground-Hover: #000000;
+    --Sidebar-btn-Background-Hover: #e6a15b;
+  
+    /* Scrollbar */
+    --Scrollbar-Track: #c2bcb1;
+    --Scrollbar-Thumb: #888888;
+    --Scrollbar-Thumb-Hover: #555555;
+  
+    /* Table Background */
+    --Table-Background-First-Title: #bebebe;
+    --Table-Background-Second-Title: #f3efb2;
+    --Table-Background-Good-Task: #b8f3b2;
+    --Table-Background-Bad-Task: #f3b2b2;
+    --Table-Row-Background-N1: #f8f8f8;
+    --Table-Row-Background-N2: #e2e2e2;
+    /* Table Text */
+    --Table-Foreground-Title: #313131;
+    --Table-Foreground-Good-Task: #0a2c00;
+    --Table-Foreground-Bad-Task: #2c0000;
+    --Table-Row-Foreground-N1: #49270e;
+    --Table-Row-Foreground-N2: #49270e;
+    
+
+
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    font-family: system-ui;
+    scroll-behavior: smooth;
+  }
+  body {
+    overflow-y: auto;
+    background-color: var(--Main-Background-1);
+    color: var(--Main-Foreground);
+  }
+  header {
+    background-color: var(--TopBar-Background);
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+  }
+  main{
+    min-height: calc(100vh - 60px);
+    height: fit-content;
+    width: 60%;
+    margin: 0 auto;
+    background-color: var(--Main-Background-2);
+    padding: 10px;
+  }
+
+  footer {
+    background-color: var(--TopBar-Background);
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+  }
+/* Div versions */
+.flyBox{
+height: fit-content;
+width: fit-content;
+margin: 5px;
+padding: 20px 30px;
+background-color: #eed8bd;
+border: 2px solid #00000069;
+border-radius: 5px;
+box-shadow: 5px 10px 0px 0px #00000020;
+}
+
+/* Headers */
+  h1 > a {
+    font-size: 36px;
+    text-decoration: none;
+    color: var(--Logo-Text-Color);
+    transition: 0.9s all linear;
+  }
+  h1 > a:hover {
+    color: var(--Logo-Text-Color-Hover);
+    font-size: 38px;
+transition: 0.3s all linear;
+}
+  
+h2 {
+  font-size: 18px;
+}
+/* Inputs */
+.btn.Big-Resize{
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    font-size: 1.4rem;
+    transition: 0.3s all linear;
+    font-family: monospace;
+}
+.btn.Big-Resize:hover{
+    cursor: pointer;
+    color: aliceblue;
+    background-color: cadetblue;
+    font-size: 1.5rem;
+    margin: 15px;
+    padding: 15px;
+    transition: 0.3s all linear;
+}
+.inputText{
+    width: 100%;
+    height: 20px;
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-family: monospace;
+}
+
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+     /* Track */
+     ::-webkit-scrollbar-track {
+        background: var(--Scrollbar-Track);
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: var(--Scrollbar-Thumb);
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--Scrollbar-Thumb-Hover);
+      }
+
+  @media only screen and (max-width: 450px) {
+    main {
+      width: 100%;
+    }
+  }
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 600px) {
+    main {
+      width: 90%;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    main {
+      width: 80%;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    main {
+      width: 85%;
+    }
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    main {
+      width: 70%;
+    }
+  }
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    main {
+      width: 60%;
+    }
+  }

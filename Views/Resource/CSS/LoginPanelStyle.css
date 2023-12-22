@@ -1,0 +1,64 @@
+#loginPanel {
+  height: fit-content;
+  width: 350px;
+  margin: auto;
+  padding: 20px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #eed8bd;
+  border: 2px solid #00000069;
+  border-radius: 5px;
+  box-shadow: 5px 10px 0px 0px #00000020;
+  color: black;
+  font-family: math;
+}
+#loginPanel > div > label {
+  font-size: 32px;
+}
+#loginPanel > div > input {
+  width: 100%;
+  height: 20px;
+  padding: 15px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-family: monospace;
+}
+#loginPanel > input[type="submit"] {
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  transition: 0.3s all linear;
+  font-family: monospace;
+}
+
+#loginPanel > input[type="submit"]:hover {
+  cursor: pointer;
+  color: aliceblue;
+  background-color: cadetblue;
+  font-size: 1.5rem;
+  margin: 15px;
+  padding: 15px;
+  transition: 0.3s all linear;
+}
+#errnoLoginPanel {
+  height: 90px;
+  width: 350px;
+  margin: 25px auto;
+  padding: 20px 30px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #eed8bd;
+  border: 2px solid #00000069;
+  border-radius: 5px;
+  box-shadow: 5px 10px 0px 0px #00000020;
+  color: black;
+  font-family: math;
+  font-size: 20px;
+  text-align: center;
+}
