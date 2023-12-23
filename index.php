@@ -1,5 +1,8 @@
 <?php
 session_start();
+## Static render pages
+require_once("Controllers/AppController.php");
+require_once("Views/AppView.php");
 ## Login
 require_once 'Models/UserModel.php';
 require_once 'Views/Auth/LoginView.php';
@@ -13,6 +16,10 @@ require_once 'Controllers/ErrorsController.php';
 require_once 'Models/ArticleModel.php';
 require_once 'Views/CMS/ArticleView.php';
 require_once 'Controllers/ArticleController.php';
+
+require_once 'Views/Dashboards/ListOfArticles.php';
+require_once 'Views/Dashboards/Dashboards.php';
+$test = new Dashboard();
 
 /* ##############################
    Połączenie z bazą danych MySQL
@@ -37,7 +44,10 @@ if (isset($_SESSION['user'])) {
      Wykonaj przekierowania dla zalogowanego użytkownika
   ########################################################*/
   if ($uri === '/Logowanie' or $uri === '/Rejestracja' or $uri === '/') {
-    echo "Dashboard"; // TODO: Dashboard
+    $view = new AppView();
+    $controller = new AppController($view);
+    $controller->index("Dashboard");
+    $test->render();
   } else if ($uri === '/LOGOUT') {
     $view = new LoginView();
     $controller = new LoginController($modelUser, $view);
@@ -47,11 +57,13 @@ if (isset($_SESSION['user'])) {
     $controller = new ArticleController($modelArticle, $view);
     $controller->createArticle();
   } else if (preg_match('/^\/Lekcje\/(.*)$/', $uri, $matches)) {
-    echo  "elo";
     $view = new ArticleView();
     $controller = new ArticleController($modelArticle, $view);
     $controller->displayArticle($matches[1]);
-    echo $matches[1];
+  } else if ($uri === "/articles-List") {
+    $view = new ListOfArticles();
+    $controller = new ArticleController($modelArticle, new ListOfArticles());
+    $controller->getAllArticlesArray();
   } else {
     http_response_code(404);
   }
@@ -61,7 +73,9 @@ if (isset($_SESSION['user'])) {
   #############################################################*/
   switch ($uri) {
     case '/':
-      echo "TODO Home Page"; // TODO: Home Page
+      $view = new AppView();
+      $controller = new AppController($view);
+      $controller->index("HomePage"); // TODO: Home Page
       break;
     case '/Logowanie':
       $view = new LoginView();

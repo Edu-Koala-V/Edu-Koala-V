@@ -1,13 +1,14 @@
 <?php
 require_once  __DIR__ . '/../Models/ArticleModel.php';
 require_once  __DIR__ . '/../Views/CMS/ArticleView.php';
+require_once  __DIR__ . '/../Views/Dashboards/ListOfArticles.php';
 
 class ArticleController
 {
     private $model;
     private $view;
 
-    public function __construct($model, $view)
+    public function __construct($model, $view) // Określ który chcesz widok
     {
         $this->model = $model;
         $this->view = $view;
@@ -60,5 +61,23 @@ class ArticleController
         file_put_contents($file_article, $content);
         $path = 'Views/Articles/' . $filename;
         file_put_contents($path, $html);
+    }
+
+    public function getAllArticlesArray()
+    {
+        $articles = $this->model->getAllArticles();
+        $data = $articles->fetch_all(MYSQLI_ASSOC);
+
+        // Podział tablicy na mniejsze tablice
+        $categories = array();
+        foreach ($data as $row) {
+            $category = $row['category'];
+            unset($row['category']);
+            $categories[$category][] = $row;
+        }
+        if ($categories) {
+            $this->view->renderTable($categories);
+        }
+        return $categories;
     }
 }

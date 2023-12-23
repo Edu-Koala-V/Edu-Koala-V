@@ -22,6 +22,8 @@
     --Sidebar-btn-Background: #c19e7b;
     --Sidebar-btn-Foreground-Hover: #000000;
     --Sidebar-btn-Background-Hover: #e6a15b;
+    --Sidebar-btn-Background-Active-Hover: #396425;
+    --Sidebar-btn-Foreground-Active-Hover: #f6ffbe;
   
     /* Scrollbar */
     --Scrollbar-Track: #c2bcb1;
@@ -84,6 +86,37 @@
     font-size: 18px;
     padding: 10px;
   }
+  nav{
+    padding: 10px;
+    width: 375px;
+    height: calc(100vh - 60px);
+    background-color: var(--Sidebar-Background);
+    position: absolute;
+    left: -375px;
+    transition: 0.5s all linear;
+    border: 5px solid var(--Sidebar-border);
+    border-left: 0;
+    overflow-y: auto;
+    margin: 0;
+    z-index: 5;
+  }
+  .burger {
+    color: var(--Burger-Color);
+    font-size: 40px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px 10px;
+    transition: 0.5s all linear;
+  }
+  .burger:hover {
+    cursor: pointer;
+    color: var(--Burger-Color-Hover);
+    font-size: 37px;
+    margin: 8px 13px;
+    transition: 0.1s all linear;
+  }
 /* Div versions */
 .flyBox{
 height: fit-content;
@@ -94,6 +127,36 @@ background-color: #eed8bd;
 border: 2px solid #00000069;
 border-radius: 5px;
 box-shadow: 5px 10px 0px 0px #00000020;
+}
+.box{
+  background-color: var(--Box-In-Sidebar-Background);
+  color: var(--Box-In-Sidebar-Foreground);
+  padding: 10px;
+  margin: -10px -10px 5px -10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.5fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "user-avatar user-info user-info"
+    "info-tittle-sidebar info-tittle-sidebar info-tittle-sidebar";
+}
+.box > img{
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  box-shadow: 3px 2px 5px 5px #00000020;
+}
+.fullBox{
+  width: 100%;
+  display: block;
+}
+.user-info {
+  grid-area: user-info;
+  display: grid;
+  align-items: center;
+  align-content: center;
 }
 
 /* Headers */
@@ -113,6 +176,42 @@ h2 {
   font-size: 18px;
 }
 /* Inputs */
+.btn-sidebar-menu {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1rem;
+  margin: 10px 0;
+  background-color: var(--Sidebar-btn-Background);
+  color: var(--Sidebar-btn-Foreground);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.btn-sidebar-menu.active,
+.btn-sidebar-menu:hover {
+  background-color: var(--Sidebar-btn-Background-Hover);
+  color: var(--Sidebar-btn-Foreground-Hover);
+  transition: 0.3s all linear;
+}
+.btn-sidebar-menu.active:hover{
+  background-color: var(--Sidebar-btn-Background-Active-Hover);
+  color: var(--Sidebar-btn-Foreground-Active-Hover);
+}
+.btn-sidebar-menu > i {
+  float: left;
+  padding-right: 10px;
+  width: 30px;
+}
+.btn-sidebar-menu > a{
+  text-decoration: none;
+  color: var(--Sidebar-btn-Foreground);
+}
+.btn-rounded-down-right{
+  border-radius: 0 0 50px 0;
+}
 .btn.Big-Resize{
     margin: 10px;
     padding: 10px 20px;
@@ -141,7 +240,9 @@ h2 {
     font-family: monospace;
 }
 
-
+.show-sidebar{
+  left: 0;
+}
 /* Scrollbar */
 /* width */
 ::-webkit-scrollbar {

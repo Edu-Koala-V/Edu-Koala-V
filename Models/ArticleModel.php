@@ -16,6 +16,27 @@ class ArticleModel
         $stmt->close();
     }
 
+    public function updateArticle($id, $title, $category)
+    {
+        $stmt = $this->db->prepare("UPDATE articles SET title = $title, update_date = NOW(), category = $category WHERE id = $id");
+        $stmt->bind_param("ss", $title, $category);
+        $stmt->execute();
+        $stmt->close();
+    }
+    public function indexArticle($title, $category)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM articles WHERE title = $title AND category = $category");
+        $stmt->bind_param("ss", $title, $category);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function getAllArticles()
+    {
+        $stmt = $this->db->query("SELECT * FROM articles ORDER BY category");
+        return $stmt;
+    }
+
     public function getArticle($filename)
     {
 

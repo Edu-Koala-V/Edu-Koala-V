@@ -20,7 +20,7 @@ class LoginController
             if ($user) {
                 session_start();
                 $_SESSION['user'] = $user;
-                header('Location: /dashboard');
+                header('Location: /Dashboard');
                 exit();
             } else {
                 $this->view->render("Invalid username or password.");
@@ -33,6 +33,6 @@ class LoginController
     {
         unset($_SESSION['user']);
         session_destroy();
-        header('Location: /LOGOUT');
+        header('Location: /');
     }
 }

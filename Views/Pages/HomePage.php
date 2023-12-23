@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png" />
-  <title>Login - KoalaPL</title>
-  <link rel="stylesheet" href="../Resource/CSS/newstyle.css" />
+  <title>Strona główna - Edu-Koala-V</title>
+  <link rel="stylesheet" href="View/Resource/CSS/newstyle.css" />
 </head>
 
 <body>
@@ -19,36 +19,21 @@
         <form id="loginPanel" action="Api/Models/Login_User.php" method="post">
           <div>
             <label for="Login">Nazwa użytkownika</label>
-            <input 
-            class="inputText" 
-            type="text" 
-            name="Login" 
-            id="Login" 
-            required 
-            />
+            <input class="inputText" type="text" name="Login" id="Login" required />
           </div>
           <div>
             <label for="Password">Hasło użytkownika</label>
-            <input 
-            class="inputText" 
-            type="password" 
-            name="Password" 
-            id="Password" 
-            required />
+            <input class="inputText" type="password" name="Password" id="Password" required />
           </div>
-          <input 
-          class="btn Big-Resize"
-          type="submit"
-          value="Zaloguj się" 
-          />
+          <input class="btn Big-Resize" type="submit" value="Zaloguj się" />
         </form>
       </div>
       <div class="flyBox">
-        Tu mają być błędy 
+        Tu mają być błędy
         <!-- TODO Tu mają być błędy -->
       </div>
     </div>
-    
+
   </main>
   <footer></footer>
 </body>
