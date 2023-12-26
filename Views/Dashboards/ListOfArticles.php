@@ -6,14 +6,15 @@ class ListOfArticles
     public function renderTable($articleSortOfCategory)
     {
         foreach ($articleSortOfCategory as $category => $articles) {
+            echo "<h2>" . $category . "</h2>";
             echo "<table>";
-            echo "<tr><th>ID</th><th>Title</th><th>Update Date</th><th>Category</th></tr>";
+            echo "<tr><th>Nazwa lekcji</th><th>Link do lekcji</th></tr>";
             foreach ($articles as $article) {
                 echo "<tr>";
-                echo "<td>" . $article["id"] . "</td>";
                 echo "<td>" . $article["title"] . "</td>";
-                echo "<td>" . $article["update_date"] . "</td>";
-                echo "<td>" . $category . "</td>";
+                $filename = strtolower($article["title"]);
+                $filename = preg_replace('/[^a-z0-9]+/', '-', $filename);
+                echo '<td> <a href="/Lekcje/' . $filename . '">Link do lekcji </a></td>';
                 echo "</tr>";
             }
             echo "</table>";

@@ -1,4 +1,4 @@
-
+var htmlCode;
 const COLORS = [
     "#9933ff", "#e60000", "#ff9900",  "#008a00", "#0066cc", 
     "#c285ff", "#f06666", "#ffc266",  "#66b966", "#66a3e0", 
@@ -134,50 +134,40 @@ const COLORS = [
     
   }
   
-  var htmlCode = div.innerHTML;
+ htmlCode = div.innerHTML;
   
   console.log(htmlCode);
   
   }
   
   
+
+  var title = document.querySelector('#title').value;
+  var category = document.querySelector('#selectCategory').value;
   
   
+  document.querySelector("#saveArticle").addEventListener('click', function(){
+    sendData();
+  });
   
-  
-  
-  
-  
-  // var html;
-  
-  // function convertDeltaAttributesToClasses(){
-  //   var delta = quill.getContents()
-  
-  // var goodDelta = modifyDelta(delta);
-  //  html = goodDelta.ops;
-  
-  // }
-  
-  // function getHTML_from_QuillEditor(){
-  //   convertDeltaAttributesToClasses
-  //   var div = document.createElement('div');
-  // for (var i = 0; i < html.length; i++) {
-  //   var span = document.createElement('span');
-  //   span.innerHTML = html[i].insert;
-  //   if (html[i].attributes) {
-  //     if (html[i].attributes.class) {
-  //       span.className = html[i].attributes.class;
-  //     }
-  //     if (html[i].attributes.header) {
-  //       span.innerHTML = '<h' + html[i].attributes.header + '>' + span.innerHTML + '</h' + html[i].attributes.header + '>';
-  //     }
-  //   }
-  //   div.appendChild(span);
-  // }
-  
-  // var htmlCode = div.innerHTML;
-  
-  // console.log(htmlCode);
-  
-  // }
-  
+function sendData()
+{
+  var title = document.querySelector('#title').value;
+  var category = document.querySelector('#selectCategory').value;
+  console.log(title +category);
+  test();
+  test2();
+  const formData = new FormData();
+  formData.append('title', title);
+  formData.append('category', category);
+  formData.append('content', htmlCode);
+
+  fetch('/create-article', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+}

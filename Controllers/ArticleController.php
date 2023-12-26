@@ -23,7 +23,7 @@ class ArticleController
             $html = $this->convertToHtml($content);
             $filename = $this->generateFilename($title);
             $this->model->createArticle($category, $title);
-            $this->saveArticle($filename, $html);
+            $this->saveArticle($filename, $html, $title);
             ('Location: /Lekcje/' . $filename);
         } else {
             $this->view->renderEditor();
@@ -53,14 +53,13 @@ class ArticleController
         return $filename . '.html';
     }
 
-    private function saveArticle($filename, $html)
+    private function saveArticle($filename, $html, $title)
     {
         $layout = file_get_contents('Views/Layouts/ArticleLayout.html');
+        $layout = str_replace('{{{Title_article}}}', $title, $layout);
         $content = str_replace('{{{Article_Content}}}', $html, $layout);
-        $file_article = 'Views/Articles/' . $filename . '.html';
-        file_put_contents($file_article, $content);
         $path = 'Views/Articles/' . $filename;
-        file_put_contents($path, $html);
+        file_put_contents($path, $content);
     }
 
     public function getAllArticlesArray()

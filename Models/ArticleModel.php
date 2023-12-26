@@ -44,13 +44,10 @@ class ArticleModel
         $path = 'Views/Articles/' . $filename . '.php';
         $path2 = 'Views/Articles/' . $filename . '.html';
         if (file_exists($path)) {
-            echo "1<br>";
             $html = file_get_contents($path);
             $article =  $html;
             return $article;
         } else if (file_exists($path2)) {
-            echo "2<br>";
-
             $html = file_get_contents($path2);
             $article =  $html;
             return $article;
