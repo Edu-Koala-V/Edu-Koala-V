@@ -302,3 +302,39 @@ h2 {
       width: 60%;
     }
   }
+
+  /*
+    #######################################
+    ##  ARTICLE CLASS COLOR COMPOSITION  ##
+    #######################################
+  */
+.defaultTextColor{
+    color:black;
+}
+.redTextColor{
+    color: red;
+}
+.orangeTextColor{
+    color: orange;
+}
+.greenTextColor{
+    color: green;
+}
+.blueTextColor{
+    color: blue;
+}
+.purpleTextColor{
+    color: purple;
+}
+.boldText{
+    font-weight: bold;
+}
+.underlineText{
+    text-decoration: underline;
+}
+.strikeText{
+    text-decoration: line-through;
+}
+.italicText{
+    font-style: italic;
+}

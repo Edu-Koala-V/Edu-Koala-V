@@ -43,7 +43,7 @@ if (isset($_SESSION['user'])) {
   /* ###################################################
      Wykonaj przekierowania dla zalogowanego użytkownika
   ########################################################*/
-  if ($uri === '/Logowanie' or $uri === '/Rejestracja' or $uri === '/') {
+  if ($uri === '/Logowanie' or $uri === '/Rejestracja' or $uri === '/' or $uri === '/Dashboard') {
     $view = new AppView();
     $controller = new AppController($view);
     $controller->index("Dashboard");
@@ -73,9 +73,12 @@ if (isset($_SESSION['user'])) {
   #############################################################*/
   switch ($uri) {
     case '/':
-      $view = new AppView();
-      $controller = new AppController($view);
-      $controller->index("HomePage"); // TODO: Home Page
+      // $view = new AppView();
+      // $controller = new AppController($view);
+      // $controller->index("HomePage"); // TODO: Home Page
+      $view = new LoginView();
+      $controller = new LoginController($modelUser, $view);
+      $controller->login();
       break;
     case '/Logowanie':
       $view = new LoginView();
@@ -86,9 +89,6 @@ if (isset($_SESSION['user'])) {
       $view = new RegisterView();
       $controller = new RegisterController($modelUser, $view);
       $controller->register();
-      break;
-    default:
-      http_response_code(401);
       break;
   }
 }

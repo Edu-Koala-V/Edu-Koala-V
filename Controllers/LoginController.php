@@ -20,7 +20,7 @@ class LoginController
             if ($user) {
                 session_start();
                 $_SESSION['user'] = $user;
-                header('Location: /Dashboard');
+                header('Location: /');
                 exit();
             } else {
                 $this->view->render("Invalid username or password.");

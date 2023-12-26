@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png" />
   <title>Strona główna - Edu-Koala-V</title>
-  <link rel="stylesheet" href="View/Resource/CSS/newstyle.css" />
+  <link rel="stylesheet" href="Views/Resource/CSS/newstyle.css" />
 </head>
 
 <body>
