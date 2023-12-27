@@ -391,7 +391,7 @@
     border: none;
     cursor: pointer;
     display: inline-block;
-    height: 24px;
+    height: 24px !important;
     padding: 3px 5px;
     width: 28px;
   }

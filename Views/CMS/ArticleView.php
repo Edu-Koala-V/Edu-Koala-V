@@ -14,7 +14,7 @@ class ArticleView
         <link rel="icon" type="image/x-icon" href="Views/Resource/Images/Website/favicon-v2.png" />
         <title>Systemy operacyjne</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-        <link rel="stylesheet" href="Views/Resource/CSS/newstyle.css">
+        <link rel="stylesheet" href="Views/Resource/CSS/style.css">
         <link rel="stylesheet" href="Views/Resource/CSS/editorStyle.css">
       </head>
       
@@ -83,7 +83,6 @@ class ArticleView
 
           </nav>
         <main >
-        <!-- <form method="POST" action="/create-article"> -->
         <div class="form-group">
           <label for="title">Temat Lekcji</label>
           <input type="text" class="form-control" id="title" name="title" placeholder="Podaj temat lekcji">
@@ -97,11 +96,6 @@ class ArticleView
                 <option value="Urządzenia Techniki Komputerowej" />
             </datalist>
         </div>
-        <!-- <div class="form-group">
-          <label for="content">Content</label>
-          <div id="editor-quill"></div>
-          <input type="text" id="content" name="content">
-        </div> -->
         <button type="submit" class="btn btn-primary" id="saveArticle">Create article</button>
       
       <div id="editor"></div>

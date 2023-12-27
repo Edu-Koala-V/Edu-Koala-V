@@ -10,12 +10,15 @@ require_once 'Controllers/LoginController.php';
 ## Register
 require_once 'Views/Auth/RegisterView.php';
 require_once 'Controllers/RegisterController.php';
+require_once 'Models/RegisterModel.php';
 ## Errors
 require_once 'Controllers/ErrorsController.php';
 ## Articles
 require_once 'Models/ArticleModel.php';
 require_once 'Views/CMS/ArticleView.php';
 require_once 'Controllers/ArticleController.php';
+## Files upload images
+require_once 'Controllers/ImageController.php';
 
 require_once 'Views/Dashboards/ListOfArticles.php';
 require_once 'Views/Dashboards/Dashboards.php';
@@ -64,8 +67,18 @@ if (isset($_SESSION['user'])) {
     $view = new ListOfArticles();
     $controller = new ArticleController($modelArticle, new ListOfArticles());
     $controller->getAllArticlesArray();
+  } else if ($uri === "/upload-image") {
+    $controller = new ImageController();
+    echo $controller->upload();
   } else {
     http_response_code(404);
+  }
+
+  if ($uri === '/Rejestracja' or $_SESSION['privilege'] === 'teacher') {
+    $view = new RegisterView();
+    $modelRegister = new RegisterModel($db);
+    $controller = new RegisterController($modelRegister, $view);
+    $controller->register();
   }
 } else {
   /* #######################################################
@@ -87,7 +100,8 @@ if (isset($_SESSION['user'])) {
       break;
     case '/Rejestracja':
       $view = new RegisterView();
-      $controller = new RegisterController($modelUser, $view);
+      $modelRegister = new RegisterModel($db);
+      $controller = new RegisterController($modelRegister, $view);
       $controller->register();
       break;
   }

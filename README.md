@@ -1,6 +1,9 @@
 # Edu-Koala-V
 
-Kreator lekcji działa ale nie do konica
+Kreator lekcji działa trzeba zrobić aktualizacje artykułu
+
+PRZEBUDOWA TABEL W BAZIE DANYCH
+
 brak list
 trzeba sprawdzić czy działają zdjęcia oraz filmy
 Użytkownicy muszą mieć przywileje

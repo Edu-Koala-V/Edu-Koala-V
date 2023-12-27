@@ -20,10 +20,14 @@ class ArticleController
             $title = $_POST['title'];
             $category = $_POST['category'];
             $content = $_POST['content'];
+            $contentBlob = $_POST['contentBlob'];
+
             $html = $this->convertToHtml($content);
             $filename = $this->generateFilename($title);
+            $filenameJSON = $this->generateFilename($title, true);
             $this->model->createArticle($category, $title);
             $this->saveArticle($filename, $html, $title);
+            $JSON = $this->saveArticleJSON($filenameJSON, $contentBlob, $title);
             ('Location: /Lekcje/' . $filename);
         } else {
             $this->view->renderEditor();
@@ -46,13 +50,26 @@ class ArticleController
         return $content;
     }
 
-    private function generateFilename($title)
+    private function generateFilename($title, $JSON = false)
     {
         $filename = strtolower($title);
         $filename = preg_replace('/[^a-z0-9]+/', '-', $filename);
-        return $filename . '.html';
+        if ($JSON) {
+            return $filename . '.json';
+        } else {
+            return $filename . '.html';
+        }
     }
 
+
+    private function saveArticleJSON($filename, $JSON, $title)
+    {
+        // json_encode($JSON);
+
+        $content =  $JSON;
+        $path = 'Views/JSON/' . $filename;
+        file_put_contents($path, $content);
+    }
     private function saveArticle($filename, $html, $title)
     {
         $layout = file_get_contents('Views/Layouts/ArticleLayout.html');

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="/img/favicon-32x32.png" />
   <title>Strona główna - Edu-Koala-V</title>
-  <link rel="stylesheet" href="Views/Resource/CSS/newstyle.css" />
+  <link rel="stylesheet" href="Views/Resource/CSS/style.css" />
 </head>
 
 <body>
@@ -14,7 +14,7 @@
     <h1><a href="index.php">KoalaPL.GitHub.io</a></h1>
   </header>
   <main>
-    <div id="lesson-contener" data-overview-sidebar="true">
+    <div data-overview-sidebar="true">
       <div class="flyBox">
         <form id="loginPanel" action="Api/Models/Login_User.php" method="post">
           <div>

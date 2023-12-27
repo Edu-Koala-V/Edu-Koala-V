@@ -1,7 +1,4 @@
 <?php
-require_once __DIR__ .  '/../Models/UserModel.php';
-require_once __DIR__ . '/../Views/Auth/RegisterView.php';
-
 class RegisterController
 {
     private $model;
@@ -15,10 +12,16 @@ class RegisterController
 
     public function register()
     {
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $email = $_POST['email'];
+            $name = $_POST['name'];
+            $surname = $_POST['surname'];
+            $class = $_POST['class'];
+            $privileges = 'student';
+            $avatar = 'defaultAvatar.jpg';
+            $theme = ['root' => [], 'style.css'];
 
             $user = $this->model->getUserByUsername($username);
             if ($user) {
@@ -26,13 +29,9 @@ class RegisterController
                 return;
             }
 
-            $user = $this->model->getUserByEmail($email);
-            if ($user) {
-                $this->view->render("Email already exists.");
-                return;
-            }
 
-            $this->model->createUser($username, $password, $email);
+
+            $this->model->createUser($username, $password, $name, $surname, $class, $privileges, $avatar, $theme);
             $this->view->render("User created successfully.");
         } else {
             $this->view->render();
