@@ -22,11 +22,10 @@ class ArticleController
             $content = $_POST['content'];
             $contentBlob = $_POST['contentBlob'];
 
-            $html = $this->convertToHtml($content);
             $filename = $this->generateFilename($title);
             $filenameJSON = $this->generateFilename($title, true);
             $this->model->createArticle($category, $title);
-            $this->saveArticle($filename, $html, $title);
+            $this->saveArticle($filename, $content, $title);
             $JSON = $this->saveArticleJSON($filenameJSON, $contentBlob, $title);
             ('Location: /Lekcje/' . $filename);
         } else {
@@ -44,11 +43,7 @@ class ArticleController
         }
     }
 
-    private function convertToHtml($content)
-    {
-        // TODO: Pozamieniać wszystkie znaczki na klasy z zmiennymi CSS
-        return $content;
-    }
+
 
     private function generateFilename($title, $JSON = false)
     {
