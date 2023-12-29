@@ -49,7 +49,6 @@ class ArticleModel
     {
         $result = $this->db->query("SELECT name FROM `classes` WHERE id = $classID;");
         $className = $result->fetch_row();
-        //$className = $className->fetch_all(MYSQLI_ASSOC);
         $className = '%' . $className[0] . '%';
         $stmt = $this->db->prepare("SELECT * FROM articles WHERE classes LIKE ?");
         $stmt->bind_param("s", $className);

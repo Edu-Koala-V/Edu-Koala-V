@@ -56,17 +56,6 @@ class ClassesView
             </header>
         
             <nav data-overview-sidebar="true">
-                <div class="box">
-                <img src="Views/Resource/Images/Website/defaultAvatar.jpg" alt="User Avatar" class="user-avatar">
-                <div class="user-info">
-                    <br />
-                    <span>Witaj, <strong>Adam Nowak</strong></span> <br />
-                    <span>Klasa <strong>9M</strong>
-                    nr. <strong>90</strong></span>
-                    <br />
-                </div>
-
-                </div>
                 
         HTML;
         include_once("Views/Templates/navSidebar.php");

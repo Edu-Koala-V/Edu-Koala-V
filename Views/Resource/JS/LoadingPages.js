@@ -4,13 +4,13 @@ document.querySelector("#lessons").addEventListener("click", function () {
   loadContent("/articles-List");
 });
 document.querySelector("#tasks").addEventListener("click", function () {
-  loadContent("/articles-List");
+  loadContentWithScript("/tasks-List","Views/Resource/JS/TasksManagement.js");
 });
 document.querySelector("#tests").addEventListener("click", function () {
   loadContent("/articles-List");
 });
 document.querySelector("#classes").addEventListener("click", function () {
-  loadContentWithScript("/get-classes","Views/Resource/JS/ClassManagements.js")
+  loadContentWithScript("/get-classes","Views/Resource/JS/ClassManagements.js");
 });
 
 function loadScript(url) {

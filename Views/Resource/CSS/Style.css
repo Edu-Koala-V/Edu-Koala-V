@@ -58,7 +58,7 @@ font-family: 'Courier New', Courier, monospace;
 }
 html {
   height: 100vh !important;
-  width: 100vw !important;
+  width: 99.4vw !important;
   font-family: system-ui;
   scroll-behavior: smooth;
 }
@@ -186,6 +186,32 @@ margin-top: 10px;
 .fullBox:not(.flyBox)>label{
 width: 160px;
 font-size: 20px;
+}
+.fullBox2{
+  margin: auto;
+}
+.fullBox2:not(.flyBox)>input,
+.fullBox2:not(.flyBox)>label{
+  display: flex !important;
+  margin: 10px;
+  min-width: 400px;
+  font-size: 20px;
+  flex-wrap: wrap;
+}
+.bigTextInputContainer{
+  display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.bigTextInputContainer>input{
+  font-size: 20px;
+  min-height: 300px;
+  min-width: 600px;
+}
+.bigTextInputContainer>label{
+  font-size: 20px;
+  min-width: 600px;
 }
 .user-info {
 grid-area: user-info;

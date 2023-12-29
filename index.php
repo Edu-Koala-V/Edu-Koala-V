@@ -19,10 +19,15 @@ require_once 'Views/CMS/ArticleView.php';
 require_once 'Controllers/ArticleController.php';
 ## Files upload images
 require_once 'Controllers/ImageController.php';
-
-require_once 'Views/Dashboards/ListOfArticles.php';
+## Dashboard function loaded
 require_once 'Views/Dashboards/Dashboards.php';
-
+## Articles list
+require_once 'Views/Dashboards/ListOfArticles.php';
+## Tasks List
+require_once 'Controllers/TaskController.php';
+require_once 'Models/TaskModel.php';
+require_once 'Views/Tasks/TaskView.php';
+## Classes management
 require_once 'Views/Classes/ClassesView.php';
 require_once 'Controllers/ClassesController.php';
 require_once 'Models/ClassesModel.php';
@@ -88,6 +93,24 @@ if (isset($_SESSION['user'])) {
       $controller = new ArticleController($modelArticle, new ListOfArticles());
       $controller->getAllArticlesForStudent($_SESSION['user']['class']);
     }
+  } else if ($uri === "/tasks-List") {
+    if ($_SESSION['user']['privileges'] ==  "teacher") {
+      $view = new ClassesView();
+      $modelClasses = new ClassesModel($db);
+      $controller = new ClassesController($modelClasses, $view);
+      $classesArray = $controller->getAllClassesArray('', false);
+      $view = new TaskView();
+      $model = new TaskModel($db);
+      $controller = new TaskController($model, $view);
+      $controller->getAllTasksInArray($classesArray);
+    } else {
+      // Tu wersja dla ucznia
+    }
+  } else if ($uri === "/newTask") {
+    $view = new TaskView();
+    $model = new TaskModel($db);
+    $controller = new TaskController($model, $view);
+    $controller->createNewTask();
   } else if ($uri === "/upload-image") {
     $controller = new ImageController();
     echo $controller->upload();
@@ -121,6 +144,11 @@ if (isset($_SESSION['user'])) {
     $model = new ArticleModel($db);
     $controller = new ArticleController($model, $view);
     $controller->setActiveArticleForClass();
+  } else if ($uri === "/addTaskColumnToClassTable") {
+    $view = new ClassesView();
+    $model = new ClassesModel($db);
+    $controller = new ClassesController($model, $view);
+    $controller->addTaskToClassByName();
   } else {
     http_response_code(404);
   }
