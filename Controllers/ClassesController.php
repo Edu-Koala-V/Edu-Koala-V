@@ -19,6 +19,7 @@ class ClassesController
             $name = $_POST['className'];
             if (!$this->model->indexClass($name)) {
                 $this->model->createClass($name);
+                $this->createScoreTableForClass($name);
                 $this->getAllClassesArray();
             }
         } else {
@@ -58,5 +59,26 @@ class ClassesController
         $students = $this->model->getAllStudentsFromClassID($id);
         $data = $students->fetch_all(MYSQLI_ASSOC);
         $this->view->renderTableStudentsFromClass($data, $className);
+    }
+
+    public function createScoreTableForClass($name)
+    {
+        $this->model->createScoreTableForClass($name);
+    }
+    public function addTaskToClassByName()
+    {
+        $className = $_POST["className"];
+        $taskName = $_POST["taskName"];
+        if ($this->model->checkColumnExistByNameFromClass($className, $taskName) === 0) {
+            $this->model->addTaskToClassByName($className, $taskName);
+        }
+    }
+    public function addTestToClassByName()
+    {
+        $className = $_POST["className"];
+        $testName = $_POST["testName"];
+        if ($this->model->checkColumnExistByNameFromClass($className, $testName) === 0) {
+            $this->model->addTestToClassByName($className, $testName);
+        }
     }
 }

@@ -57,4 +57,35 @@ class ClassesModel
         $stmt->close();
         return $result;
     }
+
+    public function createScoreTableForClass($name)
+    {
+        $stmt = $this->db->prepare("CREATE TABLE $name (user_id INT NOT NULL )");
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function addTaskToClassByName($name, $taskName)
+    {
+        $stmt = $this->db->prepare("ALTER TABLE $name ADD `$taskName` BOOLEAN NOT NULL");
+        $stmt->execute();
+        $stmt->close();
+    }
+    public function addTestToClassByName($name, $testName)
+    {
+        $stmt = $this->db->prepare("ALTER TABLE $name ADD `$testName` VARCHAR(10) NOT NULL");
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function checkColumnExistByNameFromClass($class, $name)
+    {
+        $stmt = $this->db->prepare("SHOW COLUMNS FROM $class LIKE '$name';");
+        $stmt->execute();
+        $result = $stmt->num_rows;
+        $stmt->close();
+        return $result;
+    }
 }
+
+// CREATE TABLE `edu_platform`.`1g` (`user_id` INT NOT NULL , `Zadanie` BOOLEAN NOT NULL , `Test` VARCHAR(5) NOT NULL ) ENGINE = InnoDB;
