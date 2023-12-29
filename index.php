@@ -22,6 +22,10 @@ require_once 'Controllers/ImageController.php';
 
 require_once 'Views/Dashboards/ListOfArticles.php';
 require_once 'Views/Dashboards/Dashboards.php';
+
+require_once 'Views/Classes/ClassesView.php';
+require_once 'Controllers/ClassesController.php';
+require_once 'Models/ClassesModel.php';
 $test = new Dashboard();
 
 /* ##############################
@@ -46,15 +50,22 @@ if (isset($_SESSION['user'])) {
   /* ###################################################
      Wykonaj przekierowania dla zalogowanego użytkownika
   ########################################################*/
-  if ($uri === '/Logowanie' or $uri === '/Rejestracja' or $uri === '/' or $uri === '/Dashboard') {
+  if ($uri === '/Logowanie' or $uri === '/' or $uri === '/Dashboard') {
     $view = new AppView();
     $controller = new AppController($view);
     $controller->index("Dashboard");
     $test->render();
+  } else if ($uri === "/Rejestracja") {
+    $view = new RegisterView();
+    $modelRegister = new RegisterModel($db);
+    $controller = new RegisterController($modelRegister, $view);
+    $controller->register();
   } else if ($uri === '/LOGOUT') {
     $view = new LoginView();
     $controller = new LoginController($modelUser, $view);
     $controller->logout();
+    unset($_SESSION['user']);
+    session_destroy();
   } else if ($uri === '/create-article') {
     $view = new ArticleView();
     $controller = new ArticleController($modelArticle, $view);
@@ -70,16 +81,42 @@ if (isset($_SESSION['user'])) {
   } else if ($uri === "/upload-image") {
     $controller = new ImageController();
     echo $controller->upload();
+  } else if ($uri === "/get-classes") {
+    $view = new ClassesView();
+    $modelClasses = new ClassesModel($db);
+    $controller = new ClassesController($modelClasses, $view);
+    $controller->getAllClassesArray();
+  } else if ($uri === "/newClass") {
+    $view = new ClassesView();
+    $modelClasses = new ClassesModel($db);
+    $controller = new ClassesController($modelClasses, $view);
+    $controller->createClass();
+  } else if ($uri === "/removeClass") {
+    $view = new ClassesView();
+    $modelClasses = new ClassesModel($db);
+    $controller = new ClassesController($modelClasses, $view);
+    $controller->removeClass();
+  } else if ($uri === "/getStudentsOfClass") {
+    $view = new ClassesView();
+    $modelClasses = new ClassesModel($db);
+    $controller = new ClassesController($modelClasses, $view);
+    $controller->getAllStudentsFromClassID();
+  } else if ($uri === "/upload-image-avatar") {
+    echo "kys";
+    $view = new LoginView();
+    $model = new UserModel($db);
+    $controller = new LoginController($model, $view);
+    $controller->updateUserAvatar();
   } else {
     http_response_code(404);
   }
 
-  if ($uri === '/Rejestracja' or $_SESSION['privilege'] === 'teacher') {
-    $view = new RegisterView();
-    $modelRegister = new RegisterModel($db);
-    $controller = new RegisterController($modelRegister, $view);
-    $controller->register();
-  }
+  // if ($uri === '/Rejestracja' or $_SESSION['privilege'] === 'teacher') {
+  //   $view = new RegisterView();
+  //   $modelRegister = new RegisterModel($db);
+  //   $controller = new RegisterController($modelRegister, $view);
+  //   $controller->register();
+  // }
 } else {
   /* #######################################################
      Wykonaj przekierowania dla NIE zalogowanego użytkownika
@@ -104,51 +141,7 @@ if (isset($_SESSION['user'])) {
       $controller = new RegisterController($modelRegister, $view);
       $controller->register();
       break;
+    default:
+      http_response_code(401);
   }
-}
-
-
-
-
-switch (http_response_code()) {
-  case 401:
-    handle_401_error();
-    break;
-  case 404:
-    handle_404_error();
-    break;
-  case 500:
-    handle_500_error();
-    break;
-}
-
-// Włącz raportowanie błędów
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Funkcja do obsługi błędów 401
-function handle_401_error()
-{
-  header('HTTP/1.1 401 Unauthorized');
-  echo 'Nie masz uprawnień do wyświetlenia tej strony.';
-  exit;
-}
-
-// Funkcja do obsługi błędów 404
-function handle_404_error()
-{
-  header('HTTP/1.1 404 Not Found');
-  $view = new ErrorView();
-  $controller = new ErrorsController($view);
-  $controller->error(404);
-  exit;
-}
-
-// Funkcja do obsługi błędów 500
-function handle_500_error()
-{
-  header('HTTP/1.1 500 Internal Server Error');
-  echo 'Wystąpił błąd serwera.';
-  exit;
 }

@@ -36,51 +36,9 @@ class ArticleView
               </div>
 
             </div>
-           
-            <a href="/Dashboard" style="text-decoration: none;" id="dashboard">
-              <button class="btn-sidebar-menu btn-rounded-down-right active" id="settings">
-              <i class="fa-solid fa-chart-line"></i>
-              Dashboard
-              </button>
-            </a>
-            <button class="btn-sidebar-menu" id="lessons">
-              <i class="fa-regular fa-newspaper"></i>
-              Lekcje
-            </button>
-            <button class="btn-sidebar-menu" id="tasks">
-              <i class="fa-solid fa-list-check"></i>
-              Zadania
-            </button>
-            <button class="btn-sidebar-menu" id="tests">
-              <i class="fa-brands fa-stack-exchange"></i>
-              Testy
-            </button>
-            <button class="btn-sidebar-menu" id="resourceToDownload">
-              <i class="fa-solid fa-cloud-arrow-down"></i>
-              Zasoby do pobrania
-            </button>
-            <button class="btn-sidebar-menu">
-              <i class="fa-regular fa-clipboard"></i>
-              Moje notatki
-            </button>
-            <a href="#" style="text-decoration: none;">
-              <button class="btn-sidebar-menu" id="settings">
-                <i class="fa-solid fa-gear"></i>
-                Ustawienia
-              </button>
-            </a>
-            <a href="/create-article" style="text-decoration: none;">
-              <button class="btn-sidebar-menu" id="settings">
-              <i class="fa-solid fa-person-chalkboard"></i>
-                Creator Lekcji
-              </button>
-            </a>
-            <button class="btn-sidebar-menu">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              <a href="LOGOUT">Wyloguj</a>
-            </button>
-
-
+      HTML;
+    include_once("Views/Templates/navSidebar.php");
+    echo <<<HTML
           </nav>
         <main >
         <div class="form-group">

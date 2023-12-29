@@ -18,10 +18,11 @@ class LoginController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $this->model->getUser($_POST['username'], $_POST['password']);
             if ($user) {
-                session_start();
                 $_SESSION['user'] = $user;
+
+
+                $_SESSION['privileges'] = $user["privileges"];
                 header('Location: /');
-                exit();
             } else {
                 $this->view->render("Invalid username or password.");
             }
@@ -31,8 +32,19 @@ class LoginController
     }
     public function logout()
     {
+        // Nie używane / w sidebar-menu.js jest kod który usuwa sesje
         unset($_SESSION['user']);
+
+        session_abort();
         session_destroy();
+
         header('Location: /');
+    }
+    public function updateUserAvatar()
+    {
+        $username = $_POST['username'];
+        $filename = $_POST['fileName'];
+        $this->model->updateUserAvatar($username, $filename);
+        $_SESSION["user"]["avatar"] = $filename;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 class Dashboard
 {
+
   public function render()
   {
     echo <<<HTML
@@ -13,7 +14,7 @@ class Dashboard
         <link rel="icon" type="image/x-icon" href="Views/Resource/Images/Website/favicon-v2.png" />
         <title>Systemy operacyjne</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-        <link rel="stylesheet" href="Views/Resource/CSS/style.css">
+        <link rel="stylesheet" href="Views/Resource/CSS/style.css" type="text/css">
       </head>
 
       <body>
@@ -23,62 +24,11 @@ class Dashboard
         </header>
       
           <nav data-overview-sidebar="true">
-            <div class="box">
-              <img src="Views/Resource/Images/Website/defaultAvatar.jpg" alt="User Avatar" class="user-avatar">
-              <div class="user-info">
-                <br />
-                <span>Witaj, <strong>Adam Nowak</strong></span> <br />
-                <span>Klasa <strong>9M</strong>
-                  nr. <strong>90</strong></span>
-                <br />
-              </div>
-
-            </div>
             
-            <a href="/Dashboard" style="text-decoration: none;" id="dashboard">
-              <button class="btn-sidebar-menu btn-rounded-down-right active" id="settings">
-              <i class="fa-solid fa-chart-line"></i>
-              Dashboard
-              </button>
-            </a>
-            <button class="btn-sidebar-menu" id="lessons">
-              <i class="fa-regular fa-newspaper"></i>
-              Lekcje
-            </button>
-            <button class="btn-sidebar-menu" id="tasks">
-              <i class="fa-solid fa-list-check"></i>
-              Zadania
-            </button>
-            <button class="btn-sidebar-menu" id="tests">
-              <i class="fa-brands fa-stack-exchange"></i>
-              Testy
-            </button>
-            <button class="btn-sidebar-menu" id="resourceToDownload">
-              <i class="fa-solid fa-cloud-arrow-down"></i>
-              Zasoby do pobrania
-            </button>
-            <button class="btn-sidebar-menu">
-              <i class="fa-regular fa-clipboard"></i>
-              Moje notatki
-            </button>
-            <a href="#" style="text-decoration: none;">
-              <button class="btn-sidebar-menu" id="settings">
-                <i class="fa-solid fa-gear"></i>
-                Ustawienia
-              </button>
-            </a>
-            <a href="/create-article" style="text-decoration: none;">
-              <button class="btn-sidebar-menu" id="settings">
-              <i class="fa-solid fa-person-chalkboard"></i>
-                Creator Lekcji
-              </button>
-            </a>
-            <button class="btn-sidebar-menu">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              <a href="LOGOUT">Wyloguj</a>
-            </button>
-
-
+      HTML;
+    include_once("Views/Templates/navSidebar.php");
+    echo <<<HTML
+            
           </nav>
         <main >
 

@@ -17,9 +17,9 @@ class RegisterModel
     }
 
 
-    public function createUser($username, $password, $name, $surname, $class, $privileges, $avatar, $theme)
+    public function createUser($username, $password, $name, $surname, $class, $nr, $privileges, $avatar, $theme, $score)
     {
-        $stmt = $this->db->prepare('INSERT INTO users (username, password, name, surname, class, privileges, avatar, theme) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-        $stmt->execute([$username, $password, $name, $surname, $class, $privileges, $avatar, json_encode($theme)]);
+        $stmt = $this->db->prepare('INSERT INTO users (username, password, name, surname, class, nr_student, privileges, avatar, theme, score) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$username, $password, $name, $surname, $class, $nr, $privileges, $avatar, json_encode($theme), $score]);
     }
 }

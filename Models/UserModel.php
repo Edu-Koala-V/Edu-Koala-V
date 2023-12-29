@@ -31,6 +31,7 @@ class UserModel
         $stmt = $this->db->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $password, $email);
         $stmt->execute();
+        $stmt->close();
     }
 
     public function getUser($username, $password)
@@ -39,6 +40,28 @@ class UserModel
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        $result = $result->fetch_assoc();
+        $id = $result['class'];
+        $data = $this->getClassNameByID($id);
+        $result['className'] = $data['name'];
+
+        return $result;
+    }
+    public function getClassNameByID($id)
+    {
+        $stmt = $this->db->prepare("SELECT name FROM classes WHERE id = ?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $stmt->close();
+        return $result->fetch_assoc();;
+    }
+    public function updateUserAvatar($username, $avatarFileName)
+    {
+        $stmt = $this->db->prepare("UPDATE users SET avatar = ? WHERE username = ?");
+        $stmt->bind_param("ss", $avatarFileName, $username);
+        $stmt->execute();
+        $stmt->close();
     }
 }
