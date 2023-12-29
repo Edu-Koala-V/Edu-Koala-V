@@ -79,7 +79,8 @@ function saveImage(base64Data, fileName) {
   let request = new XMLHttpRequest();
   request.open('POST', '/upload-image');
   request.send(formData);
-  sendPost("/upload-image-avatar",username, fileName)
+  console.log(fileName);
+  sendPostAvatar("/upload-image-avatar", fileName)
   return fileName;
 }
 
@@ -115,7 +116,7 @@ let imgElements = doc.getElementsByTagName('img');
   return filesNames;
 }
 
-function sendPost(how, username, fileName)
+function sendPostAvatar(how, fileName)
 {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -126,5 +127,5 @@ function sendPost(how, username, fileName)
   xhttp.open("POST", how, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-  xhttp.send("username=" + username + "&fileName=" + fileName);
+  xhttp.send("fileName=" + fileName);
 }

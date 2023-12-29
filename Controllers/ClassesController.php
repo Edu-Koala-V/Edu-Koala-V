@@ -38,11 +38,15 @@ class ClassesController
     }
 
 
-    public function getAllClassesArray($error = '')
+    public function getAllClassesArray($error = '', $render = true)
     {
         $articles = $this->model->getAllClasses();
         $data = $articles->fetch_all(MYSQLI_ASSOC);
-        $this->view->renderTable($data, $error);
+        if ($render) {
+            $this->view->renderTable($data, $error);
+        } else {
+            return $data;
+        }
     }
 
     public function removeClass()

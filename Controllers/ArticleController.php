@@ -74,9 +74,33 @@ class ArticleController
         file_put_contents($path, $content);
     }
 
-    public function getAllArticlesArray()
+    public function getAllArticlesArray($classesArray)
     {
         $articles = $this->model->getAllArticles();
+        $data = $articles->fetch_all(MYSQLI_ASSOC);
+
+        // Podział tablicy na mniejsze tablice
+        $categories = array();
+        foreach ($data as $row) {
+            $category = $row['category'];
+            unset($row['category']);
+            $categories[$category][] = $row;
+        }
+        if ($categories) {
+            $this->view->renderTable($categories, $classesArray);
+        }
+        return $categories;
+    }
+    public function setActiveArticleForClass()
+    {
+        $id = $_POST['lessonID'];
+        $classesNames = $_POST['classesNames'];
+        $this->model->activeArticleForClass($classesNames, $id);
+    }
+    public function getAllArticlesForStudent($classID)
+    {
+        $articles = $this->model->getAllArticlesForStudent($classID);
+
         $data = $articles->fetch_all(MYSQLI_ASSOC);
 
         // Podział tablicy na mniejsze tablice

@@ -57,3 +57,28 @@ document
   .addEventListener("click", function () {
     loadContent(fileLocation + "ResourceToDownload.php");
   });
+
+
+  var names;
+ function activeLessonForClasses(lesson){
+
+    var checkboxes = document.querySelectorAll('[data-class="'+lesson+'"]:checked');
+    names = '';
+    for (var i = 0; i < checkboxes.length; i++) {
+      names +='_'+checkboxes[i].name;
+      
+    }
+    sendPost('/addClassToLesson', names, lesson)
+ }
+
+ function sendPost(how, names, lesson)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("POST", how, true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("classesNames=" + names + "&lessonID=" + lesson);
+}

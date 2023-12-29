@@ -8,7 +8,9 @@ class ImageController
             $uploadDir = __DIR__ . '/../Views/Resource/Images/Users/';
 
             $katalog = $uploadDir . $title;
-            $this->removeDir($katalog);
+            if (file_exists($uploadDir . $title)) {
+                $this->removeDir($katalog);
+            }
         } else {
             $title = $_POST['title'];
             $uploadDir = __DIR__ . '/../Views/Resource/Images/Articles/';

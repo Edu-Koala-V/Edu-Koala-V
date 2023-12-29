@@ -42,9 +42,13 @@ class LoginController
     }
     public function updateUserAvatar()
     {
-        $username = $_POST['username'];
-        $filename = $_POST['fileName'];
-        $this->model->updateUserAvatar($username, $filename);
-        $_SESSION["user"]["avatar"] = $filename;
+        $username = $_SESSION['user']['username'];
+        if (isset($_POST['fileName'])) {
+            $filename = $_POST['fileName'];
+            $this->model->updateUserAvatar($username, $filename);
+            $_SESSION["user"]["avatar"] = $filename;
+        } else {
+            echo "POST is empty";
+        }
     }
 }

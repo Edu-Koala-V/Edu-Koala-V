@@ -75,9 +75,19 @@ if (isset($_SESSION['user'])) {
     $controller = new ArticleController($modelArticle, $view);
     $controller->displayArticle($matches[1]);
   } else if ($uri === "/articles-List") {
-    $view = new ListOfArticles();
-    $controller = new ArticleController($modelArticle, new ListOfArticles());
-    $controller->getAllArticlesArray();
+    if ($_SESSION['user']['privileges'] ==  "teacher") {
+      $view = new ClassesView();
+      $modelClasses = new ClassesModel($db);
+      $controller = new ClassesController($modelClasses, $view);
+      $classesArray = $controller->getAllClassesArray('', false);
+      $view = new ListOfArticles();
+      $controller = new ArticleController($modelArticle, new ListOfArticles());
+      $controller->getAllArticlesArray($classesArray);
+    } else {
+      $view = new ListOfArticles();
+      $controller = new ArticleController($modelArticle, new ListOfArticles());
+      $controller->getAllArticlesForStudent($_SESSION['user']['class']);
+    }
   } else if ($uri === "/upload-image") {
     $controller = new ImageController();
     echo $controller->upload();
@@ -85,7 +95,7 @@ if (isset($_SESSION['user'])) {
     $view = new ClassesView();
     $modelClasses = new ClassesModel($db);
     $controller = new ClassesController($modelClasses, $view);
-    $controller->getAllClassesArray();
+    $controller->getAllClassesArray('', true);
   } else if ($uri === "/newClass") {
     $view = new ClassesView();
     $modelClasses = new ClassesModel($db);
@@ -102,11 +112,15 @@ if (isset($_SESSION['user'])) {
     $controller = new ClassesController($modelClasses, $view);
     $controller->getAllStudentsFromClassID();
   } else if ($uri === "/upload-image-avatar") {
-    echo "kys";
     $view = new LoginView();
     $model = new UserModel($db);
     $controller = new LoginController($model, $view);
     $controller->updateUserAvatar();
+  } else if ($uri === "/addClassToLesson") {
+    $view = new ArticleView();
+    $model = new ArticleModel($db);
+    $controller = new ArticleController($model, $view);
+    $controller->setActiveArticleForClass();
   } else {
     http_response_code(404);
   }
