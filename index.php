@@ -27,6 +27,10 @@ require_once 'Views/Dashboards/ListOfArticles.php';
 require_once 'Controllers/TaskController.php';
 require_once 'Models/TaskModel.php';
 require_once 'Views/Tasks/TaskView.php';
+## Quizzes List
+require_once 'Controllers/QuizController.php';
+require_once 'Models/QuizModel.php';
+require_once 'Views/Tests/QuizView.php';
 ## Classes management
 require_once 'Views/Classes/ClassesView.php';
 require_once 'Controllers/ClassesController.php';
@@ -62,8 +66,8 @@ if (isset($_SESSION['user'])) {
 
   switch ($uri) {
     case '/':
-    case '/Logowanie':
-    case '/Dashboard':
+    case '/logowanie':
+    case '/dashboard':
       $view = new AppView();
       $controller = new AppController($view);
       $controller->index("Dashboard");
@@ -75,7 +79,7 @@ if (isset($_SESSION['user'])) {
       $controller = new RegisterController($modelRegister, $view);
       $controller->register();
       break;
-    case "/LOGOUT":
+    case "/logout":
       $view = new LoginView();
       $controller = new LoginController($modelUser, $view);
       $controller->logout();
@@ -86,6 +90,12 @@ if (isset($_SESSION['user'])) {
       $view = new ArticleView();
       $controller = new ArticleController($modelArticle, $view);
       $controller->createArticle();
+      break;
+    case '/create-quiz':
+      $view = new QuizView();
+      $model = new QuizModel($db);
+      $controller = new QuizController($model, $view);
+      $controller->createQuiz();
       break;
     case '/articles-List':
       if ($_SESSION['user']['privileges'] ==  "teacher") {
@@ -180,8 +190,8 @@ if (isset($_SESSION['user'])) {
   #############################################################*/
   switch ($uri) {
     case '/':
-    case '/Logowanie':
-    case '/Dashboard':
+    case '/logowanie':
+    case '/dashboard':
       $view = new LoginView();
       $controller = new LoginController($modelUser, $view);
       $controller->login();

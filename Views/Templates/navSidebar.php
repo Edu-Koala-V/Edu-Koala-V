@@ -12,7 +12,7 @@ echo '<div class="box">
               </div>';
 echo <<<HTML
             </div>
-            <a href="/Dashboard" style="text-decoration: none;" id="dashboard">
+            <a href="/dashboard" style="text-decoration: none;" id="dashboard">
               <button class="btn-sidebar-menu btn-rounded-down-right active">
               <i class="fa-solid fa-chart-line"></i>
               Dashboard
@@ -51,6 +51,12 @@ if (($_SESSION["user"]["privileges"]) == "teacher") {
       <button class="btn-sidebar-menu" >
         <i class="fa-solid fa-person-chalkboard"></i>
         Creator Lekcji
+      </button>
+    </a>
+    <a href="/create-quiz" style="text-decoration: none;">
+      <button class="btn-sidebar-menu" >
+      <i class="fa-brands fa-readme"></i>
+        Creator testu
       </button>
     </a>
     <button class="btn-sidebar-menu" id="classes">

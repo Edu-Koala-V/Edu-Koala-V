@@ -125,6 +125,28 @@ nav{
   margin: 8px 13px;
   transition: 0.1s all linear;
 }
+/* Quiz */
+.questionBlock{
+  width: 100%;
+  height: fit-content;
+  display: block;
+  border: 2px solid #00000020;
+  box-shadow: 5px 5px #00000020;
+  padding: 10px;
+  margin: 15px auto;
+}
+.questionBlock>div>label{
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.questionBlock>div>input{
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  padding: 10px;
+}
 /* Div versions */
 .flyBox{
 height: fit-content;
@@ -218,6 +240,25 @@ grid-area: user-info;
 display: grid;
 align-items: center;
 align-content: center;
+}
+/* Login Panel */
+.loginPanel{
+  margin: 10px auto;
+  font-size: 20px;
+}
+.loginPanel>form>input{
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 18px;
+}
+.loginPanel>form>button{
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 /* Headers */
@@ -339,6 +380,20 @@ background-color: #174978;
 }
 .btn-insert:hover{
 background-color: #0b602a;
+}
+.btn-primary{
+  padding: 5px 15px;
+  background-color: #b3ff22;
+  color: black;
+  border: 2px solid #36363687;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+}
+.btn-primary:hover{
+background-color: #0b602a;
+color: white;
 }
 .show-sidebar{
 left: 0;

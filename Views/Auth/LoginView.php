@@ -1,7 +1,7 @@
 <?php
 class LoginView
 {
-    public function render()
+    public function render($error = "")
     {
         echo <<<HTML
         <!DOCTYPE html>
@@ -21,26 +21,29 @@ class LoginView
         </header>
         <main>
             <div data-overview-sidebar="true">
-            <div class="flyBox">
+            <div class="flyBox loginPanel">
 
         HTML;
         // ##############################################################################################
         echo <<<HTML
-        <form method="POST" action="../Logowanie">
+        <form method="POST" action="../logowanie">
             <input type="text" name="username" placeholder="Login" required>
             <input type="password" name="password" placeholder="Hasło" required>
             <button type="submit">Login</button>
         </form>
         HTML;
         // ##############################################################################################
+        if ($error != "") {
+            echo <<<HTML
+            </div>
+                <div class="flyBox loginPanel">
+                    Podano nieprawidłowe dane logowania &#x1F614;
+                </div>
+            </div>
+            HTML;
+        }
 
         echo <<<HTML
-        </div>
-            <div class="flyBox">
-                Tu mają być błędy
-                <!-- TODO Tu mają być błędy -->
-            </div>
-        </div>
         </main>
         <footer></footer>
         </body>

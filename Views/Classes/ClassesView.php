@@ -51,7 +51,7 @@ class ClassesView
 
         <body>
             <header>
-            <h1><a href="/Dashboard">KoalaV</a></h1>
+            <h1><a href="/dashboard">KoalaV</a></h1>
             <span class="burger" tabindex="0">&#9776;</span>
             </header>
         
