@@ -12,7 +12,7 @@ echo '<div class="box">
               </div>';
 echo <<<HTML
             </div>
-            <a href="/Dashboard" style="text-decoration: none;" id="dashboard">
+            <a href="/dashboard" style="text-decoration: none;" id="dashboard">
               <button class="btn-sidebar-menu btn-rounded-down-right active">
               <i class="fa-solid fa-chart-line"></i>
               Dashboard

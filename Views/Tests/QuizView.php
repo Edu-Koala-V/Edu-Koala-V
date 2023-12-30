@@ -43,14 +43,47 @@ class QuizView
                 <option value="Urządzenia Techniki Komputerowej" />
             </datalist>
         </div>
-        <button type="submit" class="btn btn-primary" id="saveArticle">Create article</button>
-      
+      <div id="QuizContainer">
+        <div class="questionBlock">
+          <div class="form-group">
+            <label for="question1">Pytanie nr.: 1</label>
+            <input type="text" class="form-control" id="question1" name="question1" placeholder="Podaj Pytanie">
+
+            <label for="answerA1">Odpowiedź A</label>
+            <input type="text" class="form-control" id="answerA1" name="answerA1" placeholder="Podaj odpowiedź A">
+
+            <label for="answerB1">Odpowiedź B</label>
+            <input type="text" class="form-control" id="answerB1" name="answerB1" placeholder="Podaj odpowiedź B">
+
+            <label for="answerC1">Odpowiedź C</label>
+            <input type="text" class="form-control" id="answerC1" name="answerC1" placeholder="Podaj odpowiedź C">
+
+            <label for="answerD1">Odpowiedź D</label>
+            <input type="text" class="form-control" id="answerD1" name="answerD1" placeholder="Podaj odpowiedź D">
+
+            <label for="answer1">Prawidłowa odpowiedź to:</label>
+            <input list="answer1" name="answer1" id="selectAnswer1"/>
+                <datalist id="answer1" />
+                    <option value="A" />
+                    <option value="B" />
+                    <option value="C" />
+                    <option value="D" />
+                </datalist>
+            
+          </div>
+        </div>
+      </div>
+        <button type="submit" class="btn btn-primary" id="saveQuiz">Stwórz test</button>
+
+        <button type="button" class="btn btn-primary" id="addQuestBlock">Dodaj kolejny blok pytania</button>
+        
       
         </main>
         <footer></footer>
       </body>
       <script src="Views/Resource/JS/sidebar-menu.js"></script>
       <script src="Views/Resource/JS/LoadingPages.js"></script>
+      <script src="Views/Resource/JS/QuizCreator.js"></script>
 
       </html>
     HTML;
