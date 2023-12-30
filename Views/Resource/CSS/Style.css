@@ -219,6 +219,25 @@ display: grid;
 align-items: center;
 align-content: center;
 }
+/* Login Panel */
+.loginPanel{
+  margin: 10px auto;
+  font-size: 20px;
+}
+.loginPanel>form>input{
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 18px;
+}
+.loginPanel>form>button{
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+}
 
 /* Headers */
 h1 > a {

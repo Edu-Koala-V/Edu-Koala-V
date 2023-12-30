@@ -1,5 +1,5 @@
 <?php
-class ArticleView
+class QuizView
 {
   public function renderEditor()
   {
@@ -15,7 +15,6 @@ class ArticleView
         <title>Systemy operacyjne</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
         <link rel="stylesheet" href="Views/Resource/CSS/style.css">
-        <link rel="stylesheet" href="Views/Resource/CSS/editorStyle.css">
       </head>
       
       <body>
@@ -46,14 +45,12 @@ class ArticleView
         </div>
         <button type="submit" class="btn btn-primary" id="saveArticle">Create article</button>
       
-      <div id="editor"></div>
+      
         </main>
         <footer></footer>
       </body>
-    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
       <script src="Views/Resource/JS/sidebar-menu.js"></script>
       <script src="Views/Resource/JS/LoadingPages.js"></script>
-      <script src="Views/Resource/JS/EditorQuill.js"></script>
 
       </html>
     HTML;

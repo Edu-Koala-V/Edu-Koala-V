@@ -19,7 +19,7 @@ class Dashboard
 
       <body>
         <header>
-          <h1><a href="/Dashboard">Edu-Koala-V</a></h1>
+          <h1><a href="/dashboard">Edu-Koala-V</a></h1>
           <span class="burger" tabindex="0">&#9776;</span>
         </header>
       

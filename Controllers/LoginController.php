@@ -17,14 +17,12 @@ class LoginController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $this->model->getUser($_POST['username'], $_POST['password']);
-            if ($user) {
+            if ($user == null) {
+                $this->view->render('x');
+            } else {
                 $_SESSION['user'] = $user;
-
-
                 $_SESSION['privileges'] = $user["privileges"];
                 header('Location: /');
-            } else {
-                $this->view->render("Invalid username or password.");
             }
         } else {
             $this->view->render();

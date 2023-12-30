@@ -53,6 +53,12 @@ if (($_SESSION["user"]["privileges"]) == "teacher") {
         Creator Lekcji
       </button>
     </a>
+    <a href="/create-quiz" style="text-decoration: none;">
+      <button class="btn-sidebar-menu" >
+      <i class="fa-brands fa-readme"></i>
+        Creator testu
+      </button>
+    </a>
     <button class="btn-sidebar-menu" id="classes">
       <i class="fa-solid fa-users"></i>
       Klasy

@@ -26,7 +26,7 @@ class UserModel
         return $result->fetch_assoc();
     }
 
-    public function createUser($username, $password, $email)
+    public function createUser($username, $password, $email) //Chyba trzeba usunąć
     {
         $stmt = $this->db->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $password, $email);
@@ -40,12 +40,17 @@ class UserModel
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
-        $result = $result->fetch_assoc();
-        $id = $result['class'];
-        $data = $this->getClassNameByID($id);
-        $result['className'] = $data['name'];
-
-        return $result;
+        if ($result->num_rows > 0) {
+            $result = $result->fetch_assoc();
+            $id = $result['class'];
+            $data = $this->getClassNameByID($id);
+            $result['className'] = $data['name'];
+            $stmt->close();
+            return $result;
+        } else {
+            $stmt->close();
+            return null;
+        }
     }
     public function getClassNameByID($id)
     {
