@@ -1,8 +1,8 @@
 <?php
 session_start();
 ## Static render pages
-require_once("Controllers/AppController.php");
-require_once("Views/AppView.php");
+require_once "Controllers/AppController.php";
+require_once "Views/AppView.php";
 ## Login
 require_once 'Models/UserModel.php';
 require_once 'Views/Auth/LoginView.php';
@@ -49,139 +49,142 @@ $modelArticle = new ArticleModel($db);
   #########################################################*/
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-
-
 if (isset($_SESSION['user'])) {
   /* ###################################################
      Wykonaj przekierowania dla zalogowanego użytkownika
   ########################################################*/
-  if ($uri === '/Logowanie' or $uri === '/' or $uri === '/Dashboard') {
-    $view = new AppView();
-    $controller = new AppController($view);
-    $controller->index("Dashboard");
-    $test->render();
-  } else if ($uri === "/Rejestracja") {
-    $view = new RegisterView();
-    $modelRegister = new RegisterModel($db);
-    $controller = new RegisterController($modelRegister, $view);
-    $controller->register();
-  } else if ($uri === '/LOGOUT') {
-    $view = new LoginView();
-    $controller = new LoginController($modelUser, $view);
-    $controller->logout();
-    unset($_SESSION['user']);
-    session_destroy();
-  } else if ($uri === '/create-article') {
-    $view = new ArticleView();
-    $controller = new ArticleController($modelArticle, $view);
-    $controller->createArticle();
-  } else if (preg_match('/^\/Lekcje\/(.*)$/', $uri, $matches)) {
+
+  if (preg_match('/^\/Lekcje\/(.*)$/', $uri, $matches)) {
     $view = new ArticleView();
     $controller = new ArticleController($modelArticle, $view);
     $controller->displayArticle($matches[1]);
-  } else if ($uri === "/articles-List") {
-    if ($_SESSION['user']['privileges'] ==  "teacher") {
-      $view = new ClassesView();
-      $modelClasses = new ClassesModel($db);
-      $controller = new ClassesController($modelClasses, $view);
-      $classesArray = $controller->getAllClassesArray('', false);
-      $view = new ListOfArticles();
-      $controller = new ArticleController($modelArticle, new ListOfArticles());
-      $controller->getAllArticlesArray($classesArray);
-    } else {
-      $view = new ListOfArticles();
-      $controller = new ArticleController($modelArticle, new ListOfArticles());
-      $controller->getAllArticlesForStudent($_SESSION['user']['class']);
-    }
-  } else if ($uri === "/tasks-List") {
-    if ($_SESSION['user']['privileges'] ==  "teacher") {
-      $view = new ClassesView();
-      $modelClasses = new ClassesModel($db);
-      $controller = new ClassesController($modelClasses, $view);
-      $classesArray = $controller->getAllClassesArray('', false);
+  }
+
+  switch ($uri) {
+    case '/':
+    case '/Logowanie':
+    case '/Dashboard':
+      $view = new AppView();
+      $controller = new AppController($view);
+      $controller->index("Dashboard");
+      $test->render();
+      break;
+    case "/Rejestracja":
+      $view = new RegisterView();
+      $modelRegister = new RegisterModel($db);
+      $controller = new RegisterController($modelRegister, $view);
+      $controller->register();
+      break;
+    case "/LOGOUT":
+      $view = new LoginView();
+      $controller = new LoginController($modelUser, $view);
+      $controller->logout();
+      unset($_SESSION['user']);
+      session_destroy();
+      break;
+    case '/create-article':
+      $view = new ArticleView();
+      $controller = new ArticleController($modelArticle, $view);
+      $controller->createArticle();
+      break;
+    case '/articles-List':
+      if ($_SESSION['user']['privileges'] ==  "teacher") {
+        $view = new ClassesView();
+        $modelClasses = new ClassesModel($db);
+        $controller = new ClassesController($modelClasses, $view);
+        $classesArray = $controller->getAllClassesArray('', false);
+        $view = new ListOfArticles();
+        $controller = new ArticleController($modelArticle,  $view);
+        $controller->getAllArticlesArray($classesArray);
+      } else {
+        $view = new ListOfArticles();
+        $controller = new ArticleController($modelArticle,  $view);
+        $controller->getAllArticlesForStudent($_SESSION['user']['class']);
+      }
+      break;
+    case '/tasks-List':
+      if ($_SESSION['user']['privileges'] ==  "teacher") {
+        $view = new ClassesView();
+        $modelClasses = new ClassesModel($db);
+        $controller = new ClassesController($modelClasses, $view);
+        $classesArray = $controller->getAllClassesArray('', false);
+        $view = new TaskView();
+        $model = new TaskModel($db);
+        $controller = new TaskController($model, $view);
+        $controller->getAllTasksInArray($classesArray);
+      } else {
+        $view = new TaskView();
+        $model = new TaskModel($db);
+        $controller = new TaskController($model, $view);
+        $controller->getAllTasksInArrayForStudent($_SESSION['user']['class']);
+      }
+      break;
+    case '/newTask':
       $view = new TaskView();
       $model = new TaskModel($db);
       $controller = new TaskController($model, $view);
-      $controller->getAllTasksInArray($classesArray);
-    } else {
-      // Tu wersja dla ucznia
-    }
-  } else if ($uri === "/newTask") {
-    $view = new TaskView();
-    $model = new TaskModel($db);
-    $controller = new TaskController($model, $view);
-    $controller->createNewTask();
-  } else if ($uri === "/upload-image") {
-    $controller = new ImageController();
-    echo $controller->upload();
-  } else if ($uri === "/get-classes") {
-    $view = new ClassesView();
-    $modelClasses = new ClassesModel($db);
-    $controller = new ClassesController($modelClasses, $view);
-    $controller->getAllClassesArray('', true);
-  } else if ($uri === "/newClass") {
-    $view = new ClassesView();
-    $modelClasses = new ClassesModel($db);
-    $controller = new ClassesController($modelClasses, $view);
-    $controller->createClass();
-  } else if ($uri === "/removeClass") {
-    $view = new ClassesView();
-    $modelClasses = new ClassesModel($db);
-    $controller = new ClassesController($modelClasses, $view);
-    $controller->removeClass();
-  } else if ($uri === "/getStudentsOfClass") {
-    $view = new ClassesView();
-    $modelClasses = new ClassesModel($db);
-    $controller = new ClassesController($modelClasses, $view);
-    $controller->getAllStudentsFromClassID();
-  } else if ($uri === "/upload-image-avatar") {
-    $view = new LoginView();
-    $model = new UserModel($db);
-    $controller = new LoginController($model, $view);
-    $controller->updateUserAvatar();
-  } else if ($uri === "/addClassToLesson") {
-    $view = new ArticleView();
-    $model = new ArticleModel($db);
-    $controller = new ArticleController($model, $view);
-    $controller->setActiveArticleForClass();
-  } else if ($uri === "/addTaskColumnToClassTable") {
-    $view = new ClassesView();
-    $model = new ClassesModel($db);
-    $controller = new ClassesController($model, $view);
-    $controller->addTaskToClassByName();
-  } else {
-    http_response_code(404);
+      $controller->createNewTask();
+    case '/upload-image':
+      $controller = new ImageController();
+      $controller->upload();
+      break;
+    case '/get-classes':
+      $view = new ClassesView();
+      $modelClasses = new ClassesModel($db);
+      $controller = new ClassesController($modelClasses, $view);
+      $controller->getAllClassesArray('', true);
+      break;
+    case '/newClass':
+      $view = new ClassesView();
+      $modelClasses = new ClassesModel($db);
+      $controller = new ClassesController($modelClasses, $view);
+      $controller->createClass();
+      break;
+    case '/removeClass':
+      $view = new ClassesView();
+      $modelClasses = new ClassesModel($db);
+      $controller = new ClassesController($modelClasses, $view);
+      $controller->removeClass();
+      break;
+    case '/getStudentsOfClass':
+      $view = new ClassesView();
+      $modelClasses = new ClassesModel($db);
+      $controller = new ClassesController($modelClasses, $view);
+      $controller->getAllStudentsFromClassID();
+      break;
+    case '/upload-image-avatar':
+      $view = new LoginView();
+      $model = new UserModel($db);
+      $controller = new LoginController($model, $view);
+      $controller->updateUserAvatar();
+      break;
+    case '/addClassToLesson':
+      $view = new ArticleView();
+      $model = new ArticleModel($db);
+      $controller = new ArticleController($model, $view);
+      $controller->setActiveArticleForClass();
+      break;
+    case '/addTaskColumnToClassTable':
+      $view = new ClassesView();
+      $model = new ClassesModel($db);
+      $controller = new ClassesController($model, $view);
+      $controller->addTaskToClassByName();
+      break;
+    default:
+      http_response_code(404);
+      break;
   }
-
-  // if ($uri === '/Rejestracja' or $_SESSION['privilege'] === 'teacher') {
-  //   $view = new RegisterView();
-  //   $modelRegister = new RegisterModel($db);
-  //   $controller = new RegisterController($modelRegister, $view);
-  //   $controller->register();
-  // }
 } else {
   /* #######################################################
      Wykonaj przekierowania dla NIE zalogowanego użytkownika
   #############################################################*/
   switch ($uri) {
     case '/':
-      // $view = new AppView();
-      // $controller = new AppController($view);
-      // $controller->index("HomePage"); // TODO: Home Page
-      $view = new LoginView();
-      $controller = new LoginController($modelUser, $view);
-      $controller->login();
-      break;
     case '/Logowanie':
+    case '/Dashboard':
       $view = new LoginView();
       $controller = new LoginController($modelUser, $view);
       $controller->login();
-      break;
-    case '/Rejestracja':
-      $view = new RegisterView();
-      $modelRegister = new RegisterModel($db);
-      $controller = new RegisterController($modelRegister, $view);
-      $controller->register();
       break;
     default:
       http_response_code(401);

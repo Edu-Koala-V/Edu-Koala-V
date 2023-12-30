@@ -12,14 +12,14 @@ class Dashboard
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/x-icon" href="Views/Resource/Images/Website/favicon-v2.png" />
-        <title>Systemy operacyjne</title>
+        <title>Panel użytkownika - Edu-Koala-V </title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
         <link rel="stylesheet" href="Views/Resource/CSS/style.css" type="text/css">
       </head>
 
       <body>
         <header>
-          <h1><a href="/Dashboard">KoalaV</a></h1>
+          <h1><a href="/Dashboard">Edu-Koala-V</a></h1>
           <span class="burger" tabindex="0">&#9776;</span>
         </header>
       

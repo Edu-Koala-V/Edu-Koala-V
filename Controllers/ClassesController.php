@@ -1,13 +1,13 @@
 <?php
 require_once  __DIR__ . '/../Models/ClassesModel.php';
-require_once  __DIR__ . '/../Views/Dashboards/ListOfArticles.php'; // TODO
+require_once  __DIR__ . '/../Views/Dashboards/ListOfArticles.php';
 
 class ClassesController
 {
     private $model;
     private $view;
 
-    public function __construct($model, $view) // Określ który chcesz widok
+    public function __construct($model, $view)
     {
         $this->model = $model;
         $this->view = $view;
@@ -73,8 +73,9 @@ class ClassesController
     {
         $className = $_POST["className"];
         $taskName = $_POST["taskName"];
+
         if ($this->model->checkColumnExistByNameFromClass($className, $taskName) === 0) {
-            $this->model->addTaskToClassByName($className, $taskName);
+            $this->model->addTaskToClassByName(strtolower($className), $taskName);
         }
     }
     public function addTestToClassByName()

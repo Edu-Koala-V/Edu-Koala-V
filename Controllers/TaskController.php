@@ -35,4 +35,23 @@ class TaskController
         $category = $_POST['taskCategory'];
         $this->model->createTask($nameTask, $description, $category);
     }
+
+    public function getAllTasksInArrayForStudent($classID)
+    {
+        $tasks = $this->model->getAllTasksInArrayForStudent($classID);
+        $data = $tasks[1]->fetch_all(MYSQLI_ASSOC);
+        $data2 = $tasks[0]->fetch_all(MYSQLI_ASSOC);
+
+        //? Podział tablicy na mniejsze tablice
+        $categories = array();
+        foreach ($data as $row) {
+            $category = $row['category'];
+            unset($row['category']);
+            $categories[$category][] = $row;
+        }
+        if ($categories) {
+            $this->view->renderTasksTable($categories, $data2);
+        }
+        return $categories;
+    }
 }
