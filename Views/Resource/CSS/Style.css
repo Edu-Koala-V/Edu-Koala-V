@@ -250,11 +250,13 @@ align-items: center;
 justify-content: flex-start;
 flex-wrap: wrap;
 flex-direction: row;
+transition: 0.3s all linear;
 }
 .btn-sidebar-menu.active,
 .btn-sidebar-menu:hover {
 background-color: var(--Sidebar-btn-Background-Hover);
 color: var(--Sidebar-btn-Foreground-Hover);
+box-shadow: 3px 3px #0000003d;
 transition: 0.3s all linear;
 }
 .btn-sidebar-menu.active:hover{

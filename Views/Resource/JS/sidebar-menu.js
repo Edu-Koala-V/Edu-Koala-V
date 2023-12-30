@@ -5,6 +5,10 @@ function toggleMenu() {
 function closeMenu() {
   document.querySelector("nav").classList.remove("show-sidebar");
 }
+const buttons = document.querySelectorAll('nav button');
+buttons.forEach(button => {
+  button.addEventListener('click', closeMenu);
+});
 
 var lessonContent = document.querySelector("main");
 lessonContent.addEventListener("click", function () {

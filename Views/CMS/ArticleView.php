@@ -20,22 +20,12 @@ class ArticleView
       
       <body>
         <header>
-          <h1><a href="/Dashboard">KoalaV</a></h1>
+          <h1><a href="/Dashboard">Edu-Koala-V</a></h1>
           <span class="burger" tabindex="0">&#9776;</span>
         </header>
       
           <nav data-overview-sidebar="true">
-            <div class="box">
-              <img src="Views/Resource/Images/Website/defaultAvatar.jpg" alt="User Avatar" class="user-avatar">
-              <div class="user-info">
-                <br />
-                <span>Witaj, <strong>Adam Nowak</strong></span> <br />
-                <span>Klasa <strong>9M</strong>
-                  nr. <strong>90</strong></span>
-                <br />
-              </div>
 
-            </div>
       HTML;
     include_once("Views/Templates/navSidebar.php");
     echo <<<HTML

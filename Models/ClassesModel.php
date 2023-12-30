@@ -60,7 +60,7 @@ class ClassesModel
 
     public function createScoreTableForClass($name)
     {
-        $stmt = $this->db->prepare("CREATE TABLE $name (user_id INT NOT NULL )");
+        $stmt = $this->db->prepare("CREATE TABLE $name (student_nr INT NOT NULL )");
         $stmt->execute();
         $stmt->close();
     }

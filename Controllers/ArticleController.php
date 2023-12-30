@@ -2,18 +2,15 @@
 require_once  __DIR__ . '/../Models/ArticleModel.php';
 require_once  __DIR__ . '/../Views/CMS/ArticleView.php';
 require_once  __DIR__ . '/../Views/Dashboards/ListOfArticles.php';
-
 class ArticleController
 {
     private $model;
     private $view;
-
-    public function __construct($model, $view) // Określ który chcesz widok
+    public function __construct($model, $view) //! Określ który chcesz widok
     {
         $this->model = $model;
         $this->view = $view;
     }
-
     public function createArticle()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,13 +23,12 @@ class ArticleController
             $filenameJSON = $this->generateFilename($title, true);
             $this->model->createArticle($category, $title);
             $this->saveArticle($filename, $content, $title);
-            $JSON = $this->saveArticleJSON($filenameJSON, $contentBlob, $title);
-            ('Location: /Lekcje/' . $filename);
+            $this->saveArticleJSON($filenameJSON, $contentBlob, $title);
+            // ('Location: /Lekcje/' . $filename);
         } else {
             $this->view->renderEditor();
         }
     }
-
     public function displayArticle($filename)
     {
         $article = $this->model->getArticle($filename);
@@ -42,9 +38,6 @@ class ArticleController
             http_response_code(404);
         }
     }
-
-
-
     private function generateFilename($title, $JSON = false)
     {
         $filename = strtolower($title);
@@ -55,12 +48,8 @@ class ArticleController
             return $filename . '.html';
         }
     }
-
-
-    private function saveArticleJSON($filename, $JSON, $title)
+    private function saveArticleJSON($filename, $JSON)
     {
-        // json_encode($JSON);
-
         $content =  $JSON;
         $path = 'Views/JSON/' . $filename;
         file_put_contents($path, $content);
@@ -73,13 +62,12 @@ class ArticleController
         $path = 'Views/Articles/' . $filename;
         file_put_contents($path, $content);
     }
-
     public function getAllArticlesArray($classesArray)
     {
         $articles = $this->model->getAllArticles();
         $data = $articles->fetch_all(MYSQLI_ASSOC);
 
-        // Podział tablicy na mniejsze tablice
+        //? Podział tablicy na mniejsze tablice
         $categories = array();
         foreach ($data as $row) {
             $category = $row['category'];
@@ -100,10 +88,9 @@ class ArticleController
     public function getAllArticlesForStudent($classID)
     {
         $articles = $this->model->getAllArticlesForStudent($classID);
-
         $data = $articles->fetch_all(MYSQLI_ASSOC);
 
-        // Podział tablicy na mniejsze tablice
+        //? Podział tablicy na mniejsze tablice
         $categories = array();
         foreach ($data as $row) {
             $category = $row['category'];
