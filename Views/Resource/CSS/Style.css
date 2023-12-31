@@ -395,6 +395,24 @@ background-color: #0b602a;
 background-color: #0b602a;
 color: white;
 }
+.btn-classSeter{
+  padding: 5px 15px;
+  background-color: #a5d053;
+  color: black;
+  border: 2px solid #36363687;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  float: right;
+}
+input[type="checkbox"]{
+  margin:auto 10px;
+}
+.btn-classSeter:hover{
+background-color: #78a354;
+color: black;
+}
 .show-sidebar{
 left: 0;
 }
@@ -574,6 +592,7 @@ background-color: #000000;
 
 table {
 width: 100%;
+margin: 15px 0px;
 }
 th,
 td {
@@ -627,6 +646,21 @@ tr:nth-child(2n + 2) {
 background-color: var(--Table-Row-Background-N1);
 font-weight: 500;
 color: var(--Table-Row-Foreground-N1);
+}
+.tasksTable>tbody>tr:nth-child(3n + 3) {
+  background-color: var(--Table-Row-Background-N2);
+  font-weight: 500;
+  color: var(--Table-Row-Foreground-N2);
+}
+.tasksTable>tbody>tr:nth-child(3n + 2) {
+  background-color: var(--Table-Row-Background-N1);
+  font-weight: 500;
+  color: var(--Table-Row-Foreground-N1);
+}
+.tasksTable>tbody>tr:nth-child(3n + 1) {
+  background-color: #c4c4c4;
+  font-weight: 500;
+  color: var(--Table-Row-Foreground-N1);
 }
 td > span,
 details {

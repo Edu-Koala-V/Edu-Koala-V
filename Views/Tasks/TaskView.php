@@ -8,47 +8,49 @@ class TaskView
     {
 
         if ($_SESSION['user']['privileges'] == "teacher") {
-            foreach ($tasksSortOfCategory as $category => $task) {
-                echo "<h2>" . $task["category"] . "</h2>";
-                echo <<<HTML
-                <table>
-                <tr><th>Nazwa zadania</th></tr>
-                <tr>
-                HTML;
-                echo '<td id="task' . $task["task_id"] . '">' . $task["name"] . '</td>';
-                echo <<<HTML
-                </tr>
-                <tr>
-                    <td colspan="2">
-                    <details>
-                    <summary style="justify-content: center;"> Szczegóły </summary>
-                        <table>
-                        <tr>
-                HTML;
-                echo '<td><span>' . $task["description"] . '</span></td>';
-                echo <<<HTML
-                        </tr>
-                        </table>
-                    </details>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                HTML;
-                foreach ($classesArray as $class) {
-                    echo '<label for="' . $class["name"] . '">' . $class["name"] . '</label><input type="checkbox"';
 
-                    echo 'id="' . $class["name"] . '" name="' . $class["name"] . '" data-class="x' . $task["task_id"] . '">';
+            foreach ($tasksSortOfCategory as $category => $tasks) {
+                echo "<h2>" . $category . "</h2>";
+
+                echo <<<HTML
+                    <table class="tasksTable">
+                    <tr><th>Nazwa zadania</th></tr>
+                    
+                    HTML;
+                foreach ($tasks as $task) {
+                    echo '<tr><td id="task' . $task["task_id"] . '">' . $task["name"] . '</td>';
+                    echo <<<HTML
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                        <details>
+                        <summary style="justify-content: center;"> Szczegóły </summary>
+                            <table>
+                            <tr>
+                    HTML;
+                    echo '<td><span>' . $task["description"] . '</span></td>';
+                    echo <<<HTML
+                            </tr>
+                            </table>
+                        </details>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                    HTML;
+                    foreach ($classesArray as $class) {
+                        echo '<label for="' . $class["name"] . '">' . $class["name"] . '</label><input type="checkbox"';
+
+                        echo 'id="' . $class["name"] . '" name="' . $class["name"] . '" data-class="x' . $task["task_id"] . '">';
+                    }
+                    echo '<button id="' . $task["name"] . '" class="btn-classSeter"';
+                    echo 'onclick="activeTaskForClass(\'' . $task["task_id"] . '\')">Aktywuj dla wybranej klasy</button>';
+                    echo "</td></tr>";
                 }
-                echo '<button id="' . $task["name"] . '" class="btn-classSeter"';
-                echo 'onclick="activeTaskForClass(\'' . $task["task_id"] . '\')">Aktywuj dla wybranej klasy</button>';
-                echo "</td></tr>";
-
                 echo "</table>";
             }
             $this->renderNewTaskCreator();
         } else {
-            $i = 0;
             foreach ($tasksSortOfCategory as $category => $tasks) {
                 echo "<h2>" . $category . "</h2>";
                 echo "<table>";
@@ -82,8 +84,8 @@ class TaskView
                 </tr>
                 <tr>
                 HTML;
-                    $i++;
                 }
+                echo "</table>";
             }
         }
     }

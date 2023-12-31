@@ -34,3 +34,38 @@ document.querySelector("#addQuestBlock").addEventListener("click", function(){
         `;
     QuizContainer.appendChild(newDiv);
 });
+
+
+document.querySelector("#saveQuiz").addEventListener("click", function (){
+    let quizArray = [];
+    for(let i=1; i<=counter;i++)
+    {
+        let quest = [];
+        quest.push(document.querySelector("#question"+i).value);
+        quest.push(document.querySelector("#answerA"+i).value);
+        quest.push(document.querySelector("#answerB"+i).value);
+        quest.push(document.querySelector("#answerC"+i).value);
+        quest.push(document.querySelector("#answerD"+i).value);
+        quest.push(document.querySelector("#selectAnswer"+i).value);
+        quizArray.push(quest);
+    }
+    // console.log(tittleQuiz, categoryQuiz);
+    // console.log(quizArray);
+    sendQuizData(quizArray)
+});
+
+function sendQuizData(array) {
+    const titleQuiz = document.querySelector("#title").value;
+    const categoryQuiz = document.querySelector("#selectCategory").value;
+    const quizArray = array;
+    
+    var data = {titleQuiz: titleQuiz, categoryQuiz: categoryQuiz, quizArray: quizArray};
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/create-quiz");
+    xhr.onreadystatechange = function() { if (xhr.readyState === 4 && xhr.status === 200) { console.log(xhr.responseText); } }
+    xhr.setRequestHeader("Content-type", "application/json") // or "text/plain"
+    xhr.send(JSON.stringify(data)); 
+}
+
+
+

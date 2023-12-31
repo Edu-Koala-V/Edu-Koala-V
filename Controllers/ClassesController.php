@@ -81,7 +81,7 @@ class ClassesController
     public function addTestToClassByName()
     {
         $className = $_POST["className"];
-        $testName = $_POST["testName"];
+        $testName = $_POST["quizName"];
         if ($this->model->checkColumnExistByNameFromClass($className, $testName) === 0) {
             $this->model->addTestToClassByName($className, $testName);
         }

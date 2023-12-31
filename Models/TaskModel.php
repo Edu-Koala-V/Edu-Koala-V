@@ -45,14 +45,8 @@ class TaskModel
         }
         $taskNameArray = substr($column_names_string, 0, strlen($column_names_string) - 3);
         $stmt = $this->db->query("SELECT * FROM `tasks` WHERE $taskNameArray;");
-        // $stmt->bind_param("s", $taskNameArray);
-        // $stmt->execute();
-        // $allTaskActivated = $stmt->get_result();
-        // $arrayTest = [$taskNameArray];
 
         $taskArray = [$result, $stmt];
-
-
 
         return $taskArray;
     }

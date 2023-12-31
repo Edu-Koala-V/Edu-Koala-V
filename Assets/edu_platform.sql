@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2023 at 11:34 PM
+-- Generation Time: Sty 01, 2024 at 12:47 AM
 -- Wersja serwera: 10.4.32-MariaDB
 -- Wersja PHP: 8.2.12
 
@@ -28,18 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `1a` (
+  `id` int(11) NOT NULL,
   `student_nr` int(11) NOT NULL,
   `Konfiguracja DHCP` tinyint(1) NOT NULL,
-  `Zadanie dla Ciebie` tinyint(1) NOT NULL
+  `Zadanie dla Ciebie` tinyint(1) NOT NULL,
+  `Nowość` tinyint(1) NOT NULL,
+  `IP v4` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 --
 -- Dumping data for table `1a`
 --
 
-INSERT INTO `1a` (`student_nr`, `Konfiguracja DHCP`, `Zadanie dla Ciebie`) VALUES
-(2, 0, 0),
-(12, 0, 0);
+INSERT INTO `1a` (`id`, `student_nr`, `Konfiguracja DHCP`, `Zadanie dla Ciebie`, `Nowość`, `IP v4`) VALUES
+(1, 2, 0, 0, 1, ''),
+(2, 12, 0, 0, 1, '5/10');
 
 -- --------------------------------------------------------
 
@@ -49,7 +52,8 @@ INSERT INTO `1a` (`student_nr`, `Konfiguracja DHCP`, `Zadanie dla Ciebie`) VALUE
 
 CREATE TABLE `1g` (
   `student_nr` int(11) NOT NULL,
-  `Zadanie dla Ciebie` tinyint(1) NOT NULL
+  `Zadanie dla Ciebie` tinyint(1) NOT NULL,
+  `Nowość` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
 -- --------------------------------------------------------
@@ -59,6 +63,18 @@ CREATE TABLE `1g` (
 --
 
 CREATE TABLE `1h` (
+  `student_nr` int(11) NOT NULL,
+  `Nowość` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `2g`
+--
+
+CREATE TABLE `2g` (
+  `id` int(11) NOT NULL,
   `student_nr` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
@@ -109,7 +125,8 @@ CREATE TABLE `classes` (
 INSERT INTO `classes` (`id`, `name`, `points`) VALUES
 (1, '1A', 0),
 (2, '1G', 0),
-(3, '1H', 0);
+(3, '1H', 0),
+(4, '2G', 0);
 
 -- --------------------------------------------------------
 
@@ -127,6 +144,18 @@ CREATE TABLE `questions` (
   `answer` enum('A','B','C','D') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
 
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`quiz_id`, `question`, `answerA`, `answerB`, `answerC`, `answerD`, `answer`) VALUES
+(1, 'Wybierz Leniwca', 'Sroka', 'Lenin', 'Lewniwiec', 'Antylopa', 'C'),
+(1, 'Wybierz Sok', 'Sok', 'Kanapka', 'Rower', 'Pilot', 'A'),
+(2, 'Wybierz Leniwca1', 'Sroka', 'Lenin', 'Lewniwiec1', 'Antylopa', 'C'),
+(2, 'Wybierz Sok3', 'Sok3', 'Kanapka', 'Rower', 'Pilot', 'A'),
+(3, 'Wybierz Leniwca12', 'Sroka', 'Lenin', 'Lewniwiec12', 'Antylopa', 'C'),
+(3, 'Wybierz Sok32', 'Sok32', 'Kanapka', 'Rower', 'Pilot', 'A');
+
 -- --------------------------------------------------------
 
 --
@@ -135,8 +164,18 @@ CREATE TABLE `questions` (
 
 CREATE TABLE `quizzes` (
   `quiz_id` int(11) NOT NULL,
-  `title` varchar(90) NOT NULL
+  `title` varchar(90) NOT NULL,
+  `category` varchar(90) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_polish_ci;
+
+--
+-- Dumping data for table `quizzes`
+--
+
+INSERT INTO `quizzes` (`quiz_id`, `title`, `category`) VALUES
+(1, 'Konta i grupy lokalne', 'Systemy Operacyjne'),
+(2, 'RegEdit', 'Systemy Operacyjne'),
+(3, 'IP v4', 'Lokalne Sieci Komputerowe');
 
 -- --------------------------------------------------------
 
@@ -158,7 +197,8 @@ CREATE TABLE `tasks` (
 INSERT INTO `tasks` (`task_id`, `name`, `description`, `category`) VALUES
 (1, 'Konfiguracja DHCP', 'IP: 192.168.0.1 <br>\nZakres: 192.168.0.20 - 192.168.0.30', 'Systemy Operacyjne'),
 (2, 'Zadanie dla Ciebie', 'Wyluzuj', 'Systemy Operacyjne'),
-(3, 'asdas', 'dasdasdasdas', 'Systemy Operacyjne');
+(3, 'asdas', 'dasdasdasdas', 'Systemy Operacyjne'),
+(5, 'Nowość', 'CZtery Kurwy', 'Lokalne Sieci Komputerowe');
 
 -- --------------------------------------------------------
 
@@ -195,6 +235,18 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `surname`, `clas
 --
 
 --
+-- Indeksy dla tabeli `1a`
+--
+ALTER TABLE `1a`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `2g`
+--
+ALTER TABLE `2g`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeksy dla tabeli `articles`
 --
 ALTER TABLE `articles`
@@ -229,6 +281,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `1a`
+--
+ALTER TABLE `1a`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `2g`
+--
+ALTER TABLE `2g`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
@@ -238,19 +302,19 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `quiz_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

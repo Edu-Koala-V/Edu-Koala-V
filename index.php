@@ -31,6 +31,7 @@ require_once 'Views/Tasks/TaskView.php';
 require_once 'Controllers/QuizController.php';
 require_once 'Models/QuizModel.php';
 require_once 'Views/Tests/QuizView.php';
+require_once 'Views/Tests/ListOfQuizzes.php';
 ## Classes management
 require_once 'Views/Classes/ClassesView.php';
 require_once 'Controllers/ClassesController.php';
@@ -104,7 +105,8 @@ if (isset($_SESSION['user'])) {
         $controller = new ClassesController($modelClasses, $view);
         $classesArray = $controller->getAllClassesArray('', false);
         $view = new ListOfArticles();
-        $controller = new ArticleController($modelArticle,  $view);
+        $model = new ArticleModel($db);
+        $controller = new ArticleController($model,  $view);
         $controller->getAllArticlesArray($classesArray);
       } else {
         $view = new ListOfArticles();
@@ -127,6 +129,23 @@ if (isset($_SESSION['user'])) {
         $model = new TaskModel($db);
         $controller = new TaskController($model, $view);
         $controller->getAllTasksInArrayForStudent($_SESSION['user']['class']);
+      }
+      break;
+    case '/quizzes-list':
+      if ($_SESSION['user']['privileges'] ==  "teacher") {
+        $view = new ClassesView();
+        $modelClasses = new ClassesModel($db);
+        $controller = new ClassesController($modelClasses, $view);
+        $classesArray = $controller->getAllClassesArray('', false);
+        $view = new ListOfQuizzes();
+        $model = new QuizModel($db);
+        $controller = new QuizController($model, $view);
+        $controller->getAllQuizzesInArray($classesArray);
+      } else {
+        $view = new ListOfQuizzes();
+        $model = new QuizModel($db);
+        $controller = new QuizController($model, $view);
+        $controller->getAllQuizzesInArrayForStudent($_SESSION['user']['class']);
       }
       break;
     case '/newTask':
@@ -179,6 +198,12 @@ if (isset($_SESSION['user'])) {
       $model = new ClassesModel($db);
       $controller = new ClassesController($model, $view);
       $controller->addTaskToClassByName();
+      break;
+    case '/addQuizColumnToClassTable':
+      $view = new ClassesView();
+      $model = new ClassesModel($db);
+      $controller = new ClassesController($model, $view);
+      $controller->addTestToClassByName();
       break;
     default:
       http_response_code(404);

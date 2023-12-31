@@ -7,7 +7,7 @@ document.querySelector("#tasks").addEventListener("click", function () {
   loadContentWithScript("/tasks-List","Views/Resource/JS/TasksManagement.js");
 });
 document.querySelector("#tests").addEventListener("click", function () {
-  loadContent("/articles-List");
+  loadContent("/quizzes-list","Views/Resource/JS/QuizzesManagements.js");
 });
 document.querySelector("#classes").addEventListener("click", function () {
   loadContentWithScript("/get-classes","Views/Resource/JS/ClassManagements.js");

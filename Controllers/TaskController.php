@@ -23,7 +23,7 @@ class TaskController
             $categories[$category][] = $row;
         }
         if ($categories) {
-            $this->view->renderTasksTable($data, $classesArray);
+            $this->view->renderTasksTable($categories, $classesArray);
         }
         return $categories;
     }
