@@ -2,7 +2,7 @@
 
 echo '<div class="box">
               <img src="Views/Resource/Images/Users/' . $_SESSION["user"]["avatar"] . '" alt="User Avatar" id="user-avatar">
-              <img src="Views/Resource/Images/Website/changeAvatar.png" alt="User Avatar change icon" id="user-avatar-change">
+              <img src="Views/Resource/Images/Website/changeAvatar.png" alt="User Avatar change icon" id="user-avatar-change"></img></img>
               <div class="user-info">
                 <br />
                 <span>Witaj, <strong>' . $_SESSION["user"]["name"] . ' ' . $_SESSION["user"]["surname"] . '</strong></span> <br />

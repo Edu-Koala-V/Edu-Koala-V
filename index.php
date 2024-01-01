@@ -42,6 +42,7 @@ $test = new Dashboard();
    Połączenie z bazą danych MySQL
   ################################*/
 $db = new mysqli("localhost", "root", "", "edu_platform");
+//$db = new mysqli("sql302.infinityfree.com", "if0_35570089", "9w5gECStoSS63", "if0_35570089_eduplatform");
 
 /* #########################
    Tworzenie obiektów modeli
