@@ -22,3 +22,5 @@ Użytkownik może mieć własny avatar
 Trzeba kontynuować prace nad zadaniami i rozpocząć prace nad testami
 
 Całość zaczyna zamulać trzeba myśleć nad optymalizacją całego systemu (?COOKIES Cache)
+
+### Zrobić widok render testu z obliczaniem wyniku oraz zapisu do bazy danych

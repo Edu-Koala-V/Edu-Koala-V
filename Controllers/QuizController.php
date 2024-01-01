@@ -13,6 +13,9 @@ class QuizController
         $this->view = $view;
     }
 
+    public function displayQuiz($idOrString) // TODO
+    {
+    }
     public function createQuiz()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -44,9 +44,7 @@ class ListOfQuizzes
                 HTML;
                     echo '<td>' . $quiz["title"] . '</td>';
                     if ($classesArray[0][$quiz["title"]] === "") {
-                        $filename = strtolower($quiz["title"]);
-                        $filename = preg_replace('/[^a-z0-9]+/', '-', $filename);
-                        echo '<td> <a href="/Lekcje/' . $filename . '">Link do lekcji </a></td>';
+                        echo '<td> <a href="/Quiz/' . $quiz["quiz_id"] . '">Link do lekcji </a></td>';
                     } else {
                         $pointsOfMax = explode('/', $classesArray[0][$quiz["title"]]);
                         $procent = $pointsOfMax[0] / $pointsOfMax[1];

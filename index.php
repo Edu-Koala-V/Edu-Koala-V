@@ -64,6 +64,12 @@ if (isset($_SESSION['user'])) {
     $controller = new ArticleController($modelArticle, $view);
     $controller->displayArticle($matches[1]);
   }
+  if (preg_match('/^\/Quiz\/(.*)$/', $uri, $matches)) {
+    $view = new QuizView();
+    $model = new QuizModel($db);
+    $controller = new QuizController($model, $view);
+    $controller->displayQuiz($matches[1]);
+  }
 
   switch ($uri) {
     case '/':
