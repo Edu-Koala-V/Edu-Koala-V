@@ -13,6 +13,7 @@ class ImageController
             }
         } else {
             $title = $_POST['title'];
+            $title = str_replace(" ", "-", strtolower($title));
             $uploadDir = __DIR__ . '/../Views/Resource/Images/Articles/';
         }
 
@@ -22,6 +23,7 @@ class ImageController
             mkdir($uploadDir . $title, 0777, true);
         }
         $fileName = $_POST['filename'];
+        $fileName = str_replace(" ", "-", strtolower($fileName));
         $filePath = $uploadDir . $fileName;
         echo $_FILES['file']['tmp_name'];
         if (move_uploaded_file($_FILES['file']['tmp_name'], $filePath)) {

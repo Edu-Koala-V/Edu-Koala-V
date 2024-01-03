@@ -45,7 +45,7 @@ function replaceStyleWithClass() {
   newHTML = newHTML.replace(/class="ql-indent-2"/g, 'class="textIndent-2"');
   newHTML = newHTML.replace(/class="ql-indent-3"/g, 'class="textIndent-3"');
   newHTML = newHTML.replace(/class="ql-indent-4"/g, 'class="textIndent-4"');
-  
+  console.log(newHTML);
   return replaceSrcWithFileName(newHTML)
 }
 
@@ -144,20 +144,21 @@ function detectImageAndSave(htmlCode) {
       let base64Data = src.replace(/^data:image\/jpeg;base64,/, '');
       let fileName = 'image' + Date.now() + '.jpg';
       saveImage(base64Data, title+'/'+fileName);
-      filesNames[i] = '../Views/Resource/Images/Articles/'+title+'/'+fileName;
+      filesNames[i] = '../Views/Resource/Images/Articles/'+title.replace(/ /g, "-").toLowerCase();'/'+fileName;
     } else if (src.startsWith('data:image/png;base64,')) {
       let base64Data = src.replace(/^data:image\/png;base64,/, '');
       let fileName = 'image' + Date.now() + '.png';
       saveImage(base64Data, title+'/'+fileName);
-      filesNames[i] = '../Views/Resource/Images/Articles/'+title+'/'+fileName;
+      filesNames[i] = '../Views/Resource/Images/Articles/'+title.replace(/ /g, "-").toLowerCase()+'/'+fileName;
     } else if (src.startsWith('data:image/gif;base64,')) {
       let base64Data = src.replace(/^data:image\/gif;base64,/, '');
       let fileName = 'image' + Date.now() + '.gif';
       saveImage(base64Data, title+'/'+fileName);
       var title = document.querySelector('#title').value;
-      filesNames[i] = '../Views/Resource/Images/Articles/'+title+'/'+fileName;
+      filesNames[i] = '../Views/Resource/Images/Articles/'+title.replace(/ /g, "-").toLowerCase()+'/'+fileName;
     }
    
   }
+  console.log(filesNames);
   return filesNames;
 }
