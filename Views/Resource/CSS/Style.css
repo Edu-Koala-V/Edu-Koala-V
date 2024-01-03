@@ -144,6 +144,61 @@ nav {
   font-size: 18px;
   padding: 10px;
 }
+#QuizContainerView>div>div>input{
+  display: none;
+}
+#QuizContainerView>div>div>input[type="radio"]:checked+label { 
+  display: block;
+  cursor: pointer;
+  border: 2px solid #216ea5;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff90;
+}
+#QuizContainerView>div>div>label:hover{
+  border: 2px solid #1f5d8a;
+  background-color: #ffffff70;
+}
+#QuizContainerView>div>div>label{
+  display: block;
+  cursor: pointer;
+  border: 2px solid #000;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ffffff40;
+}
+#QuizContainerView>div>div>label.good{
+  border: 2px solid #2da70e;
+  background-color: #b8ff9a40;
+}
+#QuizContainerView>div>div>label.bad{
+  border: 2px solid #ff1515;
+  background-color: #ff9a9a40;
+}
+#QuizContainerView>div>div>.question{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
+  background-color: #0000000f;
+  border: 4px solid #3c3c3c;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 4px 5px 6px 6px #00000026;
+  border-style: outset;
+}
+.numericTagQuest{
+  border: 2px solid;
+  width: fit-content;
+  margin-top: -10px;
+  margin-left: -10px;
+  padding: 2px 5px 5px 2px;
+  border-radius: 0 0 14px 0;
+}
+.questContent{
+  margin-left: 10px;
+}
 /* Div versions */
 .flyBox {
   height: fit-content;

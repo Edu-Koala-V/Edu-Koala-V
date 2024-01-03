@@ -71,4 +71,28 @@ class QuizModel
 
         return $taskArray;
     }
+    public function getQuizId($title)
+    {
+        $stmt = $this->db->prepare("SELECT quiz_id FROM `quizzes` WHERE LOWER(title) = LOWER(?);");
+        $stmt->bind_param("s", $title);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function findQuestions($quiz_id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM questions WHERE quiz_id = ?");
+        $stmt->bind_param("s", $quiz_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $rows = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+    
+    
+    
 }

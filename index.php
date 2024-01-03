@@ -42,7 +42,6 @@ $test = new Dashboard();
    Połączenie z bazą danych MySQL
   ################################*/
 $db = new mysqli("localhost", "root", "", "edu_platform");
-//$db = new mysqli("sql302.infinityfree.com", "if0_35570089", "9w5gECStoSS63", "if0_35570089_eduplatform");
 
 /* #########################
    Tworzenie obiektów modeli
@@ -65,7 +64,7 @@ if (isset($_SESSION['user'])) {
     $controller = new ArticleController($modelArticle, $view);
     $controller->displayArticle($matches[1]);
   }
-  if (preg_match('/^\/Quiz\/(.*)$/', $uri, $matches)) {
+  if (preg_match('/^\/quiz\/(.*)$/', $uri, $matches)) {
     $view = new QuizView();
     $model = new QuizModel($db);
     $controller = new QuizController($model, $view);

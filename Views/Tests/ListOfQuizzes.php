@@ -17,7 +17,7 @@ class ListOfQuizzes
                     echo '<td id="quiz' . $quiz["quiz_id"] . '">' . $quiz["title"] . "</td>";
                     $filename = strtolower($quiz["title"]);
                     $filename = preg_replace('/[^a-z0-9]+/', '-', $filename);
-                    echo '<td> <a href="/Lekcje/' . $filename . '">Link do lekcji </a></td>';
+                    echo '<td> <a href="/quiz/' . $filename . '">Link do lekcji </a></td>';
                     echo "</tr>";
                     echo "<tr>";
                     echo '<td colspan="3">';

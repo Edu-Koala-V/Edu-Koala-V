@@ -13,8 +13,13 @@ class QuizController
         $this->view = $view;
     }
 
-    public function displayQuiz($idOrString) // TODO
+    public function displayQuiz($title) // TODO
     {
+        $title = str_replace('-',' ', $title);
+        $quiz_id = $this->model->getQuizId($title);
+        $quiz_id = mysqli_fetch_row($quiz_id);
+        $quiz = $this->model->findQuestions($quiz_id[0]);
+        $this->view->renderQuiz($quiz, $title);
     }
     public function createQuiz()
     {
