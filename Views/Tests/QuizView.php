@@ -89,8 +89,90 @@ class QuizView
     HTML;
   }
 
-  public function renderArticle($article)
+  public function renderQuiz($quizzes, $title)
   {
-    echo $article;
+    echo <<<HTML
+    <!DOCTYPE html>
+      <html lang="pl">
+
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="../Views/Resource/Images/Website/favicon-v1.png" />
+    HTML;
+    echo '<title>'.$title.' /Quiz/ Edu-Koala-V</title>';
+    echo <<<HTML
+        
+        <link rel="stylesheet" href="../Views/Resource/CSS/style.css" />
+      </head>
+
+      <body>
+        <header>
+        <h1><a href="/dashboard">Edu-Koala-V</a></h1>
+        </header>
+        <main>
+        <div id="QuizContainerView">
+          
+    HTML;
+    echo '<script>let quizID;</script>';
+    $counter = 1;
+    foreach ($quizzes as $quiz) {
+      echo '<script>quizID = '.$quiz["quiz_id"].'</script>';
+    echo <<<HTML
+        
+      
+        <div class="questionBlock">
+          <div class="form-group">
+            <div class="question">
+    HTML;
+    echo '<span class="numericTagQuest">Pytanie nr.: '.$counter++.'</span>';
+   
+    echo '<span class="questContent">'.$quiz["question"].'</span></div>';
+          
+    echo '
+            <input type="radio" class="form-control" id="answerA'.$quiz["id"].'" name="answer'.$quiz["id"].'" placeholder="Podaj odpowiedź A"
+            value="A" >
+            <label for="answerA'.$quiz["id"].'" >A. '.$quiz["answerA"].'</label>
+            ';
+
+            echo '
+            <input type="radio" class="form-control" id="answerB'.$quiz["id"].'" name="answer'.$quiz["id"].'" placeholder="Podaj odpowiedź B"
+            value="B" >
+            <label for="answerB'.$quiz["id"].'" >B. '.$quiz["answerB"].'</label>
+            ';
+
+            echo '
+            <input type="radio" class="form-control" id="answerC'.$quiz["id"].'" name="answer'.$quiz["id"].'" placeholder="Podaj odpowiedź C"
+            value="C" >
+            <label for="answerC'.$quiz["id"].'" >C. '.$quiz["answerC"].'</label>
+            ';
+
+            echo '
+            <input type="radio" class="form-control" id="answerD'.$quiz["id"].'" name="answer'.$quiz["id"].'" placeholder="Podaj odpowiedź D"
+            value="D" >
+            <label for="answerD'.$quiz["id"].'" >D. '.$quiz["answerD"].'</label>
+            ';
+
+            
+        echo '</div>
+        </div>
+     
+
+      
+
+    ';
+    }
+    
+    echo <<<HTML
+     </div>
+    <button class="btn-update">Zakończ test</button>
+    </main>
+        <footer></footer>
+      </body>
+      <script src="../Views/Resource/JS/QuizCheck.js"></script>
+      </html>
+    
+    
+    HTML;
   }
 }

@@ -1,7 +1,7 @@
 <?php
 class LoginView
 {
-    public function render($error = "")
+    public function render($error = "", $nickName = '')
     {
         echo <<<HTML
         <!DOCTYPE html>
@@ -21,21 +21,53 @@ class LoginView
         </header>
         <main>
             <div data-overview-sidebar="true">
-            <div class="flyBox loginPanel">
+            
 
         HTML;
         // ##############################################################################################
+        if ($error == "") {
         echo <<<HTML
+        <div class="flyBox loginPanel">
         <form method="POST" action="../logowanie">
             <input type="text" name="username" placeholder="Login" required>
             <input type="password" name="password" placeholder="Hasło" required>
             <button type="submit">Login</button>
         </form>
         HTML;
+        }
         // ##############################################################################################
-        if ($error != "") {
+        else if($error == "pass")
+        {
             echo <<<HTML
+            <div class="blurAll">
+                
+                <div class="flyBox loginPanel">
+                <form method="POST" action="../new-password">
+                    <input type="text" name="username" placeholder="Login" required value="$nickName">
+                    <input type="password" name="password" placeholder="Nowe hasło" required>
+                    <button type="submit">Zmień hasło</button>
+                </form>
+                </div>
+                <div class="flyBox loginPanel">
+                Twoje hasło jest "ZAQ!2wsx" musisz je zmienić przed pierwszym zalogowaniem
+                </div>
+                
             </div>
+                
+
+            HTML;
+        }
+        else if ($error == "x") {
+            echo <<<HTML
+        <div class="flyBox loginPanel">
+        <form method="POST" action="../logowanie">
+            <input type="text" name="username" placeholder="Login" required>
+            <input type="password" name="password" placeholder="Hasło" required>
+            <button type="submit">Login</button>
+        </form>
+        HTML;
+            echo <<<HTML
+            <div>
                 <div class="flyBox loginPanel">
                     Podano nieprawidłowe dane logowania &#x1F614;
                 </div>

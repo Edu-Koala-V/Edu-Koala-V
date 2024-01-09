@@ -7,14 +7,20 @@ class QuizController
 {
     private $model;
     private $view;
-    public function __construct($model, $view) //! Określ który chcesz widok
+    public function __construct($model, $view) 
     {
         $this->model = $model;
         $this->view = $view;
     }
 
-    public function displayQuiz($idOrString) // TODO
+    public function displayQuiz($title) 
     {
+        $title = str_replace('-',' ', $title);
+        $_SESSION["QuizTitle"]= $title;
+        $quiz_id = $this->model->getQuizId($title);
+        $quiz_id = mysqli_fetch_row($quiz_id);
+        $quiz = $this->model->findQuestions($quiz_id[0]);
+        $this->view->renderQuiz($quiz, $title);
     }
     public function createQuiz()
     {
@@ -78,4 +84,53 @@ class QuizController
         }
         return $categories;
     }
+
+
+
+    public function checkAnswers()
+    {
+       
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {         
+        http_response_code(200);
+
+        $answers = json_decode($_POST["answers"], true);
+        $result = array();
+        $points = 0;
+            foreach ($answers as $answer) {
+                $questID = $answer["questID"];
+                
+                    $value = $answer["value"];
+                    $goodAnswer = $this->model->getQuestionsGoodAnswerById($questID);
+              
+                if($value !== null) {
+                    if ($goodAnswer === $value) {
+                        $points++;
+                    }
+                    $result[] = array(
+                    "questID" => $questID,
+                    "goodAnswer" => $goodAnswer
+                    );
+                }
+                else {
+                    $result[] = array(
+                        "questID" => '0',
+                        "goodAnswer" => '0'
+                        );
+                }
+            }
+            echo json_encode($result);
+            }
+
+        $this->setPointsQuiz($points,count($answers));
+       
+    }
+
+    private function setPointsQuiz($points, $maxPoints)
+    {
+        if(isset($_SESSION["QuizTitle"]))
+        {
+            $this->model->setScoreQuizForStudent($_SESSION["QuizTitle"],$points,$maxPoints);
+        }
+    }
+
 }

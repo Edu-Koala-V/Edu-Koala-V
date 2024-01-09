@@ -16,17 +16,36 @@ class LoginController
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $user = $this->model->getUser($_POST['username'], $_POST['password']);
-            if ($user == null) {
-                $this->view->render('x');
-            } else {
-                $_SESSION['user'] = $user;
-                $_SESSION['privileges'] = $user["privileges"];
-                header('Location: /');
-            }
-        } else {
+            $user = $this->model->getUser($_POST['username']);
+            $password = $_POST['password'];
+            if($user['password'] == "ZAQ!2wsx")
+            {    
+                $this->view->render("pass", $_POST['username']);
+                        
+            } 
+            else 
+            {
+                if ($user !== null && password_verify($password, $user["password"])) {
+                    $_SESSION['user'] = $user;
+                    $_SESSION['privileges'] = $user["privileges"];
+                    header('Location: /'); 
+                } else {
+                    $this->view->render('x');
+                }
+            } 
+        }
+        else {
             $this->view->render();
         }
+        
+    }
+    public function changeCryptPassword(){
+        $password = $_POST['password'];
+        $username = $_POST['username'];
+        $hashPassword = password_hash($password, PASSWORD_BCRYPT);
+        $this->model->changeCryptPassword($username, $hashPassword);
+        $this->logout();
+
     }
     public function logout()
     {

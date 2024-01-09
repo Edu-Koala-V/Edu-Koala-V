@@ -19,6 +19,7 @@ class RegisterController
             $surname = $_POST['surname'];
             $nr = $_POST['nr'];
             $class = $_POST['classID'];
+            $className = $_POST['className'];
             $privileges = 'student';
             $avatar = 'defaultAvatar.jpg';
             $theme = NULL;
@@ -36,6 +37,7 @@ class RegisterController
 
             $this->model->createUser($username, $password, $name, $surname, $class, $nr, $privileges, $avatar, $theme, $score);
             $this->view->render("User created successfully.");
+            return array($className, $nr);
         } else {
             $this->view->render();
         }

@@ -3,13 +3,16 @@ class ImageController
 {
     public function upload()
     {
-        if ($_POST['type'] == 'avatar') {
-            $title = $_POST['username'];
-            $uploadDir = __DIR__ . '/../Views/Resource/Images/Users/';
+        if (isset($_POST['type'])) {
+            if($_POST['type'] == 'avatar')
+            {
+                $title = $_POST['username'];
+                $uploadDir = __DIR__ . '/../Views/Resource/Images/Users/';
 
-            $katalog = $uploadDir . $title;
-            if (file_exists($uploadDir . $title)) {
-                $this->removeDir($katalog);
+                $katalog = $uploadDir . $title;
+                if (file_exists($uploadDir . $title)) {
+                    $this->removeDir($katalog);
+                }
             }
         } else {
             $title = $_POST['title'];

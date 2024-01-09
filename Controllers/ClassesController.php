@@ -62,7 +62,23 @@ class ClassesController
         $className = $_GET["className"];
         $students = $this->model->getAllStudentsFromClassID($id);
         $data = $students->fetch_all(MYSQLI_ASSOC);
-        $this->view->renderTableStudentsFromClass($data, $className);
+        // print_r($data);
+        // echo $data[0]["nr_student"];
+        $values=[];
+        foreach ($data as $student) {
+        $result = $this->getStudentScoresFromClassTable( $className, $student["nr_student"]);
+        
+        array_push($values, mysqli_fetch_row( $result ));
+        }
+        $fields = mysqli_fetch_fields($result);
+        $fieldsNames = [];
+        foreach ($fields as $field) {
+            array_push($fieldsNames, $field->name);
+        }
+
+        
+      
+        $this->view->renderTableStudentsFromClass($data, $className, $fieldsNames, $values);
     }
 
     public function createScoreTableForClass($name)
@@ -85,5 +101,22 @@ class ClassesController
         if ($this->model->checkColumnExistByNameFromClass($className, $testName) === 0) {
             $this->model->addTestToClassByName($className, $testName);
         }
+    }
+
+    public function addStudentToClassByName($name, $student_nr)
+    {
+        $this->model->addStudentToClassByName($name, $student_nr);
+    }
+    public function getStudentScoresFromClassTable( $className, $student_nr)
+    {
+        return $this->model->getStudentScoresFromClassTable( $className, $student_nr);
+    }
+
+
+    public function changeClassPoints()
+    {
+        $className = $_POST["className"];
+        $points = $_POST["point"];
+        $this->model->changeClassPoints($className, $points);
     }
 }

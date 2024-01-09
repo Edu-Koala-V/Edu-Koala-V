@@ -46,13 +46,20 @@ class ArticleView
         </div>
         <button type="submit" class="btn btn-primary" id="saveArticle">Create article</button>
       
-      <div id="editor"></div>
+      <div id="editor">
+        <!-- <div contenteditable="true" type="text" name="edit" id="edit"> -->
+      </div>
         </main>
+        <!-- <div id="toolbar">
+          <button onclick="addDiv()" id="newDivIMG"><i class="fa-regular fa-images"></i></button>
+          <button onclick="boldText()" id="BoldTextBtn"><i class="fa-solid fa-bold"></i></button>
+        </div> -->
         <footer></footer>
       </body>
     <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
       <script src="Views/Resource/JS/sidebar-menu.js"></script>
       <script src="Views/Resource/JS/LoadingPages.js"></script>
+      <!-- <script src="Views/Resource/JS/edit.js"></script> -->
       <script src="Views/Resource/JS/EditorQuill.js"></script>
 
       </html>

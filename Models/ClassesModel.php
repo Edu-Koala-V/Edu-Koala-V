@@ -86,6 +86,35 @@ class ClassesModel
         $stmt->close();
         return $result;
     }
-}
 
-// CREATE TABLE `edu_platform`.`1g` (`user_id` INT NOT NULL , `Zadanie` BOOLEAN NOT NULL , `Test` VARCHAR(5) NOT NULL ) ENGINE = InnoDB;
+    public function addStudentToClassByName($name, $student_nr)
+    {
+        $stmt = $this->db->prepare("INSERT INTO $name (`student_nr`) VALUES ($student_nr);");
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    public function getStudentScoresFromClassTable( $className, $student_nr)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM $className WHERE student_nr=$student_nr;");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result;
+    }
+    
+    public function changeClassPoints($className, $points)
+    {
+        $stmt = $this->db->prepare("SELECT points FROM `classes` WHERE name = ?;");
+        $stmt->bind_param("s", $className);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $result = $result->fetch_row();
+        $newPoints = $result[0] + $points;
+        $stmt = $this->db->prepare("UPDATE `classes` SET `points` = ? WHERE name = ?;");
+        $stmt->bind_param("is", $newPoints, $className);
+        $stmt->execute();
+        $stmt->close();
+    }
+    
+}

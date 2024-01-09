@@ -11,9 +11,11 @@ class ClassesView
             echo "<tr>";
             echo "<td>" . $class["id"] . "</td>";
             echo "<td>" . $class["name"] . "</td>";
-            echo "<td>  &nbsp;	&nbsp;" . $class["points"] . "</td>";
+            echo '<td> <button class="btn-classSeter" onclick="subPoint(`'.$class["name"].'`)">-</button> &nbsp;	&nbsp;' . $class["points"] . '
+            <button class="btn-primary" onclick="addPoint(`'.$class["name"].'`)">+</button></td>';
             echo '<td><button id="' . $class["id"] . '" class="btn-delete">Usuń</button></td>';
-            echo '<td><a href="/getStudentsOfClass?classID=' . $class["id"] . '&className=' . $class["name"] . '"><button id="' . $class["id"] . '" class="btn-update">Szczegóły</button></a></td>';
+            echo '<td><a href="/getStudentsOfClass?classID=' . $class["id"] . '&className=' . $class["name"] . '"><button id="' . $class["id"] . '" 
+            class="btn-update">Szczegóły</button></a></td>';
             echo "</tr>";
         }
         echo "</table>";
@@ -34,8 +36,9 @@ class ClassesView
 
         HTML;
     }
-    public function renderTableStudentsFromClass($studentsOfClass, $className)
+    public function renderTableStudentsFromClass($studentsOfClass, $className, $fieldsNames, $values)
     {
+       
         echo <<<HTML
         <!DOCTYPE html>
         <html lang="pl">
@@ -59,8 +62,8 @@ class ClassesView
                 
         HTML;
         include_once("Views/Templates/navSidebar.php");
+       
         echo <<<HTML
-
             
             </nav>
             <main >
@@ -68,6 +71,7 @@ class ClassesView
         echo '<h2>Klasa' . $className . '</h2>';
         echo "<table>";
         echo "<tr><th>Nr. Ucznia</th><th>Imię</th><th>Nazwisko</th><th>Ocena</th></tr>";
+        $j=0;
         foreach ($studentsOfClass as $student) {
             echo "<tr>";
             echo "<td>" . $student["nr_student"] . "</td>";
@@ -80,15 +84,54 @@ class ClassesView
             echo '<details>';
             echo '<summary> statystyki </summary>';
             echo '<table>';
-            echo '<tr>';
-            echo '<td>Zadanie Konfiguracja DHCP w Windows Server 2022</td>';
-            echo '</tr>';
-            echo '<tr>';
-            echo '<td>Zadanie Konfiguracja Domeny AD w Windows Server 2022</td>';
-            echo '</tr>';
-            echo '<tr>';
-            echo '<td>Test wiedzy Malware 50% ocena 3</td>';
-            echo '</tr>';
+
+                for($i = 2; $i<5;$i++)
+                {
+                    echo '<tr>';
+                    if($values[$j][$i] == 0)
+                    {
+                        echo '<td>'.$fieldsNames[$i].'</td>';
+                        echo '<td class="bad">Nie zaliczono</td>';
+                    }
+                    else if($values[$j][$i] == 1)
+                    {
+                        echo '<td>'.$fieldsNames[$i].'</td>';
+                        echo '<td class="good">Zaliczono</td>';
+                    }
+                    else if($values[$j][$i] == null)
+                    {
+                        echo '<td>'.$fieldsNames[$i].'</td>';
+                        echo '<td>---</td>';
+                    }else{
+                        echo '<td>'.$fieldsNames[$i].'</td>';
+                        $pointsOfMax = explode('/', $values[$j][$i]);
+                        $procent = $pointsOfMax[0] / $pointsOfMax[1];
+                        switch ($procent) {
+                            case $procent >= 0.9:
+                                $ocena = 6;
+                                break;
+                            case $procent >= 0.85:
+                                $ocena = 5;
+                                break;
+                            case $procent >= 0.75:
+                                $ocena = 4;
+                                break;
+                            case $procent >= 0.6:
+                                $ocena = 3;
+                                break;
+                            case $procent >= 0.4:
+                                $ocena = 2;
+                                break;
+                            default:
+                                $ocena = 1;
+                                break;
+                        }
+                        echo '<td>' . 'Uzyskano ' . $pointsOfMax[0] . '/' . $pointsOfMax[1] . ' jest to ' .
+                            $procent * 100 . "%" . '</br> co odpowiada ocenie ' . $ocena . '</td>';
+                    }
+                    echo '</tr>';
+                }
+            $j++;
             echo '</table>';
             echo '</details>';
             echo '</td>';

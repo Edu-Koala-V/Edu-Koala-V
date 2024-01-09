@@ -65,7 +65,7 @@ if (isset($_SESSION['user'])) {
     $controller = new ArticleController($modelArticle, $view);
     $controller->displayArticle($matches[1]);
   }
-  if (preg_match('/^\/Quiz\/(.*)$/', $uri, $matches)) {
+  if (preg_match('/^\/quiz\/(.*)$/', $uri, $matches)) {
     $view = new QuizView();
     $model = new QuizModel($db);
     $controller = new QuizController($model, $view);
@@ -73,8 +73,8 @@ if (isset($_SESSION['user'])) {
   }
 
   switch ($uri) {
+    
     case '/':
-    case '/logowanie':
     case '/dashboard':
       $view = new AppView();
       $controller = new AppController($view);
@@ -85,7 +85,12 @@ if (isset($_SESSION['user'])) {
       $view = new RegisterView();
       $modelRegister = new RegisterModel($db);
       $controller = new RegisterController($modelRegister, $view);
-      $controller->register();
+      $arrayInfo = $controller->register();
+      $view = new ClassesView();
+      $model = new ClassesModel($db);
+      $controller = new ClassesController($model, $view);
+      print_r($arrayInfo);
+      $controller->addStudentToClassByName($arrayInfo[0], $arrayInfo[1]);
       break;
     case "/logout":
       $view = new LoginView();
@@ -212,6 +217,18 @@ if (isset($_SESSION['user'])) {
       $controller = new ClassesController($model, $view);
       $controller->addTestToClassByName();
       break;
+    case '/checkQuizAnswer':
+      $view = new QuizView();
+      $model = new QuizModel($db);
+      $controller = new QuizController($model, $view);
+      $controller->checkAnswers();
+    break;
+    case '/change-point':
+      $view = new ClassesView();
+      $model = new ClassesModel($db);
+      $controller = new ClassesController($model, $view);
+      $controller->changeClassPoints();
+      break;
     default:
       http_response_code(404);
       break;
@@ -228,6 +245,11 @@ if (isset($_SESSION['user'])) {
       $controller = new LoginController($modelUser, $view);
       $controller->login();
       break;
+      case '/new-password':
+        $view = new LoginView();
+        $controller = new LoginController($modelUser, $view);
+        $controller->changeCryptPassword();
+        break;
     default:
       http_response_code(401);
   }

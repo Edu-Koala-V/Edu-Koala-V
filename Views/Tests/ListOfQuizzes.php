@@ -10,14 +10,14 @@ class ListOfQuizzes
             foreach ($quizzesSortOfCategory as $category => $quizzes) {
                 echo "<h2>" . $category . "</h2>";
                 echo "<table>";
-                echo "<tr><th>Nazwa lekcji</th><th>Link do lekcji</th></tr>";
+                echo "<tr><th>Nazwa testu</th><th>Wynik testu</th></tr>";
 
                 foreach ($quizzes as $quiz) {
                     echo "<tr>";
                     echo '<td id="quiz' . $quiz["quiz_id"] . '">' . $quiz["title"] . "</td>";
                     $filename = strtolower($quiz["title"]);
                     $filename = preg_replace('/[^a-z0-9]+/', '-', $filename);
-                    echo '<td> <a href="/Lekcje/' . $filename . '">Link do lekcji </a></td>';
+                    echo '<td> <a href="/quiz/' . $filename . '">Link do lekcji </a></td>';
                     echo "</tr>";
                     echo "<tr>";
                     echo '<td colspan="3">';
@@ -44,7 +44,9 @@ class ListOfQuizzes
                 HTML;
                     echo '<td>' . $quiz["title"] . '</td>';
                     if ($classesArray[0][$quiz["title"]] === "") {
-                        echo '<td> <a href="/Quiz/' . $quiz["quiz_id"] . '">Link do lekcji </a></td>';
+                        $title = str_replace(' ','-', $quiz["title"]);
+
+                        echo '<td> <a href="/quiz/' . strtolower($title) . '">Link do lekcji </a></td>';
                     } else {
                         $pointsOfMax = explode('/', $classesArray[0][$quiz["title"]]);
                         $procent = $pointsOfMax[0] / $pointsOfMax[1];
