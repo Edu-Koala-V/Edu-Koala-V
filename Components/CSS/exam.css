@@ -1,0 +1,33 @@
+.quiz-end{
+    width: 50%;
+    margin: 20px auto;
+}
+#exam-time{
+    width: 10%;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    background-color: darkseagreen;
+    color: #fbfbfb;
+    padding: 15px;
+    font-size: large;
+}
+#base-table{
+    border: 1px solid #ccc;
+    min-width: 350px;
+}
+#base-table th,#base-table td{
+    border: 1px solid #ccc;
+    padding: 5px 20px;
+    margin: 2px;
+}
+#base-table th{
+    background-color: #bed2f4;
+}
+#base-table td{
+    font-family: math;
+}
+#base-table td:nth-child(1){
+    font-family: system-ui;
+    font-weight: 500;
+}

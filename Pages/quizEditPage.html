@@ -1,0 +1,14 @@
+
+    <div class="quiz-edit">
+        <h1>Edycja testu</h1>
+        <form action="/quiz/edit" method="POST">
+        <input type="hidden" name="id" value="%%QUIZ_ID%%">
+        <label for="name">Nazwa:</label>
+        <input type="text" name="name" id="name" value="%%QUIZ_NAME%%">
+        <button type="submit">Zapisz</button>
+        </form>
+    </div>
+    <div id="quiz-container" data-github-img='%%DATA_GITHUB_IMG%%''>
+        %%QUESTIONS%%
+
+    </div>

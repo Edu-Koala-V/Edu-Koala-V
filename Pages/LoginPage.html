@@ -1,0 +1,41 @@
+    <main>
+        <h1 role="heading" aria-level="1">Logowanie</h1>
+        <div class="setting-container">
+            <p>Czy animacje mają być włączone?</p>
+            <div role="radiogroup" aria-labelledby="isAnimation">
+                <label for="isAnimationTrue">Tak</label>
+                <input type="radio" name="isAnimation" id="isAnimationTrue" value="true">
+            </div>
+            <div role="radiogroup" aria-labelledby="isAnimation">
+                <label for="isAnimationFalse">Nie</label>
+                <input type="radio" name="isAnimation" id="isAnimationFalse" value="false">
+            </div>
+        </div>
+        <div id="loginForm">
+            <form action="/login" method="post">
+                <label for="login">Login:</label>
+                <input type="text" id="login" name="login" required>
+                <label for="password">Hasło:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button class="btn submit" type="submit" role="application">Zaloguj</button>
+
+            </form>
+        </div>
+        <div id="changePassForm">
+            <form action="/change-password" method="post">
+                <label for="login2">Login:</label>
+                <input type="text" id="login2" name="login2" disabled>
+                <label for="newPassword">Nowe hasło:</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+                <label for="newPasswordRepeat">Powtórz nowe hasło:</label>
+                <input type="password" id="newPasswordRepeat" name="newPasswordRepeat" required>
+
+                <button type="submit" value="Zmień hasło">
+                    <button class="btn submit" type="submit" role="application">Zmień hasło</button>
+            </form>
+        </div>
+
+        <br><br><br>
+        <a class="btn primary" href="/courses"> Przejdź do kursów bez logowania</a>
+    </main>

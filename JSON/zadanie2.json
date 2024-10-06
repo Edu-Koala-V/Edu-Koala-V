@@ -1,0 +1,61 @@
+[
+    {"type": "h2", "sectionID": "section1", "elementContent": ["Wymagania wstepne", "wymagania"]},
+    {"type": "p", "sectionID": "section1","elementContent":["Do wykonania zadania potrzebujesz:",""]},
+    {"type": "list","sectionID": "section1", "elementContent": {"ver":"ul",
+    "listElements":["Windows wersji serwerowej","Windows wersji klienckiej"] }},
+    
+    {"type": "h2", "sectionID": "section2", "elementContent": ["Skonfiguruj interfejsy sieciowe", "interface"]},
+    {"type": "span", "sectionID": "section2", "elementContent": ["Adres IPv4 serwera:", ""]},
+    {"type": "text-block-name", "sectionID": "section2", "elementContent": ["192.168.0.22", "IPv4"]},
+    {"type": "br", "sectionID": "section2"},
+    {"type": "span", "sectionID": "section2", "elementContent": ["Maska podsieci:", ""]},
+    {"type": "text-block-name", "sectionID": "section2", "elementContent": ["Zgodna z klasą C","IPv4"]},
+    {"type": "br", "sectionID": "section2"},
+
+    {"type": "span", "sectionID": "section2", "elementContent": ["Adres IPv4 klienta:", ""]},
+    {"type": "text-block-name", "sectionID": "section2", "elementContent": ["192.168.0.50","IPv4"]},
+    {"type": "br", "sectionID": "section2"},
+    {"type": "span", "sectionID": "section2", "elementContent": ["Maska podsieci:", ""]},
+    {"type": "text-block-name", "sectionID": "section2", "elementContent": ["Zgodna z klasą C","IPv4"]},
+    {"type": "br", "sectionID": "section2"},
+    {"type": "span", "sectionID": "section2", "elementContent": ["Brama domyślna:", ""]},
+    {"type": "text-block-name", "sectionID": "section2", "elementContent": ["Adres IPv4 serwera","IPv4"]},
+    {"type": "br", "sectionID": "section2"},
+    {"type": "span", "sectionID": "section2", "elementContent": ["DNS:", ""]},
+    {"type": "text-block-name", "sectionID": "section2", "elementContent": ["Adres IPv4 serwera","IPv4"]},
+    {"type": "br", "sectionID": "section2"},
+
+
+    
+    {"type": "h2", "sectionID": "section3", "elementContent": ["Konfiguracja DHCP", ""]},
+    {"type": "span", "sectionID": "section3", "elementContent": ["Dodaj niezbedne role na serwerze i utwórz domenę o nazwie:", ""]},
+    {"type": "b", "sectionID": "section3", "elementContent": [" 'Eden'", ""]},
+    {"type": "span", "sectionID": "section3", "elementContent": [". Nastepnie utwórz jednostki organizacyjne o nazwach.", ""]},
+    {"type": "i", "sectionID": "section3", "elementContent": [" 'Sieci'", ""]},
+    {"type": "span", "sectionID": "section3", "elementContent": [" oraz ", ""]},
+    {"type": "i", "sectionID": "section3", "elementContent": ["'Zasilacze'", ""]},
+    {"type": "br", "sectionID": "section3"},
+    {"type": "span", "sectionID": "section3", "elementContent": [". W jednostkach  organizacyjnych utwórz po jednym użytkowniku na katalog np.:", ""]},
+    {"type": "i", "sectionID": "section3", "elementContent": [" 'Adam'", ""]},
+    {"type": "span", "sectionID": "section3", "elementContent": [" i ", ""]},
+    {"type": "i", "sectionID": "section3", "elementContent": ["'Ewa'", ""]},
+
+    {"type": "h2", "sectionID": "section4", "elementContent": ["Konfiguracja zasad grupy dla użytkowników w danych jednostkach organizacyjnych", ""]},
+    {"type": "p", "sectionID": "section4","elementContent":["Zasady dla użytkownika Adam będącego w jednostce organizacyjnej 'Sieci':",""]},
+    {"type": "list","sectionID": "section4", "elementContent": {"ver":"ul",
+    "listElements":["W panelu sterowania ma być dostepna tylko opcja: 'Centrum sieci i udostępniania'",
+    "Tło pulpitu musi być z lokalnej przestrzeni dyskowej klienta (lokalizacja do sprawdzenia: C:\\Windows\\Web)"] }},
+
+
+    
+    {"type": "h2", "sectionID": "section5", "elementContent": ["Konfiguracja zasady grupy dla użytkownika w jednostce organizacyjnej 'Zasilacze'", ""]},
+    {"type": "p", "sectionID": "section5","elementContent":["Zasady dla użytkownika Ewa będącego w jednostce organizacyjnej 'Zasilacze':",""]},
+    {"type": "list","sectionID": "section5", "elementContent": {"ver":"ul",
+    "listElements":["Dostęp do panelu sterowania ma być zablokowany",
+    "Tło pulpitu musi być z serwerowej przestrzeni dyskowej na zasadzie udostepnionego katalogu w sieci z lokalizacji C:\\Tapety\\"] }},
+
+    {"type": "h2", "sectionID": "section6", "elementContent": ["Po wykonaniu zadania i sprawdzeniu poprawności jego działania zgłoś to nauczycielowi", "uwaga"]}
+
+    
+   
+    ]

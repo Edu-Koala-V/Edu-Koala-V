@@ -1,0 +1,38 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+label {
+    margin-top: 10px;
+}
+input {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+button[type="submit"] {
+    margin-top: 10px;
+    background-color: #4CAF50;
+    /* color: white; */
+    border: none;
+    cursor: pointer;
+}
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+progress {
+    margin-top: 10px;
+    width: 100%;
+}
+input:focus.is-invalid{
+    outline: 2px solid firebrick;
+    color: unset;
+}
+input.is-invalid {
+    outline: 1px auto red;
+    border-radius: 2px;
+    border: 1px;
+    color: firebrick;
+}

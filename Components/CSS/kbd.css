@@ -1,0 +1,35 @@
+.ref-btn-for-img,
+.keys-combo{
+    display: inline-block;
+    font-size: .85em;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 3px;
+  white-space: nowrap;
+  min-width: 1.3em;
+  text-align: center;
+  text-shadow: 0 0 10px #a0a0a0;
+  fill: #fff;
+}
+
+
+kbd {
+  background-color: #1a1a1a;
+  border-radius: 2.5%;
+  border: 1px solid #333;
+  box-shadow: -2px 2px 1px #00000033, -1px 1px 0 0 #303030b3 inset;
+  color: #ffffff;
+  padding: 2px 4px;
+  outline: 2px solid #2e2e2e;
+  margin: 0 5px;
+}
+
+mark {
+  background-color: #dcdcdc;
+  border-radius: 2px;
+  border: 1px solid #333;
+  box-shadow: -2px 2px 1px #00000033, 0px 9px 1px 0px #f2f2f2b3 inset;
+  color: #000000;
+  padding: 3px 15px;
+  font-family: math;
+}

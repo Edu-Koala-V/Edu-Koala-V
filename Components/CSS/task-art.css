@@ -1,0 +1,69 @@
+article section >*{
+    line-height: 1.8;
+}
+.text-block-name {
+    display: inline-block;
+    background-color: var(--dark-gray);
+    padding: 5px;
+    border: 2px solid var(--light-ground);
+    box-shadow: 1px 1px 10px #00000040;
+    margin: 0 10px 10px;
+    text-align: center;
+    font-family: "Jura";
+    font-weight: 700;
+    text-shadow:none;
+}
+
+a.link-art{
+    display: block;
+    color: var(--link-art-font-color);
+    text-decoration: none;
+    background-color: var(--link-art-bg-color);
+    padding: 0 5px;
+    filter: invert(1);
+    margin: 2px;
+    font-family: 'Jura';
+}
+a.link-art:hover{
+    filter: invert(0);
+}
+a.link-art:active{
+    filter: invert(0);
+}
+a.link-art:focus{
+    outline: var(--link-art-focus) solid 2px;  
+}
+
+a.web-link {
+    color: var(--light-blue);
+}
+
+article img {
+    width: 100% !important;
+    height: auto;
+}
+h2 {
+    color: var(--light-green);
+}
+
+.wymagania {
+    color: var(--light-purple);
+}
+
+.interface {
+    color: var(--light-blue);
+}
+
+.uwaga {
+    color: var(--light-red);
+}
+
+.error-article-element {
+    display: block;
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    color: #f00;
+}

@@ -1,0 +1,72 @@
+.blur-load {
+    position: relative;
+    background: linear-gradient(42deg, purple, yellow, #0093ff);
+    background-size: 600% 600%;
+    animation: AnimationName 6s ease infinite;
+    width: max-content;
+    margin: 10px auto;
+}
+
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.blur-load .loader {
+    border: 16px solid #515151;
+    border-top: 16px solid #ffffff;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.blur-load.loaded .loader {
+    display: none;
+}
+.blur-load.loaded{
+    background: none;
+    width: 100%;
+}
+.blur-load.loaded > img {
+    animation: showLoadedImage 400ms;
+    opacity: 1;
+    cursor: zoom-in;
+}
+
+.blur-load > img {
+    width: auto;
+    opacity: 0;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes showLoadedImage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.loupe {
+    height: 90%;
+    min-width: 200px;
+    width: 90%;
+    border: 2px solid #000;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgb(0 0 0 / .5);
+    background-repeat: no-repeat;
+    margin: auto;
+    z-index: 10;
+  }
+

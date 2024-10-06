@@ -1,0 +1,22 @@
+<div class="activate-classes">
+    <details>
+        <summary>Klasa %%CLASS_NAME%%</summary>
+        <div class="checkAllStudents"><input type="checkbox" name="checkAllStudents" id="checkAllStudents%%CLASS_ID%%">Zaznacz wszystkich uczniów w tej klasie.</div>
+        <div class="studentsActivateWrap">
+            %%STUDENTS%%
+        </div>
+        <div class="settingsExam">
+            <div class="settingsExamWrap">
+                
+                    <span>Czas na rozwiązanie egzaminu</span>
+                    <input type="number" name="examTime" class="examTime" placeholder="Wpisz czas w minutach" value="10"> min
+                    <br>
+                    <span>Ilość czasu do przedłożenia</span>
+                    <input type="number" name="exTime" class="examTime" placeholder="Wpisz czas w minutach" value="3"> min
+                    <br>
+                
+                <button role="application" aria-label="Zastosuj ustawania"  class="btn primary apply-exam" data-class-id="%%CLASS_ID%%" data-quiz-id="%%QUIZ_ID%%">Zastosuj ustawienia</button>
+            </div>
+        </div>
+        </details>
+</div>

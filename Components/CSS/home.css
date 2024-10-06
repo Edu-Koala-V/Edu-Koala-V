@@ -1,0 +1,57 @@
+div.user-time-line {
+    padding: 20px;
+    margin: 20px;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+a.box {
+    display: inline-block;
+    height: 20px;
+    width: 20%;
+    overflow: hidden;
+    margin: 2px;
+    padding: 5px;
+    background-color: antiquewhite;
+    border: 1px solid #ccc;
+    text-decoration: none;
+}
+hr{
+    width: 100%;
+}
+i.icon-placeholder{
+    display: inline-block;
+    height: 1.3rem;
+    width: 1.3rem;
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: var(--light-blue);
+    padding: 2px;
+}
+i.icon-placeholder>svg{
+    fill: var(--darker-true-green) !important;
+}
+article i.page-home-hub-icon>svg{
+    height: 32px;
+    width: 32px;
+    position: relative;
+    left: -1px;
+    top: -7px;
+}
+
+p.tutorial{
+    display: flex;
+    align-items: flex-start;
+}
+p.tutorial>span{
+    display: block;
+    width: calc(100% - 30px);
+}
+article{
+    width: 80%;
+}
+.red{
+    color: var(--text-color-red);
+}

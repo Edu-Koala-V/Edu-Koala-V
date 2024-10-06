@@ -1,0 +1,27 @@
+
+    <h1 class="text-center">Klasa: %%CLASS_NAME%%</h1>
+  <table class="studentsList">
+    <thead>
+      <tr>
+        <th>Login</th>
+        <th>status</th>
+        <th>Nr</th>
+        <th>Imiona</th>
+        <th>Nazwisko</th>
+        <th>Oceny</th>
+      </tr>
+    </thead>
+    <tbody>
+      %%STUDENTS%%
+    </tbody>
+  </table>
+</div>
+<div class="add-new-student-to-class">
+    <form action="/add-new-student-to-class" method="post" id="formNewStudentInClass">
+        <input type="text" name="username" placeholder="Login" disabled>
+        <input type="text" name="FName" placeholder="Imię" required>
+        <input type="text" name="SName" placeholder="Drugie imię">
+        <input type="text" name="LName" placeholder="Nazwisko" required>
+        <input type="number" name="nr" placeholder="nr" required>
+        <button class="btn classical" type="submit" role="application">Dodaj ucznia w tej klasie</button>
+    </form>

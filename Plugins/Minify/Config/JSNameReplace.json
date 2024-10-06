@@ -1,0 +1,22 @@
+[
+    {
+        "full_name": "console.log",
+        "bind": "console.log.bind(console)",
+        "short_name": "cl"
+    },
+    {
+        "full_name": "document.querySelector",
+        "bind": "document.querySelector.bind(document)",
+        "short_name": "doSe"
+    },
+    {
+        "full_name": "document.querySelectorAll",
+        "bind": "document.querySelectorAll.bind(document)",
+        "short_name": "doSeAll"
+    },
+    {
+        "full_name": "document.createElement",
+        "bind": "document.createElement.bind(document)",
+        "short_name": "doCE"
+    }
+]

@@ -1,0 +1,164 @@
+#menu{
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: -5px;
+    border: 2px solid;
+    border-radius: 9px;
+    filter: invert(1);
+    mix-blend-mode: difference;
+    z-index: 100;
+}
+#menu:hover,
+#menu:focus{
+    filter: invert(0);
+}
+
+#menu svg,#menu i{
+    width: 30px;
+    height: 30px;
+    margin: auto;
+}
+#menu * {
+    pointer-events: auto;
+}
+
+nav{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: auto;
+    z-index: 4; 
+    transition: .5s ease;
+    background-color: aliceblue;
+}
+nav.short-menu{
+    width: 32px;
+    z-index: 0;
+}
+nav.short-menu span{
+    opacity: 0;
+    transition: .5s ease;
+
+}
+.nav-separator{
+    background-color: darkgrey;
+    height: 5px;
+    width: 100%;
+}
+a[role="menuitem"] {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+    margin: 1px 0;
+    overflow: hidden;
+    height: 30px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 1px 8px 0 #00000010;
+    text-decoration: none;
+}
+a[role="menuitem"]:hover {
+    background-color: #f5f5f5;
+}
+a[role="menuitem"] img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+a[role="menuitem"] span {
+    font-size: 1em;
+    color: #333;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+nav .icon{
+    min-height: 27px;
+    min-width: 27px;
+    margin-left: 3px;
+    margin-top: 5px;
+}
+nav .icon svg{
+    fill: darkslateblue;
+}
+
+@media screen and (max-width: 768px){
+    nav.short-menu {
+        display: none;
+    }
+    
+}
+/* AVATAR USER DATA */
+
+#avatar{
+    display: block;
+}
+#change-avatar {
+    display: none;
+    cursor: pointer;
+}
+#avatar:hover + #change-avatar,
+#avatar:focus + #change-avatar {
+    display: block;
+}
+#change-avatar:hover,
+#change-avatar:focus{
+    display: block;
+}
+.user-card {
+    display: flex;
+    justify-content: space-between;
+    height: 95px;
+    width: 100%;
+    border-top: #fff0;
+    border: 1px solid #ccc;
+    
+}
+.personal-data {
+    width: 50%;
+    text-align: center;
+    align-content: center;
+}
+.personal-data span {
+    transition: 0.2s linear !important;
+}
+.user-card div img {
+    width: 50px;
+    position: absolute;
+    border-radius: 50%;
+    margin: 0 5px 5px 0;
+    margin-top: 0;
+    border: 2px ridge #837b7b;
+    transition: .2s all linear;
+}
+
+.user-data{
+    position: absolute;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-left: 2px;
+}
+.user-data span{
+    transition: .5s ease;
+    font-size: 1rem;
+}
+nav.short-menu .user-data i,
+nav.short-menu .user-data span{
+    opacity: 0;
+    transition: .5s ease;
+    font-size: 0;
+}
+
+nav.short-menu .user-card div img{
+    width: 25px;
+    margin-top: 10px;
+}

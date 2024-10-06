@@ -1,0 +1,221 @@
+article{
+    width: calc(80% - 150px);
+    padding: 10px;
+    margin: 20px auto;
+    background-color: var(--snow-white);
+    border: 1px solid var(--light-gray);
+}
+header.article-header{
+    display: block!important;
+    width: 95%;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: var(--banner-Color);
+    color: var(--banner-font-color);
+}
+
+article section >*{
+    line-height: 1.8;
+}
+header.article-header > h1{
+    width: 100%;
+    text-align: center;
+}
+/* Daty w nagłówku */
+header.article-header > p{
+    margin: 0;
+    font-size: x-small;
+    width: min-content;
+    min-width: 210px;
+    margin-left: auto;
+}
+
+article  section{
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--light-gray);
+}
+
+section  img{
+    width: 100% !important;
+    max-width: 600px;
+    height: auto!important;
+    margin: 10px auto;
+    display: block;
+    border: 1px solid var(--light-gray);
+}
+section a.web-link {
+    position: relative;
+    display: inline-block;
+    padding: 0 5px;
+    margin-right: 20px;
+    background-color: var(--dark-gray);
+    color: var(--white);
+    text-align: center;
+}
+
+section a.web-link::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    border-left: 11px solid var(--dark-gray);
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+
+section a.web-link:hover::after {
+    border-left-color: var(--medium-gray);
+}
+section a.web-link:active,
+section a.web-link:hover{
+    background-color: var(--medium-gray);
+}
+
+section a.web-link:focus{
+    outline: var(--link-art-focus) solid 2px;
+}
+
+details{
+    position: fixed;
+    width: 100px;
+    padding: 10px;
+    margin: 20px auto;
+    background-color: var(--snow-white);
+    left: 34px;
+    transition: .5s ease;
+    z-index: 1;
+}
+details[open]{
+    position: fixed;
+    width: 300px;
+    border: 1px solid var(--light-gray);
+    left: 0;
+    transition: .5s ease;
+}
+details > summary{
+    cursor: pointer;
+    color: var(--banner-font-color);
+    text-align: center;
+    background-color: var(--banner-Color);
+}
+details > ul{
+    width: 300px;
+    list-style-type: "\27A4";
+    padding: 6px;
+    color: var(--dark-gray);
+}
+
+details a{
+    color: var(--dark-gray);
+    text-decoration: none;
+}
+.text-block-name{
+    display: inline-block;
+    font-family: monospace;
+    border: 1px solid #000;
+    padding: 2px;
+}
+a.link-art{
+    display: inline-block;
+    color: var(--link-art-font-color);
+    text-decoration: none;
+    background-color: var(--link-art-bg-color);
+    padding: 0 5px;
+    filter: invert(1);
+    margin: 2px;
+}
+a.link-art:hover{
+    filter: invert(0);
+}
+a.link-art:active{
+    filter: invert(0);
+}
+a.link-art:focus{
+    outline: var(--link-art-focus) solid 2px;  
+}
+
+
+section .card-box{
+    height: 150px;
+    width: 100px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--light-gray);
+    box-shadow: 1px 1px 10px 0 var(--light-gray);
+    margin: 5px;
+    position: relative;
+}
+section .card-box>img{
+    max-width: 80px;
+}
+section .card-box>.overlay-card-box{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+
+.error-article-element{
+    display: block;
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #f1f1f1;
+    border: 1px solid var(--light-gray);
+    color: #f00;
+}
+
+@media screen and (max-width: 800px){
+    article{
+        width: calc(100% - 20px);
+    }
+    header.article-header > p{
+        width: 100%;
+        margin-left: 0;
+    }
+    article  section img{
+        height: auto;
+        max-width: 330px;
+    }
+    details, details[open],details > ul{
+        position: relative;
+        width: 95%;
+        left: 0;
+    }
+    
+}
+
+
+/* ["red", "green", "blue", "yellow", "purple", "orange", "pink", "brown", "gray", "black"] */
+.red{
+    color: var(--text-color-red);
+}
+.green{
+    color: var(--text-color-green);
+}
+.blue{
+    color: var(--text-color-blue);
+}
+.yellow{
+    color: var(--text-color-yellow);
+}
+.purple{
+    color: var(--text-color-purple);
+}
+.orange{
+    color: var(--text-color-orange);
+}
+.pink{
+    color: var(--text-color-pink);
+}
+.brown{
+    color: var(--text-color-brown);
+}
+
+.font-math{
+    font-family: math;
+  }
+  

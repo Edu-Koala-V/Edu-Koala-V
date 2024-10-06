@@ -1,0 +1,58 @@
+[
+    {"type": "h2", "sectionID": "section1", "elementContent": ["Windows - Menadżer Urządzeń", "green"]},
+    {"type": "p", "sectionID": "section1","elementContent":["Menadżer urządzeń to integralna część systemu operacyjnego Windows, która pozwala użytkownikom na zarządzanie sprzętem komputerowym.Jest to narzędzie systemowe, które umożliwia wyświetlanie i kontrolowanie zainstalowanych na komputerze urządzeń. Dzięki niemu można aktualizować sterowniki, zmieniać ustawienia sprzętu, rozwiązywać problemy związane z urządzeniami oraz zarządzać zasobami systemowymi.",""]},
+    
+    {"type": "h2", "sectionID": "section2", "elementContent": ["Jak otworzyć Menadżer Urządzeń", ""]},
+    {"type": "span", "sectionID": "section2", "elementContent": ["Aby otworzyć Menadżer Urządzeń, wystarczy wpisać", ""]},
+    {"type": "text-block-name", "sectionID": "section2", "elementContent": ["devmgmt.msc", "xD"]},
+    {"type": "span", "sectionID": "section2", "elementContent": ["w wyszukiwarce menu Start. Alternatywnie użyć skrótu klawiszowego", ""]},
+    {"type": "key-combo", "sectionID": "section2", "elementContent": ["Windows", "X"]},
+    {"type": "span", "sectionID": "section2", "elementContent": ["i wybrać Menadżer Urządzeń z listy.",""]},
+    {"type": "img", "sectionID": "section2", "elementContent": [
+    "KiraTheGames/test/main/menadżer-zadań-sposób-uruchomienia.webp",
+    "Pasek narzędzi po przyciśnieciu prawego przycisku myszki na ikonę start windowsa. Alternatywnie skrót klawiszowy Windows + X.",
+    "209","613"
+    ]},
+    
+    {"type": "h2", "sectionID": "section3", "elementContent": ["Zarządzanie sterownikami", ""]},
+    {"type": "span", "sectionID": "section3", "elementContent": ["Menadżer Urządzeń pozwala na aktualizację sterowników dla poszczególnych komponentów. Aby to zrobić, należy kliknąć prawym przyciskiem myszy na urządzenie i wybrać opcję", ""]},
+    {"type": "b", "sectionID": "section3", "elementContent": ["'Aktualizuj sterownik'", ""]},
+    {"type": "span", "sectionID": "section3", "elementContent": [". Można również odinstalować sterownik lub przywrócić poprzednią wersję, jeśli aktualizacja spowodowała problemy.", ""]},
+    
+    {"type": "h2", "sectionID": "section4", "elementContent": ["Diagnostyka urządzeń", ""]},
+    {"type": "span", "sectionID": "section4", "elementContent": ["W przypadku wystąpienia problemów z urządzeniem, Menadżer Urządzeń oferuje narzędzia do diagnozy. Urządzenia z problemami są zazwyczaj oznaczone żółtym wykrzyknikiem. Aby rozpocząć diagnozę, kliknij prawym przyciskiem myszy na urządzenie i wybierz", ""]},
+    {"type": "text-block-name", "sectionID": "section4", "elementContent": ["Właściwości", ""]},
+    {"type": "span", "sectionID": "section4", "elementContent": [", a następnie zakładkę ", ""]},
+    {"type": "text-block-name", "sectionID": "section4", "elementContent": ["Stan urządzenia", ""]},
+    
+    {"type": "h2", "sectionID": "section5", "elementContent": ["Zarządzanie zasobami", ""]},
+    {"type": "img", "sectionID": "section5", "elementContent": [
+    "KiraTheGames/test/main/moj-menad%C5%BCer-zada%C5%84.webp",
+    "Pasek narzędzi po przyciśnieciu prawego przycisku myszki na ikonę start windowsa. Alternatywnie skrót klawiszowy Windows + X.",
+    "427","922","KiraTheGames/test/main/moj-menad%C5%BCer-zada%C5%84.webp"
+    ]},
+    {"type": "span", "sectionID": "section5", "elementContent": ["Menadżer Urządzeń umożliwia również zarządzanie zasobami sprzętowymi, takimi jak", ""]},
+    {"type": "link-art", "sectionID": "section5", "elementContent": ["przerwania IRQ", "Procesory", "Zarządzanie żądaniami komputera"]},
+    {"type": "link-art", "sectionID": "section5", "elementContent": ["kanały DMA", "Metody komunikacji pomiędzy peryferiami ", "DMA - Direct Memory Access"]},
+    {"type": "link-art", "sectionID": "section5", "elementContent": ["adresy In/Out(I/O) [Wejście/Wyjście(We/Wy)]", "PCI", "Zasady działania PCI Express"]},
+    {"type": "span", "sectionID": "section5", "elementContent": ["oraz adresy pamięci. Te zaawansowane funkcje są dostępne w zakładce 'Zasoby' w oknie właściwości urządzenia.", ""]},
+    
+    {"type": "h2", "sectionID": "section6", "elementContent": ["Ćwiczenia do wykonania", ""]},
+    
+    {"type": "list","sectionID": "section6", "elementContent": {"ver":"ul",
+    "listElements":["Otwórz Menadżer Urządzeń i zidentyfikuj urządzenie, które nie ma zainstalowanych sterowników.",
+    "Zaktualizuj sterowniki dla swojej karty graficznej.",
+    "Sprawdź, czy są jakieś konflikty zasobów i spróbuj je rozwiązać."] }},
+    
+    {"type": "list","sectionID": "section6", "elementContent": {"ver":"ol",
+    "listElements":["Znajdź w Menadżerze urządzeń urządzenie, które nie posiada aktualnych sterowników i zaktualizuj je.",
+    "Wyłącz i ponownie włącz dowolne urządzenie, aby zobaczyć, jak system reaguje na zmiany.",
+    "Użyj Menadżera urządzeń do odnalezienia informacji o producencie i modelu twojej karty graficznej."] }},
+    
+    
+    {"type": "source", "elementContent": ["https://forbot.pl/blog/kurs-stm32-8-dma-czyli-bezposredni-dostep-do-pamieci-id8465", "link", "forbot.pl: Kurs-stm32"]},
+    {"type": "source", "elementContent": ["https://helion.pl/ksiazki/powershell-101-zadan-do-zautomatyzowania-adam-pietrzak,pow101.htm#format/d", "book","Helion.pl: PowerShell. 101 zadań do zautomatyzowania"]}
+    
+    
+    
+    ]

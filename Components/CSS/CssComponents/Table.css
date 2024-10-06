@@ -1,0 +1,234 @@
+table {
+  width: 100%;
+  border: 1px solid;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid;
+  border-color: var(--light-gray);
+}
+
+table.quiz-list {
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table.quiz-list th {
+  background-color: var(--light-brown);
+  color: var(--light-white);
+  text-shadow: 1px 1px #000;
+}
+
+table.archive {
+  width: 90%;
+  border-spacing: 1;
+  border-color: var(--light-gray);
+  text-align: center;
+}
+
+table.archive th,
+table.archive td {
+  background-color: var(--light-white);
+}
+
+table.archive td:nth-child(2),
+table.archive td:nth-child(5) {
+  border-right: 2px dashed;
+}
+
+table.archive td:nth-child(3),
+table.archive td:nth-child(6) {
+  border-left: 2px dashed;
+}
+
+table.archive th:nth-child(1),
+table.archive th:nth-child(2) {
+  background-color: var(--light-red);
+}
+
+table.archive td:nth-child(1),
+table.archive td:nth-child(2) {
+  border-color: var(--light-red);
+}
+
+table.archive th:nth-child(3),
+table.archive th:nth-child(4),
+table.archive th:nth-child(5) {
+  background-color: var(--light-green);
+}
+
+table.archive td:nth-child(3),
+table.archive td:nth-child(4),
+table.archive td:nth-child(5) {
+  border-color: var(--light-green);
+}
+
+table.archive th:nth-child(6),
+table.archive th:nth-child(7),
+table.archive th:nth-child(8) {
+  background-color: var(--light-blue);
+}
+
+table.archive td:nth-child(6),
+table.archive td:nth-child(7),
+table.archive td:nth-child(8) {
+  border-color: var(--light-blue);
+}
+
+table.approaches-exam {
+  min-width: 350px;
+  width: 50%;
+}
+
+table.approaches-exam th {
+  background-color: var(--light-blue);
+}
+
+table.approaches-exam td {
+  font-family: math;
+}
+
+table.approaches-exam td:nth-child(1) {
+  font-family: system-ui;
+  font-weight: 500;
+}
+
+table.studentsList {
+  width: 50%;
+}
+
+table.studentsList td:nth-child(1) {
+  min-width: 200px;
+  display: flex;
+  border-right: groove;
+}
+
+table.studentsList td {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+table.task-students-class {
+  width: 100%;
+}
+
+table.task-students-class th,
+table.task-students-class td {
+  border: 5px outset var(--medium-mint);
+  padding: 5px;
+  border-style: ridge;
+  background-color: var(--dark-mint);
+}
+
+.task-description table {
+  border-collapse: collapse;
+}
+
+.task-description table th {
+  background-color: var(--dark-purple);
+}
+
+.task-description td:has(.text-block-name) {
+  padding: 0;
+}
+
+.task-description td > .text-block-name,
+.task-description th > .text-block-name {
+  border: none;
+  box-shadow: 0 0;
+  width: -webkit-fill-available;
+  margin: 0;
+}
+
+article table {
+  border-collapse: collapse;
+}
+article th{
+  background-color: var(--dark-purple);
+  color: var(--white);
+  min-width: 100px;
+}
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+      display: block;
+      text-align: left;
+  }
+  
+  tr {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 5px solid;
+  }
+  
+  th {
+      display: none;
+  }
+  
+  td {
+      position: relative;
+      margin-left: 50%;
+  }
+  
+  td:before {
+      content: attr(data-label);
+      position: absolute;
+      left: -100%;
+      width: 100%;
+      font-weight: 700;
+  }
+  
+  table.studentsList {
+      width: 100%;
+  }
+  
+  table td {
+      min-height: 20px;
+  }
+  
+  table.studentsList td:nth-child(1) {
+      min-width: unset;
+      width: unset;
+  }
+  
+  table.studentsList td:nth-child(2) > i::before {
+      content: attr(title);
+      position: absolute;
+      left: 35px;
+      width: 100%;
+      font-weight: 700;
+  }
+
+  /* RESTART styli tabeli dla elementów w article na domyślne */
+  article table,
+  article thead,
+  article tbody,
+  article th,
+  article td,
+  article tr {
+      display: revert;
+      text-align: initial;
+  }
+
+  article tr {
+      border-bottom: unset;
+  }
+
+  article td:before {
+      content: none;
+  }
+}

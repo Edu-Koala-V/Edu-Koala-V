@@ -1,0 +1,23 @@
+.achievements-avatar{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.achievements-avatar img{
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.achievements-avatar img:hover{
+    transform: scale(1.1);
+}
+.achievements-avatar img:focus{
+    transform: scale(1.1);
+}
+.achievements-avatar img.selected{
+    border: 2px dashed #000;
+}

@@ -1,0 +1,203 @@
+#quiz-section{
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+}
+#quiz-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#quiz-results{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #c5c5c5;
+    border-radius: 30px;
+    padding: 70px;
+    margin: 10px 0;
+    background-color: wheat;
+    font-family: monospace;
+}
+.quiz{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 10px 0;
+}
+#quiz-title{
+    font-size: 1.5em;
+    color: #333;
+    margin: 10px 0;
+}
+.quiz-question{
+    width: 95%;
+    font-size: 1.2em;
+    color: #666;
+    margin-top: -30px;
+}
+.quiz-question:first-child{
+    width: auto;
+    margin: 0 10px auto;
+}
+.points-for-question{
+    font-size: 1.2em;
+    color: #3b3b3b;
+    margin: 10px 0;
+    width: 100%;
+    text-align: end;
+    padding-right: 10px;
+    position: relative;
+    top: -45px;
+}
+.quiz-answer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.quiz-answer>span{
+    margin: 0 10px;
+    font-size: 1.2em;
+    color: #666;
+    width: 10px;
+}
+.quiz-answer>input[type="checkbox"],
+.quiz-answer>input[type="radio"]{
+    accent-color: darkmagenta;
+    border: 0;
+    width: 2%;
+    height: 1.3em;
+}
+.quiz-answer>input[type="checkbox"]+label,
+.quiz-answer>input[type="radio"]+label{
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #bebebe;
+}
+.quiz-answer>input[type="checkbox"]+label:hover,
+.quiz-answer>input[type="radio"]+label:hover{
+    border-color: #333;
+}
+.quiz-answer>input[type="checkbox"]:checked+label,
+.quiz-answer>input[type="radio"]:checked+label{
+    border-color: #0d98d8;
+}
+.quiz-answer>label.good-answer{
+    border-color: #0d8d8d!important;
+    background-color: aquamarine;
+}
+.quiz-answer>label.wrong-answer{
+    border-color: #d80d0d!important;
+    background-color: #f8d7da;
+}
+.non-answer label{
+    border-color: #d8d80d!important;
+    background-color: #fff3cd;
+}
+.quiz-answer>label{
+    width: 100%;
+}
+.block-sorting{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.block-sorting .a-set-of-blocks{
+    display: block;
+    width: calc(100% - 20px);
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    margin: 5px 0;
+}
+.block-sorting .block{
+    display: inline-block;
+    width: auto;
+    padding: 5px 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    cursor: grab;
+    background-color: antiquewhite;
+}
+.block-sorting .collections{
+    min-height: 200px;
+    max-width: 800px;
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 5px;
+    border: 1px solid #ccc;
+}
+.block-sorting .collections > .set{
+    aspect-ratio: 1 / 2; /* Utrzymuje proporcje prostokąta 1:2 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
+.set-name{
+    font-size: 1.2em;
+    color: #333;
+    margin: 10px 0;
+    cursor: help;
+    width: 100%;
+    text-align: center;
+}
+.set-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #dfdfdf;
+    overflow: auto;
+}
+.set-container .block{
+   width: 90%;
+}
+
+.no-drop {
+    cursor: no-drop;
+}
+
+.allow-drop {
+    cursor: copy;
+}
+.overlay {
+    position: absolute;
+    width: 70%;
+    height: 800px;
+    z-index: 1000;
+    cursor: no-drop;
+}
+@media screen and (max-width: 768px){
+    .quiz {
+        width: 100%;
+    }
+    .quiz-question:first-child {
+        width: 100%;
+    }
+    
+}

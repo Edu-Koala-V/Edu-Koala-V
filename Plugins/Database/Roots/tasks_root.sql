@@ -1,0 +1,2 @@
+INSERT INTO `tasks` (`id`, `name`, `link`) VALUES (NULL, 'AD: Zasady grupy z podziałem na jednostki organizacyjne', 'KiraTheGames/test/main/JSON/zadanie1.json');
+INSERT INTO `tasks` (`id`, `name`, `link`) VALUES (NULL, 'DHCP Windows', 'KiraTheGames/test/main/JSON/zadanie2.json');

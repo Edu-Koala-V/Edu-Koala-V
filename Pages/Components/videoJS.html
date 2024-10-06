@@ -1,0 +1,59 @@
+<link href="https://vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet" />
+<script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-resolution-switcher/0.4.2/videojs-resolution-switcher.min.js"></script> -->
+<style>
+  .vjs-big-play-button {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+  }
+</style>
+
+<div class="video-container">
+  <video id="video-js-%%VIDEO_ID%%" class="video-js vjs-default-skin" controls preload="auto" data-setup='{"fluid": true}'>
+    <!-- Upewnij się, że ścieżki do plików wideo są poprawne -->
+    <source src="https://raw.githubusercontent.com/%%VIDEO_GITHUB_LOCATION_FOLDER%%/master.m3u8" type="application/x-mpegURL">
+    <track kind="captions" src="https://raw.githubusercontent.com/%%VIDEO_GITHUB_LOCATION_FOLDER%%/subtitles/pl.vtt" srclang="pl" label="Polski">
+    <track kind="captions" src="https://raw.githubusercontent.com/%%VIDEO_GITHUB_LOCATION_FOLDER%%/subtitles/ru.vtt" srclang="ru" label="Русский">
+    <track kind="captions" src="https://raw.githubusercontent.com/%%VIDEO_GITHUB_LOCATION_FOLDER%%/subtitles/en.vtt" srclang="en" label="English">
+  </video>
+  <div class="video-title">
+    <h2>%%VIDEO_TITLE%%</h2>
+  </div>
+</div>
+<script src="https://unpkg.com/videojs-contrib-quality-levels@2.0.9/dist/videojs-contrib-quality-levels.min.js"></script>
+<script src="https://unpkg.com/videojs-hls-quality-selector@1.1.4/dist/videojs-hls-quality-selector.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      var player = videojs('video-js-%%VIDEO_ID%%');
+      player.hlsQualitySelector({
+        displayCurrentQuality: true,
+      });
+
+      var qualityLevels = player.qualityLevels();
+      qualityLevels.on('addqualitylevel', function(event) {
+        var qualityLevel = event.qualityLevel;
+        qualityLevel.label = qualityLevel.height + 'p';
+      });
+
+      player.on('captionstrackchange', function() {
+        var activeTrack = player.textTracks().tracks_.find(track => track.mode === 'showing');
+        if (activeTrack) {
+          Cookies.set('video_subtitles', activeTrack.language, { expires: 7, path: '' });
+        }
+      });
+
+      var savedLanguage = Cookies.get('video_subtitles');
+      if (savedLanguage) {
+        var trackToEnable = player.textTracks().tracks_.find(track => track.language === savedLanguage);
+        if (trackToEnable) {
+          trackToEnable.mode = 'showing';
+        }
+      }
+      player.on('ready', fixAriaWCAG_in_videoJS);
+    });
+
+
+
+</script>

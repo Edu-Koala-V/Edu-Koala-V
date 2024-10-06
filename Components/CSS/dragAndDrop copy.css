@@ -1,0 +1,91 @@
+
+.dragging{
+    opacity: .5;
+    cursor: grabbing;
+}
+.dragging,
+.draggable{
+    display: block;
+    padding: 2px;
+    outline: 2px solid;
+    margin: 5px 15px 5px 0px;
+}
+.draggable{
+    min-height: 2rem;
+    width: 100%;
+}
+.drag-container{
+    border: 2px solid;
+
+}
+.text-block-name.draggable{
+    background-color: yellowgreen;
+}
+.blur-load.draggable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+}
+.keyboard{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.keyboard-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.keyboard-space{
+    width: 320px;
+}
+.keyboard-key{
+    padding: 2px;
+    border: 1px solid;
+    border-radius: 3px;
+    margin: 2px;
+    min-width: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: aliceblue;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 1px rgb(0 0 0 / .2), 0 2px 0 0 rgb(255 255 255 / .7) inset;
+}
+.keyboard-key>span{
+    width: 100%;
+    height: 15px;
+}
+.keyboard-key>span:first-child{
+    text-align: right;
+    font-size: small;
+    height: 10px;
+    margin-right: 15px;
+}
+.keyboard-key>span:last-child{
+    text-align: left;
+    padding: 5px;
+    margin-left: 10px;
+}
+.keyboard-key.selected{
+    background-color: #1a1a1a;
+    color: aliceblue;
+    fill: aliceblue;
+}
+br.draggable{
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    content: "";
+    background: linear-gradient(42deg, purple, yellow, #0093ff);
+}
+.selected-keys{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

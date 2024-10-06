@@ -1,0 +1,1 @@
+const cl=console.log.bind(console);const doSe=document.querySelector.bind(document);const doSeAll=document.querySelectorAll.bind(document);const doCE=document.createElement.bind(document)

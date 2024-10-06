@@ -1,0 +1,274 @@
+html,
+body {
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+ol, ul {
+ margin: 10px!important;
+}
+header:not(.article-header) {
+  position: sticky;
+  height: 50px;
+  top: 0;
+  z-index: 4;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+header#login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+}
+header.stickyHeder {
+  background-color: var(--banner-Color) !important; /* #183050 */
+  transition: 0.5s ease;
+}
+header.stickyHeder h2 {
+  width: calc(100% - 260px);
+  left: 70px;
+  padding-left: 40px;
+}
+header h1 {
+  font-size: x-large;
+  margin: 0;
+}
+header h2 {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: larger;
+  margin: 5px;
+}
+header a {
+  color: #fff;
+  text-decoration: none;
+}
+header a:hover {
+  text-decoration: underline;
+}
+main {
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+main i:has(svg) {
+    display: block;
+    height: 25px;
+    width: 25px;
+}
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  border: none;
+}
+footer p {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+footer button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  filter: invert(1);
+  cursor: pointer;
+}
+.no-animation * {
+  animation: none !important;
+  transition: none !important;
+}
+input[title]::before {
+  content: attr(title);
+  /* Inne style (np. tło, kolor tekstu itp.) */
+  background-color: aqua;
+}
+#web-logo {
+  display: flex;
+  width: 200px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#web-logo a {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: auto;
+}
+#web-logo img {
+  margin-right: 5px;
+  height: 100%;
+}
+hr {
+  border: 2px solid #00000020;
+  border-radius: 100%;
+  width: 90%;
+}
+.quiz-img,
+.video-container {
+  max-width: 800px;
+  width: calc(100% - 20px);
+  margin: 5px;
+}
+.video-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: -30px 0;
+}
+
+.btn.close {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  font-size: 24px;
+  font-family: sans-serif;
+  height: 30px;
+  width: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.btn.close:hover {
+  background-color: #00000060;
+}
+
+.modal-resources-header {
+  display: flex;
+  height: 20px;
+  width: 100%;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-resources {
+  display: flex;
+  background: antiquewhite;
+  height: 90%;
+  width: 90%;
+  margin: auto;
+  position: relative;
+  top: 2%;
+  padding: 30px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.modal-resources-uploader {
+  display: flex;
+  background: #cb8322;
+  height: 90%;
+  width: 15%;
+  padding: 31px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.modal-resources-content {
+  display: flex;
+  background: #dfd3c2;
+  height: 95%;
+  width: 80%;
+  position: relative;
+  padding: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+.modal-resources-content * {
+  max-height: 200px;
+  max-width: 200px;
+  border: 2px solid #820fdd;
+  margin: auto 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+.back-to-top{
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+.arrow-up-icon{
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+.arrow-up-icon svg{
+  fill: #fff;
+}
+button:not(.style-text-tool-item) i{
+  display: block;
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px){
+  header.stickyHeder h2 {
+    width: calc(100% - 140px);
+    left: 70px;
+  }
+  #web-logo{
+    width: 50px;
+  }
+  #PlatformLogo{
+    display: none;
+  }
+  footer{
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column;
+  }
+  article{
+    padding: 10px;
+  }
+}
+@media print {
+  body * {
+      display: none;
+  }
+  main{
+      display: block!important;
+      width: 90%!important;
+      padding: 10px!important;
+  }
+  main * {
+    display: block!important;
+    width: 100%!important;
+}
+  details {
+    display: block!important;
+    width: 100%!important;
+    position: relative!important;
+  }
+}

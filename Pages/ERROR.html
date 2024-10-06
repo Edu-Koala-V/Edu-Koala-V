@@ -1,0 +1,26 @@
+
+    <main>
+        <div class="ERROR-wrapper">
+            <h1 role="heading" aria-level="1">ERROR</h1>
+            <p>%%ERROR_MESSAGE%%</p>
+            <a class="btn btn-img"  href="/">Powrót na stronę główną</a>
+            <br>
+            <a class="btn primary" href="/">Powrót na poprzednią stronę</a>
+        </div>
+        
+    </main>
+    <script>
+        const a = document.querySelectorAll('a');
+        a[1].addEventListener('click', function(e) {
+            e.preventDefault();
+            window.history.back();
+        });
+        a[0].addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = '/';
+        });
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 500);
+    </script>
+

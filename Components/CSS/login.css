@@ -1,0 +1,8 @@
+.setting-container{
+    display: flex;
+    background-color: #fff8d9;
+    padding: 10px;
+    box-shadow: 0 0 8px 1px #00000080;
+    flex-wrap: wrap;
+    flex-direction: column;
+}

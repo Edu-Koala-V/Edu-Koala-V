@@ -1,0 +1,30 @@
+select {
+  text-align: center;
+  direction: rtl;
+  text-indent: 15px;
+}
+
+label,
+select,
+option {
+  font-size: large;
+}
+
+label {
+  background-color: var(--red-tomato);
+  text-align: center;
+  font-weight: 600 !important;
+  padding: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .task-list select {
+    width: 70%;
+    margin: auto;
+  }
+
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+}

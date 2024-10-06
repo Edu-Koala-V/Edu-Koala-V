@@ -1,0 +1,54 @@
+:root{
+    --white: #fff;
+    --black: #000;
+    --banner-Color: #183050;
+    --banner-font-color: #fff;
+    --link-art-focus: #0000ff;
+    --link-art-font-color: #fff;
+    --link-art-bg-color: #183050;
+
+    --light-brown: #745734;
+    --light-gray: #ccc;
+    --medium-gray: #666;
+    --dark-gray: #333;
+    --light-white: #f9f9f9;
+    --snow-white: #f1f1f1;
+    --light-black: #111;
+    --light-blue: #007bff;
+    --red:#770b0b;
+    --red-hover: #e93b3b;
+    --red-tomato:#ff6347;
+    --green: #0b774e;
+    --green-hover: #24ca5b;
+    --green-true: #0b5700;
+    --darker-true-green: #262c16;
+    --winter-green: #486d5c;
+    --summer-green: #535f31;
+    --blue:#0b3f77;
+    --blue-hover: #3b8fe9;
+    --light-red: #fa6e6e;
+    --light-green: #a7d170;
+    --light-blue: #6ed3fa;
+    --light-purple: #b56efa;
+    --dark-purple: #2b1b57;
+    --dark-mint: #2f4f4f;
+    --medium-mint: #268f74;
+    --faded-gold: #d7b47e;
+
+    /* Task version */
+    --dark-ground: #554d42;
+    --darker-ground: #473e34;
+    --light-ground: #81715a;
+    --gray-sand: #ac9f8f;
+    --sand: #d2c4b0;
+
+    /* Text color */
+    --text-color-red: #ff0000;
+    --text-color-green: #00ff00;
+    --text-color-blue: #0000ff;
+    --text-color-yellow: #ffff00;
+    --text-color-purple: #800080;
+    --text-color-orange: #ffa500;
+    --text-color-pink: #ffc0cb;
+    --text-color-brown: #a52a2a;
+}

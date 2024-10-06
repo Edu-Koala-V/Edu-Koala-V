@@ -1,0 +1,302 @@
+article section{
+    background-color: var(--light-white);
+}
+#save-button,
+#edit-button{
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+}
+.tools-box{
+    position: fixed;
+    top: 200px;
+    right: 5px;
+    max-width: 200px;
+    background-color: currentcolor;
+    padding: 10px;
+    height: 600px;
+    overflow-y: auto;
+}
+.item-tools{
+    border: none;
+    color: aliceblue;
+    background-color: darkslategray;
+    padding: 8px;
+    margin: 2px;
+    font-size: medium;
+    cursor: grab;
+}
+.editable-content-outline{
+    outline: 1px solid black;
+    outline-offset: 5px;
+    display: block;
+}
+.style-text-toolbox{
+    position: fixed;
+    top: 20%;
+    left: 40px;
+    background-color: #656565;
+    max-width: 200px;
+    width: 20%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.column-wrapper{
+    display: flex;
+}
+.column-wrapper> div{
+    width: 50%;
+}
+
+.style-text-tool-item{
+    font-family: ui-rounded;
+    font-size: xx-large;
+    width: 100%;
+}
+.color-classer{
+    display: flex;
+    margin-top: 10px;
+}
+.color-classer div{
+    display: flex;
+    height: 25px;
+    width: 25px;
+    justify-content: center;
+    align-items: center;
+}
+.color-classer div input[type="radio"]{
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    padding: 0;
+}
+/* ["red", "green", "blue", "yellow", "purple", "orange", "pink", "brown", "gray", "black"] */
+.color-classer div.red{
+    background-color: red;
+}
+.color-classer input[type="radio"].red{
+    accent-color: red;
+}
+.color-classer div.green{
+    background-color: green;
+}
+.color-classer input[type="radio"].green{
+    accent-color: green;
+}
+.color-classer div.blue{
+    background-color: blue;
+}
+.color-classer input[type="radio"].blue{
+    accent-color: blue;
+}
+.color-classer div.yellow{
+    background-color: yellow;
+}
+.color-classer input[type="radio"].yellow{
+    accent-color: yellow;
+}
+.color-classer div.purple{
+    background-color: purple;
+}
+.color-classer input[type="radio"].purple{
+    accent-color: purple;
+}
+.color-classer div.orange{
+    background-color: orange;
+}
+.color-classer input[type="radio"].orange{
+    accent-color: orange;
+}
+.color-classer div.pink{
+    background-color: pink;
+}
+.color-classer input[type="radio"].pink{
+    accent-color: pink;
+}
+.color-classer div.brown{
+    background-color: brown;
+}
+.color-classer input[type="radio"].brown{
+    accent-color: brown;
+}
+.color-classer div.gray{
+    background-color: gray;
+}
+.color-classer input[type="radio"].gray{
+    accent-color: gray;
+}
+.color-classer div.black{
+    background-color: black;
+}
+.color-classer input[type="radio"].black{
+    accent-color: black;
+}
+.add-row,
+.remove-row{
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+}
+.add-row{
+    background-color: #1e5314;
+    color: #b5fcb8;
+}
+.remove-row{
+    background-color: #53141e;
+    color: #fcb8b8;
+}
+.add-row:hover,
+.remove-row:hover{
+    background-color: #181453;
+    color: #b8d5fc;
+}
+table.draggable>tbody>tr{
+    height: 3.1rem;
+}
+table.editable>tbody>tr>td>span{
+    display: block;
+    height: 1.8rem;
+}
+.config-setup-linkArt{
+    width: 100%;
+    padding: 10px;
+}
+.config-setup-linkArt>div>* {
+    width: 100%;
+    display: block;
+}
+a.draggable{
+    display: block;
+    width: 99%;
+}
+a.draggable:hover{
+    outline: 2px dashed #ff7b3b !important;
+    cursor: grab;
+}
+span.wrapper-span {
+    /* display: block; */
+    border: none;
+    outline: none;
+}
+.keyboard{
+    background-color: #656565;
+    padding: 5px;
+    font-size: 20px;
+    padding: 5px;
+    font-size: 16px;
+}
+.keyboard-row{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    max-height: 40px
+}
+.keyboard-wrapper{
+    display: flex;
+    line-height: .9;
+}
+
+.bigWinKey,
+.keyboard-key{
+    padding: 2px;
+    border: 1px solid;
+    border-radius: 3px;
+    margin: 2px;
+    min-width: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #171717;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 1px rgb(0 0 0 / .2), 0px -1px 0 0 rgb(255 255 255 / .7) inset;
+}
+.keyboard-key{
+    width: 35px;
+}
+.bigWinKey kbd,
+.keyboard-key kbd {
+    border: none;
+    outline: none;
+    text-shadow: none;
+    box-shadow: none;
+    color: #dfdfdf;
+}
+.keyboard-key svg{
+    width: 70%;
+    fill: #dfdfdf;
+}
+.bigWinKey{
+    height: 50%;
+    box-shadow: 0 1px 1px rgb(0 0 0 / .2), 0 -3px 0 0 rgb(255 255 255 / .7) inset !important;
+
+}
+.bigWinKey kbd{
+    /* height: 100%; */
+    display: flex;
+    justify-content: center;
+    background-color: transparent !important;
+    font-size: large;
+    fill: #dfdfdf;
+
+}
+.bigWinKey kbd>svg{
+    width: 60%;
+}
+.selected-keys-combo{
+    height: 90px;
+    width: 70%;
+    font-size: 50px;
+    background-color: darkseagreen;
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .keyboard-key{
+    min-width: 30px;
+    min-height: 20px;
+    margin: 0 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+} */
+/* .keyboard-key kbd{
+    width: 90%;
+    text-align: center;
+} */
+
+@media screen and (max-width: 800px){
+    .style-text-toolbox{
+        display: none;
+    }
+    .tools-box{
+        display: none;
+    }
+    #save-button,
+    #edit-button{
+        display: none;
+    }
+    
+}
+
+/* Specjalne znaczniki do zastosowania w edytorze */
+
+bi{
+    font-weight: bold;
+    font-style: italic;
+}
+.ordered-list{
+    list-style-type: decimal;
+}
+.unordered-list{
+    list-style-type: disc;
+}

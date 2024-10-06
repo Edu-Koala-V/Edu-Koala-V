@@ -1,0 +1,68 @@
+.classesList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 80vh;
+}
+.classBox {
+  background-color: var(--light-white);
+  border: 1px solid var(--light-gray);
+  padding: 10px;
+  margin: 10px;
+  width: 160px;
+  height: 160px;
+  text-align: center;
+  color: var(--dark-gray);
+}
+.classBox > span {
+  float: inline-start;
+  font-size: 14px;
+  color: var(--medium-gray);
+}
+.add-new-class {
+  position: relative;
+  width: 300px;
+  bottom: 0;
+  border: 1px solid var(--light-gray);
+  padding: 5px;
+}
+
+.add-new-class > form > button {
+  font-size: 16px;
+}
+
+.classFunctions {
+  width: 50%;
+}
+
+.add-new-student-to-class {
+  position: fixed;
+  width: 300px;
+  border: 1px solid var(--light-gray);
+  padding: 5px;
+  left: 10px;
+  bottom: 10px;
+  background-color: var(--light-white);
+}
+
+.student-login {
+  padding: 0 10px;
+  font-family: cursive,monospace;
+}
+
+@media screen and (max-width: 600px) {
+  .classBox {
+    width: 100%;
+    height: 170px;
+  }
+  .add-new-class {
+    width: 100%;
+  }
+  .add-new-student-to-class {
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    left: 0;
+    border: none;
+  }
+}

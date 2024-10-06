@@ -1,0 +1,13 @@
+CREATE TABLE lessons_art 
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `article_content` JSON NOT NULL DEFAULT '{}' ,
+    `tags` TEXT NOT NULL , 
+    `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+    `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+    `authors` TEXT NOT NULL , 
+    `quiz_id` INT NOT NULL , 
+
+    PRIMARY KEY (`id`)
+    
+)ENGINE = InnoDB;
