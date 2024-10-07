@@ -30,14 +30,13 @@ class ClassesView extends BaseView
         echo self::renderPage("Uczniowie",$studentsList,"classesApp");
     }
     private function studentsHTML($studentsData) {
-        
         $studentsList = "<div class='classFunctions' data-show-login-status='false'><i class='eye-icon' style='cursor: pointer;'></i> <span>Domyślne hasło to: ZAQ!2wsx1234</span></div>";
         if(is_array($studentsData)){
             foreach ($studentsData as $student) {
                 $className = $student['name'];
                     $studentsList .= '<tr>';
             
-                    $studentsList .= "<td><i class='eye-icon show-student-login' style='cursor: pointer;'></i><span class='student-login' style='display: none; '>{$student['login']}</span></td>";
+                    $studentsList .= "<td><i title='ID ucznia: ".$student["id"]."' class='eye-icon show-student-login' style='cursor: pointer;'></i><span class='student-login' style='display: none; '>{$student['login']}</span></td>";
                     switch($student['status']) {
                         case 'new':
                             $studentsList .= "<td><i class='plus-icon' title='Nowe konto'></i></td>";
@@ -52,6 +51,7 @@ class ClassesView extends BaseView
                             $studentsList .= "<td></td>";
                             break;
                     }
+                    $studentsList .= "<td><button class='btn primary reset-passwd'>Zrestartuj hasło</button></td>";
                     $studentsList .= "<td>{$student['student_nr']}</td>";
                     $studentsList .= "<td>{$student['fname']} {$student["sname"]}</td>";
                     $studentsList .= "<td>{$student['lname']}</td>";

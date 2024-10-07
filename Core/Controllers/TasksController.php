@@ -64,5 +64,21 @@ class TasksController extends BaseController
         $result = TasksModel::updateTaskStatus($statusID, $status);
         self::echo_asJSON($result);
     }
+
+    public function saveTaskData(){
+        $request = self::getRequestData();
+        $taskName = $request['taskName'];
+        $taskLink = $request['taskLink'];
+        $result = TasksModel::saveTaskData($taskName, $taskLink);
+
+        self::echo_asJSON($result);
+    }
     
+    public function updateTaskName(){
+        $request = self::getRequestData();
+        $task_id = $request['taskID'];
+        $taskName = $request['taskName'];
+        $result = TasksModel::updateTaskName($task_id, $taskName);
+        self::echo_asJSON($result);
+    }
 }

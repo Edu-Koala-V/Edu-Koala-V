@@ -67,3 +67,33 @@ h2 {
     border: 1px solid #ccc;
     color: #f00;
 }
+
+
+.red{
+    color: var(--text-color-red);
+}
+.green{
+    color: var(--text-color-green);
+}
+.blue{
+    color: var(--text-color-blue);
+}
+.yellow{
+    color: var(--text-color-yellow);
+}
+.purple{
+    color: var(--text-color-purple);
+}
+.orange{
+    color: var(--text-color-orange);
+}
+.pink{
+    color: var(--text-color-pink);
+}
+.brown{
+    color: var(--text-color-brown);
+}
+
+.font-math{
+    font-family: math;
+  }

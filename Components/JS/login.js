@@ -22,8 +22,11 @@ if(loginForm){
                 if(response.status === "success"){
                     createNotification("Udane logowanie","Zalogowano pomyślnie","success");
                     location.reload();
+                }else if(response.status === "info"){
+                    createNotification("Wymagana akcja",response.message,response.status);
+                    loginFromActions(response.action);
                 }else{
-                    createNotification("Pierwsze logowanie",response.message,response.status);
+                    createNotification("Błąd logowania",response.message,response.status);
                     loginFromActions(response.action);
                 }
             })

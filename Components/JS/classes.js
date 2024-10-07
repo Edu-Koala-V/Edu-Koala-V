@@ -187,3 +187,16 @@ addEventElement(".eye-icon", "click", () => {
       : "false"
   );
 });
+
+document.querySelectorAll(".reset-passwd").forEach((btnResetPasswd) => {
+  btnResetPasswd.addEventListener("click", function () {
+   const login = btnResetPasswd.parentElement.parentElement.children[0].children[1].textContent;
+    sendDataToServer({login:login}, "/reset-password").then((response) => {
+      if(response.status === "success"){
+        createNotification("Koala-V - Hasło zresetowane:", response.message, "success");
+      }else{
+        createNotification("Koala-V - Błąd:", response.message);
+      }
+    });
+  });
+});

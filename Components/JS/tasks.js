@@ -6,42 +6,46 @@
  * Po kliknięciu przycisku wywołuje funkcję loadTasks z obsługą błędów i ponownymi próbami w przypadku niepowodzenia.
  */
 function setupTaskButtons() {
-    const articleContainer = document.querySelector("article");
+    
     const taskButtons = document.querySelectorAll('.tasks-items button');
 
     taskButtons.forEach(button => {
       if(button.getAttribute('data-link-task'))
         button.addEventListener('click', () => {
-            const retryLoadTasks = (button, retries = 3) => {
-              if (retries == 3) {
-                loadingTaskStyle(articleContainer);
-            }
-                loadTasks(button).then(data => {
-                   articleContainer.style = '';
-                   setupContentArticle(data);
-                    activeSelectTaskItem(button.parentElement.getAttribute('data-task-id'));
-                    console.log(articleContainer);
-                    setTimeout(() => {
-                    scrollToSection(document.querySelector("#section1"));
-
-                        fixTableRows();
-                        fixTableTH();
-                        setTableHeadersTextValuesToTD();
-                    }, 100);
-                }).catch(error => {
-                    if (retries > 0) {
-                        setTimeout(() => {
-                            retryLoadTasks(button, retries - 1);
-                        }, 1000);
-                    } else {
-                        console.error('Failed to load tasks after multiple attempts:', error);
-                    }
-                });
-            };
-            retryLoadTasks(button);
+            retryLoadTaskContent(data, button);
         });
     });
 }
+
+function retryLoadTaskContent(data, button) {
+    const articleContainer = document.querySelector("article");
+    const retryLoadTasks = (button, retries = 3) => {
+        if (retries == 3) {
+          loadingTaskStyle(articleContainer);
+      }
+          loadTasks(button).then(data => {
+             articleContainer.style = '';
+             setupContentArticle(data);
+              activeSelectTaskItem(button.parentElement.getAttribute('data-task-id'));
+              setTimeout(() => {
+              scrollToSection(document.querySelector("#section1"));
+
+                  fixTableRows();
+                  fixTableTH();
+                  setTableHeadersTextValuesToTD();
+              }, 100);
+          }).catch(error => {
+              if (retries > 0) {
+                  setTimeout(() => {
+                      retryLoadTasks(button, retries - 1);
+                  }, 1000);
+              } else {
+                  console.error('Failed to load tasks after multiple attempts:', error);
+              }
+          });
+      };
+      retryLoadTasks(button);
+    }
 
 /**
  * Stylizacja kontenera artykułu podczas ładowania zadań

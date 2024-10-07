@@ -147,6 +147,37 @@ function minifyJS()
     // #######################################################################################################################
 
     // #######################################################################################################################
+    // https://rephp.mvc/zadania
+
+    $styleComponents = [
+        "CssComponents/Table",
+        "CssComponents/basic-class",
+        "form",
+        "task-art",
+        "tasks",
+        "dragAndDrop",
+        "lessonEditor",
+        "tasksEditor",
+        "editorToolsBox",
+    ];
+    minifyJS::minifyCSS($styleComponents, "tasksEditorApp", $globalFilesCSS);
+    $scriptComponents = [
+        "GlobalFunctions/ScrollToSectionID",
+        "GenerateArticleFromJSON",
+        "GenerateJSONFromArticle",
+        "convertStringURL",
+        "table-mobile-fix",
+        "tasks",
+        "GlobalFunctions/DragAndDrop",
+        "lessonEditor",
+        "tasksEditor",
+        "editorToolsBox",
+    ];
+    minifyJS::minifyJS($scriptComponents, "tasksEditorApp");
+
+    // #######################################################################################################################
+
+    // #######################################################################################################################
     // https://rephp.mvc/lesson/1
 
     $styleComponents = [
@@ -158,7 +189,8 @@ function minifyJS()
         "dragAndDrop",
         "lessonEditor",
         "form",
-        "editorToolsBox"
+        "GlobalFunctions/DragAndDrop",
+        "editorToolsBox",
     ];
     minifyJS::minifyCSS($styleComponents, "lessonEditorApp", $globalFilesCSS);
     $scriptComponents = [

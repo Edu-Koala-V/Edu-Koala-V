@@ -86,11 +86,18 @@ Router::middleware("teacher", function () {
 
     Router::post("/get-token", "AccountController", "getAccountDataGithubToken");
     Router::post("/update-lesson-content-json-link", "LessonController", "updateLessonContent");
+    Router::post("/saveTaskData", "TasksController", "saveTaskData");
+    Router::post("/updateTaksData", "TasksController", "updateTaskName");
+    Router::post("/reset-password", "AccountController", "resetPassword");
 });
 
 Router::middleware("admin", function(){
     Router::post("/get-token", "AccountController", "getAccountDataGithubToken");
     Router::post("/update-lesson-content-json-link", "LessonController", "updateLessonContent");
+    Router::post("/saveTaskData", "TasksController", "saveTaskData");
+    Router::post("/updateTaksData", "TasksController", "updateTaskName");
+    Router::post("/reset-password", "AccountController", "resetPassword");
+
 
 
 

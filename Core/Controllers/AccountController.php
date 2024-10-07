@@ -58,12 +58,12 @@ class AccountController extends BaseController
             return;
         }
 
-        if ($this->handleAccountStatus($login)) {
+        if (!AccountModel::checkPassword($login, $password)) {
+            self::echo_asJSON(array_merge(self::RESPONSE_ERROR, ["action" => "bad-password", "message" => BaseMessages::ERROR_BAD_PASSWORD]));
             return;
         }
 
-        if (!AccountModel::checkPassword($login, $password)) {
-            self::echo_asJSON(array_merge(self::RESPONSE_ERROR, ["action" => "bad-password", "message" => BaseMessages::ERROR_BAD_PASSWORD]));
+        if ($this->handleAccountStatus($login)) {
             return;
         }
 
@@ -292,5 +292,17 @@ class AccountController extends BaseController
 
     public function getAccountDataGithubToken(){
         self::echo_asJSON(["token" => $_SESSION["user"]["github_token"]]);
+    }
+
+    public function resetPassword(){
+        $requestData = self::getRequestData();
+        $login = $requestData["login"];
+        $accountData = AccountModel::getAccountData($login);
+        if($accountData){
+            $newPassword = AccountModel::resetPassword($login);
+            self::echo_asJSON(array_merge(self::RESPONSE_SUCCESS, ["message" => "Nowe hasło: ZAQ!2wsx1234"]));
+        }else{
+            self::echo_asJSON(array_merge(self::RESPONSE_ERROR, ["message" => "Konto nie istnieje"]));
+        }
     }
 }

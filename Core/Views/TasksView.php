@@ -7,7 +7,11 @@ class TasksView extends BaseView
     public function render($tasks)
     {
         $lessonsData = $this->renderContent($tasks);
+        if($_SESSION["user"]["privileges"] !== "student" && $_SESSION["user"]["privileges"] !== "guest"){
+            echo self::renderPage("Zadania",$lessonsData,"tasksEditorApp");
+        }else{
         echo self::renderPage("Zadania",$lessonsData,"tasksApp");
+        }
     }
     
     public function renderManage($tasks)

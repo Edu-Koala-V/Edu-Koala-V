@@ -86,10 +86,14 @@ function toggleEditMode(e) {
     document.querySelector("article").style.backgroundColor = "dimgray";
     editLesson();
     setupToolsBox();
-    if(document.querySelector("section#authors")){
-      const button = createButton("Dodaj nową sekcję", ["btn", "primary"], ()=> {
-        addNewSection();
-      });
+    if (document.querySelector("section#authors")) {
+      const button = createButton(
+        "Dodaj nową sekcję",
+        ["btn", "primary"],
+        () => {
+          addNewSection();
+        }
+      );
       document.querySelector("article").appendChild(button);
     }
   } else {
@@ -156,7 +160,7 @@ function editLesson() {
     section.appendChild(document.createElement("div"));
     const textArt = [];
     section.querySelectorAll("*").forEach((element) => {
-      if(element.classList.contains("skip-set-draggable")) return;
+      if (element.classList.contains("skip-set-draggable")) return;
 
       if (collapseTextBlocks(element, textArt) !== false) {
         textCollapsedElements.push(collapseTextBlocks(element, textArt));
@@ -184,7 +188,9 @@ function editLesson() {
           stylizedHeaderElement(element);
           break;
         case "BR":
-          if(!element.closest("span")) {setElementAsDraggable(element);}
+          if (!element.closest("span")) {
+            setElementAsDraggable(element);
+          }
           textCollapsedElements.push(collapseTextBlocks(element, textArt));
           break;
         case "TABLE":
@@ -218,18 +224,16 @@ function editLesson() {
           } else if (element.classList.contains("blur-load")) {
             setupIMG_BlurLoad(element);
             console.log(element);
-          }else if (element.classList.contains("card-box")) {
+          } else if (element.classList.contains("card-box")) {
             setupCardBox(element);
           }
           break;
       }
     });
     setDraggableElements(filteredSections);
-
-
   });
 }
-function setSkipSetDraggableElement(element){
+function setSkipSetDraggableElement(element) {
   element.classList.add("skip-set-draggable");
 }
 /**
@@ -364,10 +368,10 @@ function stylizedHeaderElement(element) {
 function setupList(element) {
   const div = createElement("div");
   const buttonVer = createButton("Zmień typ listy", ["btn", "primary"], () => {
-    if(element.classList.contains("ordered-list")){
+    if (element.classList.contains("ordered-list")) {
       element.classList.remove("ordered-list");
       element.classList.add("unordered-list");
-    }else{
+    } else {
       element.classList.remove("unordered-list");
       element.classList.add("ordered-list");
     }
@@ -376,9 +380,9 @@ function setupList(element) {
   setTimeout(() => {
     element.parentElement.insertBefore(div, element);
   }, 10);
-  if(element.tagName === "OL"){
+  if (element.tagName === "OL") {
     element.classList.add("ordered-list");
-  }else{
+  } else {
     element.classList.add("unordered-list");
   }
 
@@ -548,7 +552,6 @@ function addColumnToTable(tableElement, thElement) {
   );
   fixTD_Table_wrapper(tableElement);
   saveStateColumnTable(tableElement);
-
 }
 function saveStateColumnTable(tableElement) {
   let stateObject = {
@@ -625,8 +628,10 @@ function buttonAddTableElements(parentElement, functionToCall, text = "+") {
   addBtn.setAttribute("contenteditable", false);
   console.log(parentElement);
   parentElement.addEventListener("mousemove", (e) => {
-    
-    if(parentElement.closest("table").getAttribute("contenteditable") === "true") return;
+    if (
+      parentElement.closest("table").getAttribute("contenteditable") === "true"
+    )
+      return;
     addBtn.style.display = "inline-block";
     addBtn.style.top = e.clientY + "px";
     addBtn.style.left = e.clientX + "px";
@@ -852,6 +857,7 @@ function styleTextToolBox() {
     styleTextToolBox.classList.add("style-text-toolbox");
     document.body.appendChild(styleTextToolBox);
   }
+  console.log(range);
 
   styleTextToolBox.innerHTML = "";
   const leftColumn = createElement("div");
@@ -1137,18 +1143,32 @@ function saveLesson() {
     fixTableTH();
   }, 100);
   const jsonData = generateJSONFromArticle();
+  let artLink="";
+  if(document.querySelector(".article-header")){
+    artLink = document.querySelector(".article-header").getAttribute("data-content");
+    
+  }else{
+    artLink = document.querySelector(".tasks-items li.active").querySelector("button").getAttribute("data-link-task");
+  }
 
-  const artLink = document.querySelector(".article-header").getAttribute("data-content");
- 
+
   sendDataToServer({}, "/get-token").then((data) => {
     const token = data.token;
     const fileName = artLink.split("/")[4];
     const dirLocation = artLink.split("/")[3];
     const userName = artLink.split("/")[0];
     const repoName = artLink.split("/")[1];
-  
-    if(sendArticleToGithubRepository(jsonData, fileName, dirLocation,userName,repoName, token)){
 
+    if (
+      sendArticleToGithubRepository(
+        jsonData,
+        fileName,
+        dirLocation,
+        userName,
+        repoName,
+        token
+      )
+    ) {
     }
   });
 
@@ -1502,7 +1522,6 @@ function updateSelectedKeys(div) {
       const span = createElement("span");
       span.textContent = "+";
       div.appendChild(span);
-     
     }
   });
 }
@@ -1710,13 +1729,13 @@ function setupIMG_BlurLoad(element) {
       content.style = "padding: 10px;";
       contentRight.style = "padding: 10px;";
 
-      
       const imgPreview = createElement("img");
       imgPreview.src = img.src;
       content.appendChild(imgPreview);
 
       const divWrapper = createElement("div");
-      divWrapper.style = "display: flex;flex-direction: column;flex-wrap: wrap;";
+      divWrapper.style =
+        "display: flex;flex-direction: column;flex-wrap: wrap;";
       createURLInput(divWrapper, img, imgPreview, "skompresowanego");
 
       createURLInput(divWrapper, img, imgPreview, "oryginalnego");
@@ -1733,24 +1752,24 @@ function setupIMG_BlurLoad(element) {
       divWrapper.appendChild(label);
       divWrapper.appendChild(input);
 
-
-
-
       contentRight.appendChild(divWrapper);
       const button = createButton("Zapisz", ["btn", "primary"], function () {
         img.src = contentRight.querySelector("#skompresowanego").value;
-        img.setAttribute("data-big-img", contentRight.querySelector("#oryginalnego").value);
+        img.setAttribute(
+          "data-big-img",
+          contentRight.querySelector("#oryginalnego").value
+        );
         const Original_img = new Image();
         Original_img.src = contentRight.querySelector("#oryginalnego").value; // Podmień na właściwy URL
 
-        Original_img.onload = function() {
+        Original_img.onload = function () {
           img.width = Original_img.width;
           img.height = Original_img.height;
-          };
+        };
 
-          Original_img.onerror = function() {
-            console.error('Nie udało się załadować obrazka.');
-          };
+        Original_img.onerror = function () {
+          console.error("Nie udało się załadować obrazka.");
+        };
         modal.remove();
       });
       contentRight.appendChild(button);
@@ -1759,23 +1778,28 @@ function setupIMG_BlurLoad(element) {
 }
 function createURLInput(divWrapper, img, imgPreview, imgName) {
   const label = createElement("label");
-  label.textContent = "Adres URL obrazu "+imgName+":";
+  label.textContent = "Adres URL obrazu " + imgName + ":";
   label.setAttribute("for", imgName);
   const input = createElement("input");
   input.id = imgName;
   input.type = "text";
   input.value = img.src;
   input.addEventListener("input", function () {
-    if ((input.value.includes("github.com") || input.value.includes("raw.githubusercontent.com")) && input.value.endsWith(".webp")) {
+    if (
+      (input.value.includes("github.com") ||
+        input.value.includes("raw.githubusercontent.com")) &&
+      input.value.endsWith(".webp")
+    ) {
       input.value = input.value.replace(
         "github.com",
         "raw.githubusercontent.com"
       );
       input.value = input.value.replace("/blob/", "/");
-    }else{
-      input.value = "https://raw.githubusercontent.com/Edu-Koala-V/koala-v-assets-art1/main/bad-img-url-hosting.webp";
+    } else {
+      input.value =
+        "https://raw.githubusercontent.com/Edu-Koala-V/koala-v-assets-art1/main/bad-img-url-hosting.webp";
     }
-    
+
     imgPreview.src = input.value;
   });
   divWrapper.appendChild(label);
@@ -1785,36 +1809,54 @@ function createURLInput(divWrapper, img, imgPreview, imgName) {
 //? Nowa lekcja której nie ma jeszcze w repozytorium GitHub
 //####################################################################################################################
 setTimeout(() => {
-  if(document.querySelector(".article-header") && document.querySelector(".article-header").getAttribute("data-content")==""){
+  if (
+    document.querySelector(".article-header") &&
+    document.querySelector(".article-header").getAttribute("data-content") == ""
+  ) {
     const form = createElement("form");
     const form2 = createElement("form");
-    form.addEventListener("submit", function (e) {e.preventDefault();});
-    form2.addEventListener("submit", function (e) {e.preventDefault();});
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+    });
+    form2.addEventListener("submit", function (e) {
+      e.preventDefault();
+    });
     const labelToken = createElement("label");
-    labelToken.textContent = "Do pobrania danych został wykorzystany token przypisany do twojego konta możesz skorzystać z innego podając go poniżej:";
-    labelToken.for="token";
+    labelToken.textContent =
+      "Do pobrania danych został wykorzystany token przypisany do twojego konta możesz skorzystać z innego podając go poniżej:";
+    labelToken.for = "token";
     const inputToken = createElement("input");
-    inputToken.id="token";
-    inputToken.placeholder="Podaj token do GitHub";
+    inputToken.id = "token";
+    inputToken.placeholder = "Podaj token do GitHub";
     form.appendChild(labelToken);
     form.appendChild(inputToken);
-    
-    document.querySelector("main").insertBefore(form,document.querySelector("article"));
-    document.querySelector("main").insertBefore(form2,document.querySelector("article"));
-    
+
+    document
+      .querySelector("main")
+      .insertBefore(form, document.querySelector("article"));
+    document
+      .querySelector("main")
+      .insertBefore(form2, document.querySelector("article"));
+
+    const selectTextInfoLabel =
+      "Wybierz w którym repozytorium chcesz zapisać dane z tej lekcji (repozytorium musi mieć w nazwie koala-v-assets-art):";
     sendDataToServer({}, "/get-token").then((data) => {
       const token = data.token;
-    setupRepoSource(form,token,form2)
+      setupRepoSource(form, token, form2, selectTextInfoLabel);
     });
-    inputToken.addEventListener("input",function(e){
-      setupRepoSource(form,e.target.value,form2);
+    inputToken.addEventListener("input", function (e) {
+      setupRepoSource(form, e.target.value, form2, selectTextInfoLabel);
     });
-  
-
-  
   }
 }, 10);
-function setupRepoSource(form,token,form2){
+function setupRepoSource(
+  form,
+  token,
+  form2,
+  selectTextInfoLabel = "Wybierz repozytorium z listy:",
+  filtrRepoName = "koala-v-assets-art",
+  buttonAction = "setNewArticleLesson(data.userName,select.value,token,inputFileName,inputDirLocation)"
+) {
   form.querySelector("span")?.remove();
   form.querySelector("label[for='repo_list'")?.remove();
   form.querySelector("select")?.remove();
@@ -1822,16 +1864,19 @@ function setupRepoSource(form,token,form2){
     console.log(data);
     const span = createElement("span");
     const label = createElement("label");
-    label.textContent = "Wybierz w którym repozytorium chcesz zapisać dane z tej lekcji (repozytorium musi mieć w nazwie koala-v-assets-art):";
-    label.setAttribute("for","repo_list");
+    label.textContent = selectTextInfoLabel;
+    label.setAttribute("for", "repo_list");
     const select = createElement("select");
-    span.textContent = "Token i repozytoria należące do użytkownika: "+data.userName;
+    span.textContent =
+      "Token i repozytoria należące do użytkownika: " + data.userName;
+      span.id = "spanGithubUserName";
+      span.setAttribute("data-user-name", data.userName);
     form.appendChild(span);
     form.appendChild(label);
     form.appendChild(select);
     data.repoNameArray.forEach((repo) => {
       console.log(repo);
-      if(repo.includes("koala-v-assets-art")){
+      if (repo.includes(filtrRepoName)) {
         const option = createElement("option");
         option.value = repo;
         option.textContent = repo;
@@ -1839,70 +1884,97 @@ function setupRepoSource(form,token,form2){
       }
     });
 
-    const labelFileName = createElement("label");
-    labelFileName.textContent = "Podaj nazwę pliku do zapisu:";
-    labelFileName.for="fileName";
-    const inputFileName = createElement("input");
-    inputFileName.id="fileName";
-    inputFileName.placeholder="Podaj nazwę pliku do zapisu";
-    form2.appendChild(labelFileName);
-    form2.appendChild(inputFileName);
-
     const labelDirLocation = createElement("label");
     labelDirLocation.textContent = "Podaj lokalizację folderu do zapisu:";
-    labelDirLocation.for="dirLocation";
+    labelDirLocation.for = "dirLocation";
     const inputDirLocation = createElement("input");
-    inputDirLocation.id="dirLocation";
-    inputDirLocation.placeholder="Podaj lokalizację folderu do zapisu";
+    inputDirLocation.id = "dirLocation";
+    inputDirLocation.placeholder = "Podaj lokalizację folderu do zapisu";
     form2.appendChild(labelDirLocation);
     form2.appendChild(inputDirLocation);
 
-    const button = createButton("Zapisz", ["btn", "primary"], function () {
-     if(inputFileName.value!="" && inputDirLocation.value!=""){
-      const userName = data.userName;
-      const repoName = select.value;
-      let fileName = inputFileName.value;
-      if(!fileName.includes(".json")){
-        fileName+=".json";
-      }
-      const dirLocation = inputDirLocation.value;
-      const jsonData = `[
-      {"type": "h2", "sectionID": "section1", "elementContent": ["Wstęp"]},
-      {"type": "span", "sectionID": "section1","elementContent":["Przykładowy tekst wstępu do lekcji",""]},
-      {"type": "br", "sectionID": "section1"}
-      ]`;
+    const labelFileName = createElement("label");
+    labelFileName.textContent = "Podaj nazwę pliku do zapisu:";
+    labelFileName.for = "fileName";
+    const inputFileName = createElement("input");
+    inputFileName.id = "fileName";
+    inputFileName.placeholder = "Podaj nazwę pliku do zapisu";
+    form2.appendChild(labelFileName);
+    form2.appendChild(inputFileName);
 
+    const url = window.location.href.split("/");
+    const findCourse = url.findIndex((element) => element === "courses");
 
-
-
-      sendArticleToGithubRepository(jsonData, fileName, dirLocation, userName, repoName, token).then((result) => {
-        console.log(result);
-        if (result.status === 200) {
-          const json_link = userName + "/" + repoName + "/main/" + dirLocation + "/" + fileName;
-            document.querySelector(".article-header").setAttribute("data-content",
-                json_link
-            );
-            sendDataToServer({lessonID:document.querySelector(".article-header").getAttribute("data-lesson-id"),lesson_data_link:json_link},"/update-lesson-content-json-link").then((data) => {
-                console.log(data);
-            });
-        }
-    });
-    }else{
-      createNotification("error","Podaj nazwę pliku i lokalizację folderu do zapisu");
+    if (findCourse !== -1) {
+      const button = createButton("Zapisz", ["btn", "primary"], function () {
+        setNewArticleLesson(
+          data.userName,
+          select.value,
+          token,
+          inputFileName.value,
+          inputDirLocation.value
+        );
+      });
+      form2.appendChild(button);
     }
   });
-  form2.appendChild(button);
-  });
 }
+function setNewArticleLesson(userName, repoName, token, fileName, dirLocation) {
+  if (fileName != "" && dirLocation != "") {
+    if (!fileName.includes(".json")) {
+      fileName += ".json";
+    }
+    const jsonData = `[
+    {"type": "h2", "sectionID": "section1", "elementContent": ["Wstęp"]},
+    {"type": "span", "sectionID": "section1","elementContent":["Przykładowy tekst wstępu do lekcji",""]},
+    {"type": "br", "sectionID": "section1"}
+    ]`;
+
+    sendArticleToGithubRepository(
+      jsonData,
+      fileName,
+      dirLocation,
+      userName,
+      repoName,
+      token
+    ).then((result) => {
+      console.log(result);
+      if (result.status === 200) {
+        const json_link =
+          userName + "/" + repoName + "/main/" + dirLocation + "/" + fileName;
+        document
+          .querySelector(".article-header")
+          .setAttribute("data-content", json_link);
+        sendDataToServer(
+          {
+            lessonID: document
+              .querySelector(".article-header")
+              .getAttribute("data-lesson-id"),
+            lesson_data_link: json_link,
+          },
+          "/update-lesson-content-json-link"
+        ).then((data) => {
+          console.log(data);
+        });
+      }
+    });
+  } else {
+    createNotification(
+      "error",
+      "Podaj nazwę pliku i lokalizację folderu do zapisu"
+    );
+  }
+}
+
 //####################################################################################################################
 // Edu-Koala-V/koala-v-assets-art1/main/windows10/instalacja-windows-10.json
 
-function setupCardBox(element){
+function setupCardBox(element) {
   setElementAsDraggable(element);
-  element.appendChild(createElement("div",["overlay-card-box"]));
+  element.appendChild(createElement("div", ["overlay-card-box"]));
   element.addEventListener("click", function (e) {
-    if(e.altKey){
-       e.target.parentElement.querySelector("a").click();
+    if (e.altKey) {
+      e.target.parentElement.querySelector("a").click();
     }
     if (e.ctrlKey) {
       const img = e.target.parentElement.querySelector("img");
@@ -1916,9 +1988,9 @@ function setupCardBox(element){
       content.style = "padding: 10px;";
 
       const divWrapper = createElement("div");
-      divWrapper.style = "display: flex;flex-direction: column;flex-wrap: wrap;";
+      divWrapper.style =
+        "display: flex;flex-direction: column;flex-wrap: wrap;";
 
-      
       const imgPreview = createElement("img");
       imgPreview.src = img.src;
       modal.querySelector(".modal-right-container").appendChild(imgPreview);
@@ -1930,8 +2002,6 @@ function setupCardBox(element){
     background-color: var(--light-white);
     margin: 20px;
     border: 10px solid;`;
-
-      
 
       const label = createElement("label");
       label.textContent = "Podpis linku (maksymalnie 9 znaków w tym spacje):";
@@ -1956,9 +2026,12 @@ function setupCardBox(element){
 
       createURLInput(divWrapper, img, imgPreview, card_link.textContent);
 
-setTimeout(() => {
-  modal.querySelector("label[for='"+card_link.textContent+"'").textContent = "Obraz docelowo bedzie renderowany w maksymalnie 80px szerokości i 100px wysokości";
-}, 10);
+      setTimeout(() => {
+        modal.querySelector(
+          "label[for='" + card_link.textContent + "'"
+        ).textContent =
+          "Obraz docelowo bedzie renderowany w maksymalnie 80px szerokości i 100px wysokości";
+      }, 10);
       content.appendChild(divWrapper);
 
       const button = createButton("Zapisz", ["btn", "primary"], function () {
@@ -1971,21 +2044,18 @@ setTimeout(() => {
       });
       button.style = "position: absolute;bottom: 20px;";
       content.appendChild(button);
-
     }
   });
 }
 
-
 function addNewSection() {
   console.log(document.querySelectorAll("section").length);
   const section = createElement("section");
-  section.id = "section" + (document.querySelectorAll("section").length);
+  section.id = "section" + document.querySelectorAll("section").length;
 
   const heading = createElement("h2");
   heading.innerText = "Nagłówek";
   section.appendChild(heading);
   document.querySelector("section#authors").before(section);
   stylizedHeaderElement(heading);
-
 }

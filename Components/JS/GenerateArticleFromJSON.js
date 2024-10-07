@@ -16,9 +16,7 @@ function setupContentArticle(contentData) {
       let articleElement;
       articleElement = checkTypeArticleElement(article);
       sectionElement.appendChild(articleElement);
-      console.log(index);
-      console.log(article);
-      console.log(section.length);
+
         if( index+1 != section.length && article.type === "list" && section[index+1].type !== "br"){
           sectionElement.appendChild(createElement("br"));
         }

@@ -1,4 +1,4 @@
-article section{
+article:not(.task-art) section{
     background-color: var(--light-white);
 }
 #save-button,

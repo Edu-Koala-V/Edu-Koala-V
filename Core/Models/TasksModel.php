@@ -44,4 +44,23 @@ class TasksModel extends BaseModel{
                             ", "si", [$status, $statusID]);
         return $result;
     }
+    public static function saveTaskData($taskName, $taskLink){
+        $result =LessonModel::insertLessonEmptyContent();
+        $result = self::DB("SELECT MAX(id) FROM tasks;");
+        $result = $result->fetch_row();
+       
+        $task_id = $result[0]+1;
+        $result = self::DB("INSERT INTO tasks 
+                            (id, name, link) 
+                            VALUES (?,?,?)
+                            ", "iss", [$task_id, $taskName, $taskLink]);
+        return $result;
+    }
+    public static function updateTaskName($task_id, $taskName){
+        $result = self::DB("UPDATE tasks 
+                            SET name = ?
+                            WHERE id = ?
+                            ", "si", [$taskName, $task_id]);
+        return $result;
+    }
 }

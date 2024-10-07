@@ -120,5 +120,14 @@ class AccountModel extends BaseModel{
         return json_decode($result->fetch_assoc()["settings"], true);
     }
     
+    public static function resetPassword($login){
+        $password = password_hash("ZAQ!2wsx1234", PASSWORD_DEFAULT);
+        $result = self::DB("UPDATE accounts 
+                            SET password = ?,
+                            status = 'new'
+                            WHERE login = ?
+            ","ss", [$password, $login]);
+        return $result;
+    }
     
 }
